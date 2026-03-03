@@ -162,11 +162,11 @@ class Codec {
    * @return Number of OutputSpec entries added.
    */
   virtual size_t encode(uint8_t byte, Vector<OutputEdge>& output) {
-    int count = 8;
-    uint8_t bits[count];
+    Vector<bool> bits;
+    bits.reserve(8);
     encodeByte(byte, bits);
     size_t total = 0;
-    for (int i = 0; i < count; ++i) {
+    for (int i = 0; i < 8; ++i) {
       total += encodeBit(bits[i], output);
     }
     return total;
@@ -201,7 +201,7 @@ class Codec {
    * @param byte The input byte to encode.
    * @param bits Output buffer for encoded bits (protocol-specific format).
    */
-  virtual void encodeByte(uint8_t byte, uint8_t* bits) const {
+  virtual void encodeByte(uint8_t byte, std::vector<bool> &bits) const {
     for (int i = 7; i >= 0; --i) {
       bool bit = (byte >> i) & 0x01;
       bits[7 - i] = bit ? 1 : 0;

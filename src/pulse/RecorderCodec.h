@@ -46,7 +46,7 @@ class RecorderCodec : public Codec {
     return _ref.decodeByte(edges, result);
   };
 
-  void encodeByte(uint8_t byte, uint8_t* bits) const override {
+  void encodeByte(uint8_t byte, std::vector<bool>& bits) const override {
     _ref.encodeByte(byte, bits);
   }
 
