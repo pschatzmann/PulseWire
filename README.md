@@ -24,37 +24,98 @@ In addition, specific to transmitting IR data, we need to modulate the __signal_
 
 ## Architechture
 
-This library uses the Arduino Stream API, so that we can easily integrate with other Arduino functionality and provides quite a few __composable classes__, so that you can configure your individual communication scenario:
+This library uses the Arduino Stream API, so that we can easily integrate with other Arduino functionality and provides [quite a few __composable classes__](https://pschatzmann.github.io/PulseWire/html/annotated.html), so that you can configure your individual communication scenario:
 
-- Transceiver
-  - RxDriver
+- [Transceiver](https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1Transceiver.html)
+  - [RxDriver](https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1RxDriver.html) ([RxDriverArduino](https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1RxDriverArduino.html))
     - Preamble
     - Codec
-  - TxDriver
+  - [TxDriver](https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1TxDriver.html) ([TxDriverArduino](https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1TxDriverArduino.html))
     - Preamble
     - Codec 
     - Signal 
 
-- Signal 
-    - Tone
-    - Binary
-    - PWM
+- [Signal](https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1SignalBase.html) 
+    - [Tone](https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1ToneSignal.html)
+    - [Digital](https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1DigitalSignal.html)
+    - [PWM](https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1PWMSignal.html)
 
-- Codec
-    - PulseDistance
-    - PulseWidth
-    - Manchaster
-    - NRZ
+- [Codec](https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1Codec.html)
+    - [PulseDistance](https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1PulseDistanceCodec.html)
+    - [PulseWidth](https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1PulseWidthCodec.html)
+    - [Manchaster](https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1ManchesterCodec.html)
+    - [NRZ](https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1NRZCodec.html)
 
-- Preambles
-   - None
-   - Custom
-   - NEC
-   - Sony
-   - Kaseikyo
-   - Samsung
-   - Whynter
-   - ...
+- [Preamble](https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1Preamble.html)
+   - NoPreamble
+   - CustomPreamble
+   - CustomPreambleUs
+   - ManchesterPreable
+   - NRZPreamble
+   - IRProtocol
+      - Sony
+      - Kaseikyo
+      - Samsung
+      - Whynter
+      - ...
 
 
+## Code Example
 
+Here is a simple Arduino Sketch that sends binary manchester encoded data from one pin and receives it on another pin on the same microcontroller. Further exampes can be found in the [examples](examples) directory
+
+```C++
+
+#include "Codecs.h"
+#include "DriverArduino.h"
+#include "Transceiver.h"
+
+const uint8_t rxPin = 22;
+const uint8_t txPin = 23;
+int baud = 8000;
+DigitalSignal digitalSignal;
+ManchesterPreamble preamble;
+ManchesterCodec codec(preamble);
+TxDriverArduino tx(codec, txPin, digitalSignal);
+RxDriverArduino rx(codec, rxPin);
+Transceiver transceiver(rx, tx);
+
+void setup() {
+  Serial.begin(115200);
+  Logger::setLogLevel(Logger::LOG_LEVEL_INFO);
+  transceiver.begin(baud);
+}
+
+void loop() {
+  // send a frame
+  const uint8_t frameSize = 10;
+  const uint8_t data[] = {0x01, 0x02, 0x03, 0x04, 0x05,
+                          0x06, 0x07, 0x08, 0x09, 0x0A};  // Test data to encode
+
+  size_t written = tx.write(data, frameSize);
+  if (written != frameSize) {
+    Serial.println("Error: Failed to write full frame");
+  } else {
+    Serial.print("Written:  ");
+    for (size_t i = 0; i < frameSize; ++i) {
+      Serial.print((uint8_t)data[i], HEX);
+      Serial.print(" ");
+    }
+    Serial.println();
+  }
+
+  // receive a frame
+  size_t receivedCount = 0;
+  uint8_t receiveBuffer[frameSize]{};
+
+  receivedCount = rx.readBytes(receiveBuffer, frameSize);
+  Serial.print("Received: ");
+  for (size_t i = 0; i < receivedCount; ++i) {
+    Serial.print((uint8_t)receiveBuffer[i], HEX);
+    Serial.print(" ");
+  }
+  Serial.println();
+
+  // delay(1000);
+}
+```
