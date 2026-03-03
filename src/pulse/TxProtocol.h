@@ -276,8 +276,9 @@ class TxProtocolGeneric : public TxProtocol {
 
       // Add a final delay to ensure we can recoginse the end of frame
       if (isDelayAfterFrame) {
-        p_signal->sendBit(_codec->getIdleLevel());  // Ensure signal is in idle state
-        uint32_t period = _bitPeriod * END_OF_FRAME_DURATION_FACTOR * _codec->getBitCount();
+        // Ensure signal is in idle state
+        p_signal->sendBit(_codec->getIdleLevel());  
+        uint32_t period =_codec->getEndOfFrameDelayUs();
         delayUs(period);
       }
       is_frame_closed = true;

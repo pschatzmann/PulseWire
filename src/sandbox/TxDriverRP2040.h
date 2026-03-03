@@ -87,7 +87,7 @@ class TxProtocolRP2040 : public TxProtocol {
     }
 
     if (isDelayAfterFrame) {
-      output.push_back(OutputEdge(bitPeriod * END_OF_FRAME_DURATION_FACTOR, 0));
+      output.push_back(OutputEdge(_codec->getEndOfFrameUs(), 0));
       output.push_back(OutputEdge(0, 0));
     }
 

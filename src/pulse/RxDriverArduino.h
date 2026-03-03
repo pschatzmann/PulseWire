@@ -177,7 +177,7 @@ class RxDriverArduino : public RxDriverInt {
     _codec.setFrameSize(size);
     _frameSize = size;
     _rxBuffer.resize(size * 2);
-    _edgeBuffer.resize(size * _codec.getBitCount() *
+    _edgeBuffer.resize(size * _codec.getEdgeCount() *
                        2);  // enough for edges of a full frame
   }
 
@@ -196,9 +196,8 @@ class RxDriverArduino : public RxDriverInt {
         _freqHz, _bitPeriodUs, _minUs, _maxUs);
 
     if (_timeoutUs == 0) {
-      _timeoutUs = 0.95 * _bitPeriodUs * _codec.getBitCount() *
-                   END_OF_FRAME_DURATION_FACTOR;  // Timeout after 2 full frames
-                                                  // of inactivity
+      _timeoutUs = 0.95 *  _codec.getEndOfFrameDelayUs();  
+
     }
 
     // Ensure byte buffer is sized for frame
@@ -245,6 +244,7 @@ class RxDriverArduino : public RxDriverInt {
     processEdges();
     checkTimeout();
     int result = _rxBuffer.available();
+    Logger::debug("available(): %d", result);
     return result;
   }
 
@@ -298,9 +298,10 @@ class RxDriverArduino : public RxDriverInt {
 
   // Called from loop() context — safe for heap, virtual calls, etc.
   void processEdges() {
+    Logger::debug("processEdges");
     bool ok = true;
     OutputEdge edge;
-    while (!_rxBuffer.isFull()) {
+    while (!_rxBuffer.isFull() && ok) {
       noInterrupts();
       ok = _edgeBuffer.read(edge);
       interrupts();
@@ -313,6 +314,7 @@ class RxDriverArduino : public RxDriverInt {
   }
 
   void checkTimeout() {
+    Logger::debug("checkTimeout");
     uint32_t now = micros();
     uint32_t duration = now - _lastEdge;
     uint8_t byte_data = 0;

@@ -42,9 +42,6 @@ static const uint32_t DEFAULT_BIT_FREQ_HZ = 1000;
 /// Default frame size for RX/TX drivers and single-char buffer
 static const uint16_t DEFAULT_FRAME_SIZE = 256;
 
-/// Factor to multiply the pulse duration by to ensure we can recognize the end of frame
-static const uint8_t END_OF_FRAME_DURATION_FACTOR = 4;
-
 }  // namespace pulsewire
 
 // For Arduino sketches, use pulsewire::Transceiver explicitly or add 'using' in

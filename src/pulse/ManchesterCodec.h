@@ -49,11 +49,11 @@ class ManchesterCodec : public Codec {
    * @return false
    */
   bool decodeEdge(uint32_t durationUs, bool level, uint8_t& result) override {
-    // Filter idle gaps
-    if (durationUs > _bitPeriodUs * 2) {
-      reset();
-      return false;
-    }
+    // // Filter idle gaps
+    // if (durationUs > _bitPeriodUs * 2) {
+    //   reset();
+    //   return false;
+    // }
 
     int edgePeriod = 0.45f * _bitPeriodUs;
     int edgeCount = durationUs / edgePeriod;
@@ -70,12 +70,17 @@ class ManchesterCodec : public Codec {
     return valid;
   }
 
+  int getEndOfFrameDelayUs() override {
+    return 16 * _bitPeriodUs; 
+  }
+
+
  protected:
 
   /**
    * @brief Get the number of edges used to encode a byte (16 for Manchester).
    */
-  size_t getBitCount() const override { return 16; }
+  size_t getEdgeCount() const override { return 16; }
 
   
   /**
@@ -106,7 +111,7 @@ class ManchesterCodec : public Codec {
   }
 
   bool decodeByte(Vector<OutputEdge>& edges, uint8_t& result) const override {
-    assert(edges.size() == getBitCount());
+    assert(edges.size() == getEdgeCount());
     bool valid = true;
 
     uint8_t& byte = result;

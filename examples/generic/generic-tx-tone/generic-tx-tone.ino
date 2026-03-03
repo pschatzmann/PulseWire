@@ -1,5 +1,5 @@
-// IR Transmission Example for the generic (interrupt-based) rx implementation
-// and using the tone() function for modulation on the tx side.
+// IR transmission example for the generic (interrupt-based) manchester rx implementation
+// and using the tone() function for modulation on the tx side
 
 #include "Transceiver.h"
 #include "DriverArduino.h"
@@ -13,7 +13,7 @@ ToneSignal toneSignal(carrierFreq);
 ManchesterPreamble preamble;
 ManchesterCodec codec(preamble);
 TxDriverArduino tx(codec, txPin, toneSignal);
-Transceiver transceiver(tx, );
+Transceiver transceiver(tx);
 
 void setup() {
   Serial.begin(115200);

@@ -18,7 +18,7 @@ class RecorderCodec : public Codec {
   }
   void setFrameSize(uint16_t size) {
     _ref.setFrameSize(size);
-    _recordedEdges.reserve(size * getBitCount());
+    _recordedEdges.reserve(size * getEdgeCount());
   }
 
   bool decodeEdge(uint32_t durationUs, bool level, uint8_t& result) override {
@@ -32,7 +32,7 @@ class RecorderCodec : public Codec {
 
   CodecEnum getCodecType() const override { return _ref.getCodecType(); }
 
-  virtual size_t getBitCount() const { return _ref.getBitCount(); }
+  virtual size_t getEdgeCount() const { return _ref.getEdgeCount(); }
 
   Vector<OutputEdge>& getRecordedEdges() { return _recordedEdges; }
 
@@ -49,6 +49,8 @@ class RecorderCodec : public Codec {
   void encodeByte(uint8_t byte, uint8_t* bits) const override {
     _ref.encodeByte(byte, bits);
   }
+
+  int getEndOfFrameDelayUs() override { return _ref.getEndOfFrameDelayUs();  }
 
  protected:
   Codec& _ref;

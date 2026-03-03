@@ -17,6 +17,7 @@ namespace pulsewire {
  *
  * - Logical '1': long pulse
  * - Logical '0': short pulse
+ *
  * Timing parameters are configurable.
  */
 class PulseWidthCodec : public Codec {
@@ -25,11 +26,9 @@ class PulseWidthCodec : public Codec {
 
   PulseWidthCodec(Preamble& detector) : Codec(detector) {}
 
-  CodecEnum getCodecType() const override { return CodecEnum::PulseWidth; }
-
   // Used by IRTransceiver to initialize codec with protocol-specific parameters
-  virtual void init(Preamble& detector, uint32_t shortPulseUs = 600,
-                    uint32_t longPulseUs = 1200, uint32_t toleranceUs = 200) {
+  virtual void init(Preamble& detector, uint32_t shortPulseUs,
+                    uint32_t longPulseUs, uint32_t toleranceUs) {
     setPreamble(detector);
     _shortPulseUs = shortPulseUs;
     _longPulseUs = longPulseUs;
@@ -41,6 +40,9 @@ class PulseWidthCodec : public Codec {
     if (_shortPulseUs == 0) _shortPulseUs = 1000000UL / (bitFrequencyHz * 2);
     if (_longPulseUs == 0) _longPulseUs = 1000000UL / (bitFrequencyHz / 2);
     if (_toleranceUs == 0) _toleranceUs = _bitPeriodUs * 0.3;
+
+    _inFrame = false;
+
     return true;
   }
 
@@ -63,23 +65,36 @@ class PulseWidthCodec : public Codec {
     return 2;
   }
 
-  size_t getBitCount() const override { return 16; }
-
   bool decodeByte(Vector<OutputEdge>& edges, uint8_t& result) const override {
-    if (edges.size() < 16) return false;
+    if (edges.size() < 16) {
+      Logger::error("Not enough edges to decode byte: %d", edges.size());
+      return false;
+    }
     uint8_t byte = 0;
-    for (int i = 0; i < 8; ++i) {
-      if (bitMatch(edges[i * 2].pulseUs, true)) {
-        byte |= (1 << (7 - i));
-      } else if (bitMatch(edges[i * 2].pulseUs, false)) {
-        // bit is 0
-      } else {
-        return false;
+    int bit = 0;
+    for (auto& edge : edges) {
+      // only consider high edges
+      if (edge.level) {
+        if (bitMatch(edge.pulseUs, true)) {
+          byte |= (1 << (7 - bit));
+        } else if (bitMatch(edge.pulseUs, false)) {
+          // bit is 0
+        } else {
+          Logger::error("Invalid pulse duration for bit %d: %d us", bit,
+                        edge.pulseUs);
+        }
+        bit++;
       }
     }
     result = byte;
     return true;
   }
+
+  CodecEnum getCodecType() const override { return CodecEnum::PulseWidth; }
+
+  int getEndOfFrameDelayUs() override { return 2 * _longPulseUs; }
+
+  size_t getEdgeCount() const override { return 16; }
 
  protected:
   uint32_t _shortPulseUs = 0;

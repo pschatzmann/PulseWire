@@ -50,6 +50,8 @@ class Preamble {
 
   /// Detects if the incoming edge matches the expected preamble pattern.
   virtual bool detect(const OutputEdge& edge) {
+    Logger::debug("Preamble Detecting edge: level=%s, pulseUs=%d", edge.level ? "HIGH" : "LOW",
+                  edge.pulseUs);
     size_t N = preambleLength();
     if (N == 0) return true;
     _history.push_back(edge);
@@ -68,8 +70,8 @@ class Preamble {
                       _history[i].pulseUs);
         return false;
       }
-      // Use 10% tolerance or 50us minimum
-      uint32_t tol = _expected[i].pulseUs / 10;
+      // Use 20% tolerance or 50us minimum
+      uint32_t tol = 0.2 * _expected[i].pulseUs;
       if (tol < 50) tol = 50;
       if (!inRange(_history[i].pulseUs, _expected[i].pulseUs, tol)) {
         Logger::debug("Invalid pulse duration: expected %d us, got %d us",

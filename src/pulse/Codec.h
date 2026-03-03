@@ -6,6 +6,7 @@
 #include "Preamble.h"
 #include "SignalBase.h"
 #include "pulse/Vector.h"
+#include "pulse/Logger.h"
 
 namespace pulsewire {
 
@@ -57,7 +58,7 @@ class Codec {
     _bitFrequencyHz = bitFrequencyHz;
     _bitPeriodUs = 1000000UL / bitFrequencyHz;  // Bit period in microseconds
     _preamble->begin(bitFrequencyHz);
-    _decodeEdgeStream.reserve(getBitCount());
+    _decodeEdgeStream.reserve(getEdgeCount());
     return true;
   }
 
@@ -88,7 +89,7 @@ class Codec {
    * byte.
    * @return Number of protocol symbols per byte.
    */
-  virtual size_t getBitCount() const = 0;
+  virtual size_t getEdgeCount() const = 0;
 
   /**
    * @brief Edge-based decoding for protocol-agnostic RX drivers.
@@ -108,6 +109,13 @@ class Codec {
     // ensure that edges are allocated
     assert(_decodeEdgeStream.capacity() > 0);
 
+     // Filter idle gaps
+    if (level == getIdleLevel() && durationUs > getEndOfFrameDelayUs()) {
+      Logger::debug("Idle gap detected: %d us, resetting decoder", durationUs);
+      reset();
+      return false;
+    }
+   
     OutputEdge newEdge{level, durationUs};
     assert(_preamble != nullptr);
     if (!_inFrame) {
@@ -128,7 +136,7 @@ class Codec {
     }
 
     // Try to decode bytes if enough edges collected
-    if (_decodeEdgeStream.size() == getBitCount()) {
+    if (_decodeEdgeStream.size() == getEdgeCount()) {
       bool rc = decodeByte(_decodeEdgeStream, result);
       Logger::debug("Decoded byte: 0x%x", result);
       _decodeEdgeStream.clear();
@@ -173,7 +181,7 @@ class Codec {
   const char* name() const { return toStr(getCodecType()); }
 
   void setFrameSize(uint16_t size) {
-    _decodeEdgeStream.reserve(size * getBitCount());
+    _decodeEdgeStream.reserve(size * getEdgeCount());
   }
 
   /**
@@ -200,7 +208,11 @@ class Codec {
     }
   }
 
+  /// Decode edges into a byte
   virtual bool decodeByte(Vector<OutputEdge>& edges, uint8_t& result) const = 0;
+
+  /// Provide the end of frame delay in microseconds for this protocol, used by RX driver to
+  virtual int getEndOfFrameDelayUs() = 0;
 
  protected:
   CustomPreambleUs _defaultPreamble;

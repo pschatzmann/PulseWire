@@ -11,10 +11,10 @@
 
 const uint8_t rxPin = 22;
 const uint8_t txPin = 23;
-int baud = 100;
+int baud = 1000;
 DigitalSignal digitalSignal;
-ManchesterPreamble preamble;
-ManchesterCodec codec(preamble);
+//ManchesterCodec codec;
+PulseDistanceCodec codec;
 RecorderCodec rec(codec);
 TxDriverArduino tx(codec, txPin, digitalSignal);
 RxDriverArduino rx(rec, rxPin);

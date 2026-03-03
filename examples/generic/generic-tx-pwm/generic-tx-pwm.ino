@@ -1,4 +1,4 @@
-// IR Transmission Example for the generic (interrupt-based) rx implementation
+// IR transmission example for the generic (interrupt-based) manchester rx implementation
 // and pwm modulation on the tx side.
 
 #include "DriverArduino.h"
@@ -7,7 +7,7 @@
 const uint8_t txPin = 5;
 const uint8_t frameSize = 20;
 int carrierFreq = 38000;
-int baud = 500;
+int baud = 1000;
 
 PWMSignal pwm(carrierFreq);
 ManchesterPreamble preamble;

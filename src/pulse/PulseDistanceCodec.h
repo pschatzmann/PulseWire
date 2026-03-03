@@ -23,24 +23,31 @@ class PulseDistanceCodec : public Codec {
  public:
   PulseDistanceCodec() = default;
 
-  PulseDistanceCodec(Preamble& detector, uint32_t toleranceUs = 200,
-                     uint32_t shortPulseUs = 600, uint32_t longPulseUs = 1200)
+  PulseDistanceCodec(Preamble& detector, uint32_t toleranceUs = 0,
+                     uint32_t shortPulseUs = 0, uint32_t longPulseUs = 0)
       : Codec(detector),
         _shortPulseUs(shortPulseUs),
         _longPulseUs(longPulseUs),
         _toleranceUs(toleranceUs) {}
 
-  PulseDistanceCodec(Preamble& detector) : Codec(detector) {}
-
-  CodecEnum getCodecType() const override { return CodecEnum::PulseDistance; }
-
   // used by ir
-  void init(Preamble& detector, uint32_t shortPulseUs = 600,
-            uint32_t longPulseUs = 1200, uint32_t toleranceUs = 200) {
+  void init(Preamble& detector, uint32_t shortPulseUs = 0,
+            uint32_t longPulseUs = 0, uint32_t toleranceUs = 0) {
     setPreamble(detector);
     _shortPulseUs = shortPulseUs;
     _longPulseUs = longPulseUs;
     _toleranceUs = toleranceUs;
+  }
+
+  bool begin(uint16_t bitFrequencyHz) override {
+    Codec::begin(bitFrequencyHz);
+    if (_shortPulseUs == 0) _shortPulseUs = 1000000UL / (bitFrequencyHz * 2);
+    if (_longPulseUs == 0) _longPulseUs = 1000000UL / (bitFrequencyHz / 2);
+    if (_toleranceUs == 0) _toleranceUs = _bitPeriodUs * 0.4;
+
+    _inFrame = false;
+
+    return true;
   }
 
   /**
@@ -52,33 +59,23 @@ class PulseDistanceCodec : public Codec {
    */
   size_t encodeBit(bool bit, Vector<OutputEdge>& output) override {
     OutputEdge pulse, space;
-    if (bit) {
-      // Logical '1': long pulse, short space
-      pulse.level = true;  // HIGH
-      pulse.pulseUs = _longPulseUs;
-      space.level = false;  // LOW
-      space.pulseUs = _shortPulseUs;
-    } else {
-      // Logical '0': short pulse, long space
-      pulse.level = true;  // HIGH
-      pulse.pulseUs = _shortPulseUs;
-      space.level = false;  // LOW
-      space.pulseUs = _longPulseUs;
-    }
+    pulse.level = false;
+    pulse.pulseUs = bit ? _longPulseUs : _shortPulseUs;
+    space.level = true;
+    space.pulseUs = _shortPulseUs;
+
     output.push_back(pulse);
     output.push_back(space);
     return 2;
   }
 
-  size_t getBitCount() const override { return 16; }
+  size_t getEdgeCount() const override { return 16; }
 
-  bool begin(uint16_t bitFrequencyHz) override {
-    Codec::begin(bitFrequencyHz);
-    if (_shortPulseUs == 0) _shortPulseUs = 1000000UL / (bitFrequencyHz * 2);
-    if (_longPulseUs == 0) _longPulseUs = 1000000UL / (bitFrequencyHz / 2);
-    if (_toleranceUs == 0) _toleranceUs = _bitPeriodUs * 0.3;
-    return true;
-  }
+  int getEndOfFrameDelayUs() override { return 2 * _longPulseUs; }
+
+  CodecEnum getCodecType() const override { return CodecEnum::PulseDistance; }
+
+  bool getIdleLevel() { return true; }
 
  protected:
   uint32_t _shortPulseUs = 0;
@@ -86,29 +83,39 @@ class PulseDistanceCodec : public Codec {
   uint32_t _toleranceUs = 0;
 
   bool decodeByte(Vector<OutputEdge>& edges, uint8_t& result) const override {
-    assert(edges.size() == getBitCount());
-    bool valid = true;
-    uint8_t& byte = result;
-    for (int i = 0; i < 8; ++i) {
-      // For pulse-distance, each bit is represented by a pulse (HIGH) followed
-      // by a space (LOW) We check the duration of the pulse to determine the
-      // bit value
-      if (bitMatch(edges[i * 2].pulseUs, true)) {
-        byte |= (1 << (7 - i));  // Logical '1'
-      } else if (bitMatch(edges[i * 2].pulseUs, false)) {
-        // Logical '0', do nothing
-      } else {
-        // Invalid pulse, return 0 or set a valid flag if needed
-        valid = false;
+    if (edges.size() < 16) {
+      Logger::error("Not enough edges to decode byte: %d", edges.size());
+      return false;
+    }
+    uint8_t byte = 0;
+    int bit = 0;
+    for (auto& edge : edges) {
+      // only consider low edges
+      if (edge.level == false) {
+        if (bitMatch(edge.pulseUs, true)) {
+          byte |= (1 << (7 - bit));
+        } else if (bitMatch(edge.pulseUs, false)) {
+          // bit is 0
+        } else {
+          Logger::error("Invalid pulse duration for bit %d: %d us", bit,
+                        edge.pulseUs);
+        }
+        bit++;
       }
     }
-    return valid;
+    result = byte;
+    return true;
   }
 
   bool bitMatch(uint32_t duration, bool bit) const {
     uint32_t expected = bit ? _longPulseUs : _shortPulseUs;
-    return (duration >= expected - _toleranceUs &&
-            duration <= expected + _toleranceUs);
+    bool rc = (duration >= expected - _toleranceUs &&
+               duration <= expected + _toleranceUs);
+    Logger::debug(
+        "Bit match for bit %d: duration=%d, expected=%d, tolerance=%d, "
+        "match=%s",
+        bit ? 1 : 0, duration, expected, _toleranceUs, rc ? "YES" : "NO");
+    return rc;
   }
 };
 

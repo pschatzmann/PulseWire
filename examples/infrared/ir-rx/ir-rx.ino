@@ -1,7 +1,6 @@
 #include "IRTransceiver.h"
 
-// IRReceiver rx(IRInfoNEC, 3); // Use NEC protocol on pin 3
-IRReceiver rx(3); // Uses multip protocol support
+IRReceiver rx(IRInfoNEC, 3); // Use NEC protocol on pin 3
 
 void setup() {
   Serial.begin(9600);
