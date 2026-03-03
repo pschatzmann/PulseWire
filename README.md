@@ -47,17 +47,12 @@ This library uses the Arduino Stream API, so that we can easily integrate with o
     - [NRZ](https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1NRZCodec.html)
 
 - [Preamble](https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1Preamble.html)
-   - NoPreamble
-   - CustomPreamble
-   - CustomPreambleUs
-   - ManchesterPreable
-   - NRZPreamble
-   - IRProtocol
-      - Sony
-      - Kaseikyo
-      - Samsung
-      - Whynter
-      - ...
+   - [NoPreamble](https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1NoPreamble.html)
+   - [CustomPreamble](https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1CustomPreamble.html)
+   - [CustomPreambleUs](https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1CustomPreambleUs.html)
+   - [ManchesterPreable](https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1ManchesterPreamble.html)
+   - [NRZPreamble](https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1NRZPreamble.html)
+   - [IRProtocol](https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1IRProtocol.html#details)
 
 
 ## Code Example
