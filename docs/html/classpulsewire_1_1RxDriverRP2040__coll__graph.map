@@ -1,0 +1,21 @@
+<map id="pulsewire::RxDriverRP2040" name="pulsewire::RxDriverRP2040">
+<area shape="rect" id="Node000001" title="High&#45;performance RP2040 IR RX driver using PIO for edge capture." alt="" coords="1349,112,1548,137"/>
+<area shape="rect" id="Node000002" href="$classpulsewire_1_1RxDriver.html" title="Abstract base class for IR receivers." alt="" coords="1044,5,1195,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1206,31,1266,45,1326,63,1381,86,1426,109,1423,114,1378,91,1324,69,1264,50,1205,36"/>
+<area shape="rect" id="Node000003" href="$classpulsewire_1_1Codec.html" title="Abstract base class for IR protocol encoding and decoding." alt="" coords="1053,55,1186,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="1200,79,1375,109,1374,115,1199,84"/>
+<area shape="rect" id="Node000004" href="$classpulsewire_1_1CustomPreambleUs.html" title="CustomPreambleUs: Allows users to define their own preamble by setting expected edges...." alt="" coords="653,116,876,141"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="889,118,954,110,1019,98,1080,78,1082,83,1021,103,955,115,890,123"/>
+<area shape="rect" id="Node000005" href="$classpulsewire_1_1Preamble.html" title="Abstract base class for preamble detection and generation." alt="" coords="313,55,468,80"/>
+<area shape="poly" id="edge6_Node000003_Node000005" title=" " alt="" coords="482,65,1052,65,1052,70,482,70"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="472,80,492,83,679,113,678,119,492,89,471,85"/>
+<area shape="rect" id="Node000006" href="$classpulsewire_1_1Vector.html" title=" " alt="" coords="5,22,193,62"/>
+<area shape="poly" id="edge7_Node000003_Node000006" title=" " alt="" coords="207,32,217,31,289,31,495,30,655,27,815,30,1020,46,1061,52,1060,57,1020,51,815,35,655,33,495,36,289,37,217,37,207,37"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="207,60,218,61,313,65,313,71,217,66,207,65"/>
+<area shape="rect" id="Node000007" href="$classpulsewire_1_1Vector.html" title=" " alt="" coords="1047,105,1192,145"/>
+<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="1206,122,1349,122,1349,127,1206,127"/>
+<area shape="rect" id="Node000008" href="$classpulsewire_1_1Vector.html" title=" " alt="" coords="1047,169,1192,209"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="1205,169,1382,135,1383,140,1206,175"/>
+<area shape="rect" id="Node000009" href="$classpulsewire_1_1Vector.html" title=" " alt="" coords="1047,233,1192,273"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="1204,227,1324,186,1379,160,1425,135,1427,140,1382,165,1326,191,1206,232"/>
+</map>

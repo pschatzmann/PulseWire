@@ -1,0 +1,5 @@
+<map id="pulsewire::TxProtocolESP32" name="pulsewire::TxProtocolESP32">
+<area shape="rect" id="Node000001" title="ESP32&#45;specific TxProtocol implementation using RMT for precise timing and DMA support." alt="" coords="5,79,208,104"/>
+<area shape="rect" id="Node000002" href="$classpulsewire_1_1TxProtocol.html" title="Abstract base class for defining transmission protocols." alt="" coords="25,5,188,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="109,44,109,79,104,79,104,44"/>
+</map>

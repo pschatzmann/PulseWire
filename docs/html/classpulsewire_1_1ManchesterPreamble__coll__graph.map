@@ -1,0 +1,9 @@
+<map id="pulsewire::ManchesterPreamble" name="pulsewire::ManchesterPreamble">
+<area shape="rect" id="Node000001" title="Custom Manchester preamble detector: run&#45;in of alternating edges plus unique start pulse." alt="" coords="5,272,236,297"/>
+<area shape="rect" id="Node000002" href="$classpulsewire_1_1CustomPreambleUs.html" title="CustomPreambleUs: Allows users to define their own preamble by setting expected edges...." alt="" coords="9,197,232,223"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="123,237,123,272,118,272,118,237"/>
+<area shape="rect" id="Node000003" href="$classpulsewire_1_1Preamble.html" title="Abstract base class for preamble detection and generation." alt="" coords="43,123,198,148"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="123,162,123,197,118,197,118,162"/>
+<area shape="rect" id="Node000004" href="$classpulsewire_1_1Vector.html" title=" " alt="" coords="27,5,215,45"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="123,59,123,122,118,122,118,59"/>
+</map>

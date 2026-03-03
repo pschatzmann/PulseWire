@@ -1,0 +1,21 @@
+<map id="ir_transceiver::Preamble" name="ir_transceiver::Preamble">
+<area shape="rect" id="Node000001" title="Abstract base class for preamble detection and generation." alt="" coords="5,233,187,259"/>
+<area shape="rect" id="Node000002" href="$classir__transceiver_1_1CustomPreamble.html" title="CustomPreamble: Allows users to define their own preamble by setting expected edges...." alt="" coords="240,5,471,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="105,219,123,180,150,131,187,82,209,60,233,41,258,28,261,33,236,46,213,64,191,86,155,134,128,182,109,222"/>
+<area shape="rect" id="Node000003" href="$classir__transceiver_1_1KaseikyoPreamble.html" title="Kaseikyo protocol preamble detector (3456us MARK, 1728us SPACE)" alt="" coords="266,55,445,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="113,220,162,162,196,131,233,105,265,91,267,96,236,110,199,135,166,166,117,224"/>
+<area shape="rect" id="Node000004" href="$classir__transceiver_1_1ManchesterPreamble.html" title="Custom Manchester preamble detector: run&#45;in of alternating edges plus unique start pulse." alt="" coords="258,119,453,159"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="127,224,176,196,234,169,268,157,270,162,236,174,179,201,130,229"/>
+<area shape="rect" id="Node000005" href="$classir__transceiver_1_1NECPreamble.html" title="NEC preamble detector (9ms HIGH, 4.5ms LOW)" alt="" coords="251,184,459,209"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="176,228,287,207,288,212,177,233"/>
+<area shape="rect" id="Node000006" href="$classir__transceiver_1_1NoPreamble.html" title="NoPreamble: For protocols that do not require a preamble. Always returns true for detect,..." alt="" coords="256,233,455,259"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="201,243,256,243,256,249,201,249"/>
+<area shape="rect" id="Node000007" href="$classir__transceiver_1_1RC5Preamble.html" title="RC5 protocol preamble detector (889us MARK, 889us SPACE)" alt="" coords="252,283,459,308"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="177,259,288,280,287,285,176,264"/>
+<area shape="rect" id="Node000008" href="$classir__transceiver_1_1SamsungPreamble.html" title="Samsung protocol preamble detector (4500us MARK, 4500us SPACE)" alt="" coords="235,332,476,357"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="130,264,179,291,236,317,279,329,277,334,234,322,176,296,127,268"/>
+<area shape="rect" id="Node000009" href="$classir__transceiver_1_1SonyPreamble.html" title="Sony SIRC preamble detector (2.4ms HIGH pulse)" alt="" coords="249,381,462,407"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="118,267,168,318,201,344,236,366,268,379,266,384,233,371,197,349,165,322,115,271"/>
+<area shape="rect" id="Node000010" href="$classir__transceiver_1_1WhynterPreamble.html" title="Whynter protocol preamble detector (2850us MARK, 2850us SPACE)" alt="" coords="237,431,473,456"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="112,269,132,303,160,343,195,383,236,416,263,428,260,433,233,420,191,387,155,347,127,306,108,272"/>
+</map>

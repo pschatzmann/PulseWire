@@ -1,0 +1,5 @@
+<map id="pulsewire::RecorderCodec" name="pulsewire::RecorderCodec">
+<area shape="rect" id="Node000001" title="Codec Wrapper that records all edges passed to decodeEdge() for later analysis or testing." alt="" coords="5,79,196,104"/>
+<area shape="rect" id="Node000002" href="$classpulsewire_1_1Codec.html" title="Abstract base class for IR protocol encoding and decoding." alt="" coords="34,5,167,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="103,44,103,79,98,79,98,44"/>
+</map>

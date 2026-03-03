@@ -1,0 +1,5 @@
+<map id="ir_transceiver::RxDriverInt" name="ir_transceiver::RxDriverInt">
+<area shape="rect" id="Node000001" title="Interrupt&#45;capable IR RX driver interface for platforms without attachInterruptArg." alt="" coords="5,79,199,104"/>
+<area shape="rect" id="Node000002" href="$classir__transceiver_1_1RxDriver.html" title="Abstract base class for IR receivers." alt="" coords="14,5,190,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="105,44,105,79,99,79,99,44"/>
+</map>

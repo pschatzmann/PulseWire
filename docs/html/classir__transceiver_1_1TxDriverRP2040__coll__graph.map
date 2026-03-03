@@ -1,0 +1,15 @@
+<map id="ir_transceiver::TxDriverRP2040" name="ir_transceiver::TxDriverRP2040">
+<area shape="rect" id="Node000001" title="High&#45;performance RP2040 IR TX driver using PIO and DMA for edge&#45;based IR transmission." alt="" coords="211,313,385,353"/>
+<area shape="rect" id="Node000002" href="$classir__transceiver_1_1TxDriver.html" title="Abstract base class for IR transmitters." alt="" coords="5,225,180,251"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="131,254,258,311,256,316,129,259"/>
+<area shape="rect" id="Node000003" href="$classir__transceiver_1_1RingBuffer.html" title="Efficient ring buffer for storing frame data." alt="" coords="205,225,391,251"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="301,264,301,313,295,313,295,264"/>
+<area shape="rect" id="Node000004" href="$classir__transceiver_1_1Vector.html" title=" " alt="" coords="218,123,378,163"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="301,177,301,225,295,225,295,177"/>
+<area shape="rect" id="Node000005" href="$classir__transceiver_1_1Codec.html" title="Abstract base class for IR protocol encoding and decoding." alt="" coords="416,225,575,251"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="461,259,394,292,342,316,339,311,392,287,459,254"/>
+<area shape="rect" id="Node000006" href="$classir__transceiver_1_1Preamble.html" title="Abstract base class for preamble detection and generation." alt="" coords="405,130,586,155"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="498,169,498,225,493,225,493,169"/>
+<area shape="rect" id="Node000007" href="$classir__transceiver_1_1Vector.html" title=" " alt="" coords="383,5,608,45"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="498,59,498,130,493,130,493,59"/>
+</map>

@@ -1,0 +1,18 @@
+<map id="ir_transceiver::TxDriverESP32" name="ir_transceiver::TxDriverESP32">
+<area shape="rect" id="Node000001" title="High&#45;performance ESP32 IR TX driver using the RMT peripheral and Manchester encoding." alt="" coords="1032,99,1207,139"/>
+<area shape="rect" id="Node000002" href="$classir__transceiver_1_1TxDriver.html" title="Abstract base class for IR transmitters." alt="" coords="715,5,890,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="904,23,957,32,1009,48,1056,71,1094,97,1091,102,1053,75,1007,52,956,37,903,28"/>
+<area shape="rect" id="Node000003" href="$classir__transceiver_1_1Codec.html" title="Abstract base class for IR protocol encoding and decoding." alt="" coords="723,107,882,132"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="896,117,1032,117,1032,122,896,122"/>
+<area shape="rect" id="Node000004" href="$classir__transceiver_1_1Preamble.html" title="Abstract base class for preamble detection and generation." alt="" coords="351,107,532,132"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="546,117,723,117,723,122,546,122"/>
+<area shape="rect" id="Node000005" href="$classir__transceiver_1_1Vector.html" title=" " alt="" coords="5,74,231,114"/>
+<area shape="poly" id="edge8_Node000001_Node000005" title=" " alt="" coords="244,85,255,85,327,85,611,86,896,91,952,92,1008,97,1032,100,1031,105,1008,102,952,98,896,97,611,91,327,90,255,90,244,90"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="245,113,255,114,350,118,350,123,254,119,244,118"/>
+<area shape="rect" id="Node000006" href="$classir__transceiver_1_1RingBuffer.html" title="Efficient ring buffer for storing frame data." alt="" coords="709,156,896,181"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="909,152,1008,137,1031,133,1032,138,1008,142,910,157"/>
+<area shape="rect" id="Node000007" href="$classir__transceiver_1_1Vector.html" title=" " alt="" coords="361,157,521,197"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="535,172,709,168,709,173,535,177"/>
+<area shape="rect" id="Node000008" href="$classir__transceiver_1_1Vector.html" title=" " alt="" coords="712,206,893,246"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="906,201,1007,170,1080,137,1082,142,1009,175,908,206"/>
+</map>

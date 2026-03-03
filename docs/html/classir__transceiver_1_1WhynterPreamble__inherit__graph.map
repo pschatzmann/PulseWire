@@ -1,0 +1,5 @@
+<map id="ir_transceiver::WhynterPreamble" name="ir_transceiver::WhynterPreamble">
+<area shape="rect" id="Node000001" title="Whynter protocol preamble detector (2850us MARK, 2850us SPACE)" alt="" coords="5,79,241,104"/>
+<area shape="rect" id="Node000002" href="$classir__transceiver_1_1Preamble.html" title="Abstract base class for preamble detection and generation." alt="" coords="33,5,214,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="126,44,126,79,121,79,121,44"/>
+</map>

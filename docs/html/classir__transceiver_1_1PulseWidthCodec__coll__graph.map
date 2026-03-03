@@ -1,0 +1,9 @@
+<map id="ir_transceiver::PulseWidthCodec" name="ir_transceiver::PulseWidthCodec">
+<area shape="rect" id="Node000001" title="Pulse&#45;width encoding/decoding utility class for IR communication." alt="" coords="22,285,214,325"/>
+<area shape="rect" id="Node000002" href="$classir__transceiver_1_1Codec.html" title="Abstract base class for IR protocol encoding and decoding." alt="" coords="39,211,197,236"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="121,250,121,285,115,285,115,250"/>
+<area shape="rect" id="Node000003" href="$classir__transceiver_1_1Preamble.html" title="Abstract base class for preamble detection and generation." alt="" coords="27,123,209,148"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="121,162,121,210,115,210,115,162"/>
+<area shape="rect" id="Node000004" href="$classir__transceiver_1_1Vector.html" title=" " alt="" coords="5,5,231,45"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="121,59,121,122,115,122,115,59"/>
+</map>

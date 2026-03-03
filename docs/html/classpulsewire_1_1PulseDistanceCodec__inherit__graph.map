@@ -1,0 +1,5 @@
+<map id="pulsewire::PulseDistanceCodec" name="pulsewire::PulseDistanceCodec">
+<area shape="rect" id="Node000001" title="Pulse&#45;distance encoding/decoding utility class for IR communication." alt="" coords="5,79,191,119"/>
+<area shape="rect" id="Node000002" href="$classpulsewire_1_1Codec.html" title="Abstract base class for IR protocol encoding and decoding." alt="" coords="31,5,165,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="101,44,101,79,95,79,95,44"/>
+</map>

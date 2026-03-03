@@ -1,0 +1,9 @@
+<map id="pulsewire::SignalBase" name="pulsewire::SignalBase">
+<area shape="rect" id="Node000001" title="Abstract base class for signal output." alt="" coords="207,5,372,31"/>
+<area shape="rect" id="Node000002" href="$classpulsewire_1_1DigitalSignal.html" title="Digital output signal implementation using digitalWrite." alt="" coords="5,79,181,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="246,38,126,81,124,76,244,33"/>
+<area shape="rect" id="Node000003" href="$classpulsewire_1_1PWMSignal.html" title="PWM&#45;modulated output signal implementation using analogWrite and analogWriteFrequency." alt="" coords="206,79,373,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="292,44,292,79,287,79,287,44"/>
+<area shape="rect" id="Node000004" href="$classpulsewire_1_1ToneSignal.html" title="Tone&#45;modulated output signal implementation using tone()." alt="" coords="397,79,560,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="333,33,449,76,447,81,332,38"/>
+</map>

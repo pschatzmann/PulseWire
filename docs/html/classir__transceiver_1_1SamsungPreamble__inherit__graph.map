@@ -1,0 +1,5 @@
+<map id="ir_transceiver::SamsungPreamble" name="ir_transceiver::SamsungPreamble">
+<area shape="rect" id="Node000001" title="Samsung protocol preamble detector (4500us MARK, 4500us SPACE)" alt="" coords="5,79,247,104"/>
+<area shape="rect" id="Node000002" href="$classir__transceiver_1_1Preamble.html" title="Abstract base class for preamble detection and generation." alt="" coords="35,5,217,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="129,44,129,79,123,79,123,44"/>
+</map>

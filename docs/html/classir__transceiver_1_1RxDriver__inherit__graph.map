@@ -1,0 +1,11 @@
+<map id="ir_transceiver::RxDriver" name="ir_transceiver::RxDriver">
+<area shape="rect" id="Node000001" title="Abstract base class for IR receivers." alt="" coords="5,70,181,95"/>
+<area shape="rect" id="Node000002" href="$classir__transceiver_1_1RxDriverESP32.html" title="High&#45;performance ESP32 IR RX driver using the RMT peripheral and Manchester decoding." alt="" coords="238,5,414,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="158,64,244,43,245,48,159,69"/>
+<area shape="rect" id="Node000003" href="$classir__transceiver_1_1RxDriverInt.html" title="Interrupt&#45;capable IR RX driver interface for platforms without attachInterruptArg." alt="" coords="229,70,423,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="195,80,229,80,229,85,195,85"/>
+<area shape="rect" id="Node000005" href="$classir__transceiver_1_1RxDriverRP2040.html" title="High&#45;performance RP2040 IR RX driver using PIO for edge capture." alt="" coords="238,120,414,160"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="159,96,245,117,244,123,158,101"/>
+<area shape="rect" id="Node000004" href="$classir__transceiver_1_1RxDriverGeneric.html" title="Header&#45;only Arduino class for Manchester IR decoding using interrupts." alt="" coords="471,63,647,103"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="436,80,471,80,471,85,436,85"/>
+</map>

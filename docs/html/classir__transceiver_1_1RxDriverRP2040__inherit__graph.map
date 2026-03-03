@@ -1,0 +1,5 @@
+<map id="ir_transceiver::RxDriverRP2040" name="ir_transceiver::RxDriverRP2040">
+<area shape="rect" id="Node000001" title="High&#45;performance RP2040 IR RX driver using PIO for edge capture." alt="" coords="5,79,181,119"/>
+<area shape="rect" id="Node000002" href="$classir__transceiver_1_1RxDriver.html" title="Abstract base class for IR receivers." alt="" coords="5,5,181,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="96,44,96,79,91,79,91,44"/>
+</map>

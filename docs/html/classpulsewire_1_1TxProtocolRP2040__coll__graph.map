@@ -1,0 +1,16 @@
+<map id="pulsewire::TxProtocolRP2040" name="pulsewire::TxProtocolRP2040">
+<area shape="rect" id="Node000001" title="RP2040&#45;specific TxProtocol implementation using PIO and DMA for precise timing." alt="" coords="100,387,311,412"/>
+<area shape="rect" id="Node000002" href="$classpulsewire_1_1TxProtocol.html" title="Abstract base class for defining transmission protocols." alt="" coords="5,299,168,324"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="115,330,191,384,188,389,112,334"/>
+<area shape="rect" id="Node000003" href="$classpulsewire_1_1Codec.html" title="Abstract base class for IR protocol encoding and decoding." alt="" coords="331,299,464,324"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="360,332,233,389,230,384,358,327"/>
+<area shape="rect" id="Node000004" href="$classpulsewire_1_1CustomPreambleUs.html" title="CustomPreambleUs: Allows users to define their own preamble by setting expected edges...." alt="" coords="545,211,767,236"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="609,243,433,301,431,296,607,238"/>
+<area shape="rect" id="Node000005" href="$classpulsewire_1_1Preamble.html" title="Abstract base class for preamble detection and generation." alt="" coords="369,123,524,148"/>
+<area shape="poly" id="edge6_Node000003_Node000005" title=" " alt="" coords="442,162,403,299,398,298,437,160"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="489,151,629,208,627,213,487,156"/>
+<area shape="rect" id="Node000006" href="$classpulsewire_1_1Vector.html" title=" " alt="" coords="195,5,383,45"/>
+<area shape="poly" id="edge8_Node000001_Node000006" title=" " alt="" coords="253,56,222,91,212,112,208,134,208,313,208,386,203,386,203,313,203,134,207,110,218,88,249,52"/>
+<area shape="poly" id="edge7_Node000003_Node000006" title=" " alt="" coords="286,59,281,120,284,153,292,186,310,221,335,252,384,297,380,300,331,256,306,224,287,188,278,154,276,120,280,59"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="330,51,431,120,428,125,327,55"/>
+</map>

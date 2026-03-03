@@ -1,0 +1,5 @@
+<map id="pulsewire::RingBuffer" name="pulsewire::RingBuffer">
+<area shape="rect" id="Node000001" title="Efficient ring buffer for storing frame data." alt="" coords="5,108,167,133"/>
+<area shape="rect" id="Node000002" href="$classpulsewire_1_1Vector.html" title=" " alt="" coords="13,5,159,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="89,59,89,108,83,108,83,59"/>
+</map>

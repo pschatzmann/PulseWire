@@ -1,0 +1,13 @@
+<map id="pulsewire::PulseDistanceCodec" name="pulsewire::PulseDistanceCodec">
+<area shape="rect" id="Node000001" title="Pulse&#45;distance encoding/decoding utility class for IR communication." alt="" coords="1227,39,1412,79"/>
+<area shape="rect" id="Node000002" href="$classpulsewire_1_1Codec.html" title="Abstract base class for IR protocol encoding and decoding." alt="" coords="1044,46,1177,71"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1191,56,1227,56,1227,61,1191,61"/>
+<area shape="rect" id="Node000003" href="$classpulsewire_1_1CustomPreambleUs.html" title="CustomPreambleUs: Allows users to define their own preamble by setting expected edges...." alt="" coords="653,107,876,133"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="889,110,954,102,1019,89,1080,69,1081,74,1021,95,955,107,890,115"/>
+<area shape="rect" id="Node000004" href="$classpulsewire_1_1Preamble.html" title="Abstract base class for preamble detection and generation." alt="" coords="313,46,468,71"/>
+<area shape="poly" id="edge5_Node000002_Node000004" title=" " alt="" coords="482,56,1044,56,1044,61,482,61"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="472,71,492,75,679,105,678,110,492,80,471,76"/>
+<area shape="rect" id="Node000005" href="$classpulsewire_1_1Vector.html" title=" " alt="" coords="5,13,193,53"/>
+<area shape="poly" id="edge6_Node000002_Node000005" title=" " alt="" coords="207,23,217,23,289,23,495,21,655,17,815,20,1020,37,1057,43,1056,49,1020,43,815,25,655,23,495,27,289,28,217,28,207,28"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="207,51,218,52,313,57,313,62,217,57,207,56"/>
+</map>

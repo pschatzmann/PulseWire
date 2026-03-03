@@ -1,0 +1,11 @@
+<map id="pulsewire::TxDriver" name="pulsewire::TxDriver">
+<area shape="rect" id="Node000001" title="Abstract base class for IR transmitters." alt="" coords="249,5,398,31"/>
+<area shape="rect" id="Node000002" href="$classpulsewire_1_1TxDriverCommon.html" title="Provides common logic for transmitting signals using various framing modes." alt="" coords="219,79,427,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="326,44,326,79,321,79,321,44"/>
+<area shape="rect" id="Node000003" href="$classpulsewire_1_1TxDriverArduino.html" title="Generic driver for transmitting data using a specified codec and signal implementation." alt="" coords="5,152,204,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="276,111,141,154,139,149,274,106"/>
+<area shape="rect" id="Node000004" href="$classpulsewire_1_1TxDriverESP32.html" title="ESP32&#45;specific TxDriver implementation that uses TxProtocolESP32 for transmission." alt="" coords="229,152,418,177"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="326,118,326,152,321,152,321,118"/>
+<area shape="rect" id="Node000005" href="$classpulsewire_1_1TxDriverRP2040.html" title="RP2040&#45;specific TxDriver implementation that uses TxProtocolRP2040 for transmission." alt="" coords="443,152,641,177"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="372,106,507,149,506,154,371,111"/>
+</map>

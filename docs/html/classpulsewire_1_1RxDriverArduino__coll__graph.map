@@ -1,0 +1,23 @@
+<map id="pulsewire::RxDriverArduino" name="pulsewire::RxDriverArduino">
+<area shape="rect" id="Node000001" title="Interrupt&#45;driven Arduino RX driver for pulse&#45;based protocols." alt="" coords="1373,137,1573,163"/>
+<area shape="rect" id="Node000002" href="$classpulsewire_1_1RxDriverInt.html" title="Interrupt&#45;capable IR RX driver interface for platforms without attachInterruptArg." alt="" coords="1060,23,1227,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1195,50,1436,135,1435,140,1193,55"/>
+<area shape="rect" id="Node000003" href="$classpulsewire_1_1RxDriver.html" title="Abstract base class for IR receivers." alt="" coords="689,5,840,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="854,19,1059,29,1059,34,854,25"/>
+<area shape="rect" id="Node000004" href="$classpulsewire_1_1Codec.html" title="Abstract base class for IR protocol encoding and decoding." alt="" coords="1077,103,1210,128"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="1224,121,1373,137,1373,142,1223,126"/>
+<area shape="rect" id="Node000005" href="$classpulsewire_1_1CustomPreambleUs.html" title="CustomPreambleUs: Allows users to define their own preamble by setting expected edges...." alt="" coords="653,169,876,195"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="889,176,955,167,1019,152,1043,138,1082,126,1083,131,1045,143,1021,156,956,172,890,181"/>
+<area shape="rect" id="Node000006" href="$classpulsewire_1_1Preamble.html" title="Abstract base class for preamble detection and generation." alt="" coords="313,108,468,133"/>
+<area shape="poly" id="edge7_Node000004_Node000006" title=" " alt="" coords="481,117,1077,113,1077,118,481,123"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="472,133,492,137,679,167,678,172,492,142,471,138"/>
+<area shape="rect" id="Node000007" href="$classpulsewire_1_1Vector.html" title=" " alt="" coords="5,75,193,115"/>
+<area shape="poly" id="edge8_Node000004_Node000007" title=" " alt="" coords="207,85,217,85,289,85,655,81,815,83,1020,95,1077,102,1076,107,1020,101,815,89,655,87,289,90,217,90,207,90"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="207,113,218,114,313,119,313,124,217,119,207,118"/>
+<area shape="rect" id="Node000008" href="$classpulsewire_1_1RingBuffer.html" title=" " alt="" coords="1063,153,1224,193"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="1238,169,1349,163,1382,160,1383,165,1350,169,1238,174"/>
+<area shape="rect" id="Node000009" href="$classpulsewire_1_1RingBuffer.html" title=" " alt="" coords="1044,217,1243,257"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="1256,212,1349,189,1437,160,1438,165,1350,194,1257,217"/>
+<area shape="rect" id="Node000010" href="$structpulsewire_1_1OutputEdge.html" title="Specifies a single IR signal segment for protocol&#45;agnostic transmission." alt="" coords="680,224,849,249"/>
+<area shape="poly" id="edge11_Node000009_Node000010" title=" " alt="" coords="863,234,1044,234,1044,239,863,239"/>
+</map>

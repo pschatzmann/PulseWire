@@ -1,0 +1,21 @@
+<map id="pulsewire::RxDriverESP32" name="pulsewire::RxDriverESP32">
+<area shape="rect" id="Node000001" title="High&#45;performance ESP32 IR RX driver using the RMT peripheral and Manchester decoding." alt="" coords="1591,87,1781,112"/>
+<area shape="rect" id="Node000002" href="$classpulsewire_1_1RxDriver.html" title="Abstract base class for IR receivers." alt="" coords="1256,5,1407,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1419,31,1567,62,1645,84,1644,89,1566,67,1418,36"/>
+<area shape="rect" id="Node000003" href="$classpulsewire_1_1RingBuffer.html" title=" " alt="" coords="1251,55,1412,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="1426,79,1591,90,1590,96,1425,84"/>
+<area shape="rect" id="Node000004" href="$classpulsewire_1_1ManchesterCodec.html" title="Manchester encoding/decoding utility class for IR communication." alt="" coords="1227,120,1436,145"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="1450,120,1566,109,1590,106,1591,112,1567,114,1450,125"/>
+<area shape="rect" id="Node000005" href="$classpulsewire_1_1Codec.html" title="Abstract base class for IR protocol encoding and decoding." alt="" coords="1044,120,1177,145"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="1191,130,1226,130,1226,135,1191,135"/>
+<area shape="rect" id="Node000006" href="$classpulsewire_1_1CustomPreambleUs.html" title="CustomPreambleUs: Allows users to define their own preamble by setting expected edges...." alt="" coords="653,181,876,207"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="889,184,954,176,1019,163,1080,143,1081,148,1021,169,955,181,890,189"/>
+<area shape="rect" id="Node000007" href="$classpulsewire_1_1Preamble.html" title="Abstract base class for preamble detection and generation." alt="" coords="313,120,468,145"/>
+<area shape="poly" id="edge8_Node000005_Node000007" title=" " alt="" coords="482,130,1044,130,1044,135,482,135"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="472,145,492,149,679,179,678,184,492,154,471,150"/>
+<area shape="rect" id="Node000008" href="$classpulsewire_1_1Vector.html" title=" " alt="" coords="5,87,193,127"/>
+<area shape="poly" id="edge9_Node000005_Node000008" title=" " alt="" coords="207,97,217,97,289,97,495,95,655,91,815,94,1020,111,1057,117,1056,123,1020,117,815,99,655,97,495,101,289,102,217,102,207,102"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="207,125,218,126,313,131,313,136,217,131,207,130"/>
+<area shape="rect" id="Node000009" href="$classpulsewire_1_1Vector.html" title=" " alt="" coords="1259,170,1404,210"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="1417,173,1566,139,1652,110,1654,115,1567,145,1419,178"/>
+</map>

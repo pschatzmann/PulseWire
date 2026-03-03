@@ -1,0 +1,5 @@
+<map id="ir_transceiver::TxDriverGeneric" name="ir_transceiver::TxDriverGeneric">
+<area shape="rect" id="Node000001" title="Header&#45;only Arduino class for Manchester IR encoding." alt="" coords="5,79,180,119"/>
+<area shape="rect" id="Node000002" href="$classir__transceiver_1_1TxDriver.html" title="Abstract base class for IR transmitters." alt="" coords="5,5,180,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,44,95,79,90,79,90,44"/>
+</map>

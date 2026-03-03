@@ -1,0 +1,35 @@
+var annotated_dup =
+[
+    [ "pulsewire", "namespacepulsewire.html", [
+      [ "Codec", "classpulsewire_1_1Codec.html", "classpulsewire_1_1Codec" ],
+      [ "CustomPreamble", "classpulsewire_1_1CustomPreamble.html", "classpulsewire_1_1CustomPreamble" ],
+      [ "DigitalSignal", "classpulsewire_1_1DigitalSignal.html", null ],
+      [ "IRMultiProtocol", "classpulsewire_1_1IRMultiProtocol.html", "classpulsewire_1_1IRMultiProtocol" ],
+      [ "IRProtocol", "classpulsewire_1_1IRProtocol.html", "classpulsewire_1_1IRProtocol" ],
+      [ "IRProtocolDetector", "classpulsewire_1_1IRProtocolDetector.html", "classpulsewire_1_1IRProtocolDetector" ],
+      [ "IRTransceiver", "classpulsewire_1_1IRTransceiver.html", "classpulsewire_1_1IRTransceiver" ],
+      [ "ISRManager", "classpulsewire_1_1ISRManager.html", null ],
+      [ "ManchesterCodec", "classpulsewire_1_1ManchesterCodec.html", "classpulsewire_1_1ManchesterCodec" ],
+      [ "ManchesterPreamble", "classpulsewire_1_1ManchesterPreamble.html", "classpulsewire_1_1ManchesterPreamble" ],
+      [ "NoPreamble", "classpulsewire_1_1NoPreamble.html", "classpulsewire_1_1NoPreamble" ],
+      [ "NRZCodec", "classpulsewire_1_1NRZCodec.html", "classpulsewire_1_1NRZCodec" ],
+      [ "OutputEdge", "structpulsewire_1_1OutputEdge.html", null ],
+      [ "Preamble", "classpulsewire_1_1Preamble.html", "classpulsewire_1_1Preamble" ],
+      [ "PulseDistanceCodec", "classpulsewire_1_1PulseDistanceCodec.html", "classpulsewire_1_1PulseDistanceCodec" ],
+      [ "PulseWidthCodec", "classpulsewire_1_1PulseWidthCodec.html", "classpulsewire_1_1PulseWidthCodec" ],
+      [ "RingBuffer", "classpulsewire_1_1RingBuffer.html", null ],
+      [ "RxDriver", "classpulsewire_1_1RxDriver.html", "classpulsewire_1_1RxDriver" ],
+      [ "RxDriverESP32", "classpulsewire_1_1RxDriverESP32.html", "classpulsewire_1_1RxDriverESP32" ],
+      [ "RxDriverGeneric", "classpulsewire_1_1RxDriverGeneric.html", "classpulsewire_1_1RxDriverGeneric" ],
+      [ "RxDriverInt", "classpulsewire_1_1RxDriverInt.html", "classpulsewire_1_1RxDriverInt" ],
+      [ "RxDriverRP2040", "classpulsewire_1_1RxDriverRP2040.html", "classpulsewire_1_1RxDriverRP2040" ],
+      [ "SignalBase", "classpulsewire_1_1SignalBase.html", null ],
+      [ "ToneSignal", "classpulsewire_1_1ToneSignal.html", null ],
+      [ "Transceiver", "classpulsewire_1_1Transceiver.html", "classpulsewire_1_1Transceiver" ],
+      [ "TxDriver", "classpulsewire_1_1TxDriver.html", null ],
+      [ "TxDriverESP32", "classpulsewire_1_1TxDriverESP32.html", "classpulsewire_1_1TxDriverESP32" ],
+      [ "TxDriverGeneric", "classpulsewire_1_1TxDriverGeneric.html", "classpulsewire_1_1TxDriverGeneric" ],
+      [ "TxDriverRP2040", "classpulsewire_1_1TxDriverRP2040.html", "classpulsewire_1_1TxDriverRP2040" ],
+      [ "Vector", "classpulsewire_1_1Vector.html", "classpulsewire_1_1Vector" ]
+    ] ]
+];

@@ -1,0 +1,15 @@
+<map id="pulsewire::RecorderCodec" name="pulsewire::RecorderCodec">
+<area shape="rect" id="Node000001" title="Codec Wrapper that records all edges passed to decodeEdge() for later analysis or testing." alt="" coords="90,387,281,412"/>
+<area shape="rect" id="Node000002" href="$classpulsewire_1_1Codec.html" title="Abstract base class for IR protocol encoding and decoding." alt="" coords="163,299,296,324"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="214,337,206,349,191,387,186,386,202,347,209,334"/>
+<area shape="poly" id="edge7_Node000001_Node000002" title=" " alt="" coords="219,338,194,387,189,385,215,335"/>
+<area shape="rect" id="Node000003" href="$classpulsewire_1_1CustomPreambleUs.html" title="CustomPreambleUs: Allows users to define their own preamble by setting expected edges...." alt="" coords="406,211,629,236"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="466,243,269,301,267,296,465,237"/>
+<area shape="rect" id="Node000004" href="$classpulsewire_1_1Preamble.html" title="Abstract base class for preamble detection and generation." alt="" coords="231,123,385,148"/>
+<area shape="poly" id="edge5_Node000002_Node000004" title=" " alt="" coords="302,162,292,188,238,300,233,297,287,186,297,160"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="350,151,490,208,488,213,348,156"/>
+<area shape="rect" id="Node000005" href="$classpulsewire_1_1Vector.html" title=" " alt="" coords="57,5,245,45"/>
+<area shape="poly" id="edge8_Node000001_Node000005" title=" " alt="" coords="78,53,52,68,29,86,14,108,8,134,8,312,15,339,33,360,59,374,90,385,89,390,57,379,30,364,10,342,3,313,3,134,9,106,25,82,49,63,75,49"/>
+<area shape="poly" id="edge6_Node000002_Node000005" title=" " alt="" coords="147,59,141,119,143,153,149,186,163,220,183,251,220,297,216,300,178,254,159,222,144,187,137,154,136,119,141,58"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="191,51,293,120,290,125,188,55"/>
+</map>

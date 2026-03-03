@@ -1,0 +1,9 @@
+<map id="ir_transceiver::TxDriver" name="ir_transceiver::TxDriver">
+<area shape="rect" id="Node000001" title="Abstract base class for IR transmitters." alt="" coords="5,77,180,102"/>
+<area shape="rect" id="Node000002" href="$classir__transceiver_1_1TxDriverESP32.html" title="High&#45;performance ESP32 IR TX driver using the RMT peripheral and Manchester encoding." alt="" coords="228,5,403,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="150,70,244,43,246,48,152,75"/>
+<area shape="rect" id="Node000003" href="$classir__transceiver_1_1TxDriverGeneric.html" title="Header&#45;only Arduino class for Manchester IR encoding." alt="" coords="228,69,403,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="194,87,228,87,228,92,194,92"/>
+<area shape="rect" id="Node000004" href="$classir__transceiver_1_1TxDriverRP2040.html" title="High&#45;performance RP2040 IR TX driver using PIO and DMA for edge&#45;based IR transmission." alt="" coords="228,133,403,173"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="152,103,246,131,244,136,150,109"/>
+</map>

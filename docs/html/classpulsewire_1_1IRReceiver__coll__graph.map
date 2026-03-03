@@ -1,0 +1,18 @@
+<map id="pulsewire::IRReceiver" name="pulsewire::IRReceiver">
+<area shape="rect" id="Node000001" title="Receiver class for IR communication." alt="" coords="117,388,280,413"/>
+<area shape="rect" id="Node000002" href="$classpulsewire_1_1IRTransceiver.html" title="IRTransceiver: High&#45;level interface for sending and receiving IR signals." alt="" coords="5,300,184,325"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="121,332,186,386,183,390,117,336"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="60,205,129,230"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="97,244,97,300,92,300,92,244"/>
+<area shape="rect" id="Node000004" href="$classpulsewire_1_1IRMultiProtocol.html" title="IRMultiProtocol: Handles detection and delegation for multiple IR protocols." alt="" coords="208,300,400,325"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="281,336,215,390,211,386,278,332"/>
+<area shape="rect" id="Node000005" href="$classpulsewire_1_1IRProtocol.html" title="IRProtocol: Represents a specific IR protocol with all its parameters." alt="" coords="181,205,339,230"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="269,242,281,275,296,298,292,301,276,277,264,244"/>
+<area shape="poly" id="edge7_Node000004_Node000005" title=" " alt="" coords="274,241,301,299,296,301,269,243"/>
+<area shape="rect" id="Node000006" href="$classpulsewire_1_1Preamble.html" title="Abstract base class for preamble detection and generation." alt="" coords="183,123,337,148"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="263,162,263,205,257,205,257,162"/>
+<area shape="rect" id="Node000007" href="$classpulsewire_1_1Vector.html" title=" " alt="" coords="166,5,354,45"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="263,59,263,122,257,122,257,59"/>
+<area shape="rect" id="Node000008" href="$classpulsewire_1_1Vector.html" title=" " alt="" coords="364,197,553,237"/>
+<area shape="poly" id="edge8_Node000004_Node000008" title=" " alt="" coords="417,247,324,302,322,298,414,242"/>
+</map>

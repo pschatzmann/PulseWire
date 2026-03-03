@@ -1,0 +1,7 @@
+<map id="ir_transceiver::SignalBase" name="ir_transceiver::SignalBase">
+<area shape="rect" id="Node000001" title="Abstract base class for signal output." alt="" coords="121,5,311,31"/>
+<area shape="rect" id="Node000002" href="$classir__transceiver_1_1DigitalSignal.html" title="Digital output signal implementation using digitalWrite." alt="" coords="5,79,208,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="188,40,126,81,123,76,186,36"/>
+<area shape="rect" id="Node000003" href="$classir__transceiver_1_1ToneSignal.html" title="Tone&#45;modulated output signal implementation using tone()." alt="" coords="232,79,421,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="247,36,310,76,307,81,244,40"/>
+</map>

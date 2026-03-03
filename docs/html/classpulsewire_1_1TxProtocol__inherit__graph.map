@@ -1,0 +1,9 @@
+<map id="pulsewire::TxProtocol" name="pulsewire::TxProtocol">
+<area shape="rect" id="Node000001" title="Abstract base class for defining transmission protocols." alt="" coords="5,55,168,80"/>
+<area shape="rect" id="Node000002" href="$classpulsewire_1_1TxProtocolESP32.html" title="ESP32&#45;specific TxProtocol implementation using RMT for precise timing and DMA support." alt="" coords="221,5,423,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="161,49,260,28,261,33,162,54"/>
+<area shape="rect" id="Node000003" href="$classpulsewire_1_1TxProtocolGeneric.html" title="Generic implementation that is supported by all Arduino cores." alt="" coords="216,55,428,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="182,65,216,65,216,70,182,70"/>
+<area shape="rect" id="Node000004" href="$classpulsewire_1_1TxProtocolRP2040.html" title="RP2040&#45;specific TxProtocol implementation using PIO and DMA for precise timing." alt="" coords="217,104,427,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="162,80,261,101,260,107,161,85"/>
+</map>

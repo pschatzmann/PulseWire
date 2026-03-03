@@ -1,0 +1,7 @@
+<map id="pulsewire::IRTrasmitter" name="pulsewire::IRTrasmitter">
+<area shape="rect" id="Node000001" title="Transmitter class for IR communication." alt="" coords="9,152,180,177"/>
+<area shape="rect" id="Node000002" href="$classpulsewire_1_1IRTransceiver.html" title="IRTransceiver: High&#45;level interface for sending and receiving IR signals." alt="" coords="5,79,184,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="97,118,97,152,92,152,92,118"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="60,5,129,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="97,44,97,79,92,79,92,44"/>
+</map>

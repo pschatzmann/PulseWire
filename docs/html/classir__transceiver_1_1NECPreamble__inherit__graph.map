@@ -1,0 +1,5 @@
+<map id="ir_transceiver::NECPreamble" name="ir_transceiver::NECPreamble">
+<area shape="rect" id="Node000001" title="NEC preamble detector (9ms HIGH, 4.5ms LOW)" alt="" coords="5,79,213,104"/>
+<area shape="rect" id="Node000002" href="$classir__transceiver_1_1Preamble.html" title="Abstract base class for preamble detection and generation." alt="" coords="19,5,200,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="112,44,112,79,107,79,107,44"/>
+</map>

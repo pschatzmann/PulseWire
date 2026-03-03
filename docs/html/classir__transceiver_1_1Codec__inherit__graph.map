@@ -1,0 +1,9 @@
+<map id="ir_transceiver::Codec" name="ir_transceiver::Codec">
+<area shape="rect" id="Node000001" title="Abstract base class for IR protocol encoding and decoding." alt="" coords="5,77,164,102"/>
+<area shape="rect" id="Node000002" href="$classir__transceiver_1_1ManchesterCodec.html" title="Manchester encoding/decoding utility class for IR communication." alt="" coords="220,5,415,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="144,70,243,43,245,48,146,76"/>
+<area shape="rect" id="Node000003" href="$classir__transceiver_1_1PulseDistanceCodec.html" title="Pulse&#45;distance encoding/decoding utility class for IR communication." alt="" coords="212,69,423,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="178,87,212,87,212,92,178,92"/>
+<area shape="rect" id="Node000004" href="$classir__transceiver_1_1PulseWidthCodec.html" title="Pulse&#45;width encoding/decoding utility class for IR communication." alt="" coords="221,133,413,173"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="146,103,245,131,243,136,144,108"/>
+</map>

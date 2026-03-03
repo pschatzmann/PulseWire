@@ -1,0 +1,5 @@
+<map id="ir_transceiver::Transceiver" name="ir_transceiver::Transceiver">
+<area shape="rect" id="Node000001" title="Bi&#45;directional IR transceiver class with Stream interface and driver abstraction." alt="" coords="5,79,199,104"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="67,5,137,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="105,44,105,79,99,79,99,44"/>
+</map>

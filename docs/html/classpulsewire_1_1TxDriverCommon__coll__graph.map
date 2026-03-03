@@ -1,0 +1,19 @@
+<map id="pulsewire::TxDriverCommon" name="pulsewire::TxDriverCommon">
+<area shape="rect" id="Node000001" title="Provides common logic for transmitting signals using various framing modes." alt="" coords="1335,80,1543,105"/>
+<area shape="rect" id="Node000002" href="$classpulsewire_1_1TxDriver.html" title="Abstract base class for IR transmitters." alt="" coords="1051,5,1200,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1206,31,1311,54,1396,77,1395,82,1310,59,1205,36"/>
+<area shape="rect" id="Node000003" href="$classpulsewire_1_1Codec.html" title="Abstract base class for IR protocol encoding and decoding." alt="" coords="1059,55,1192,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="1206,71,1335,82,1334,87,1205,76"/>
+<area shape="rect" id="Node000004" href="$classpulsewire_1_1CustomPreambleUs.html" title="CustomPreambleUs: Allows users to define their own preamble by setting expected edges...." alt="" coords="653,116,876,141"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="890,119,954,111,1019,98,1043,89,1079,77,1080,83,1045,94,1021,103,955,116,890,124"/>
+<area shape="rect" id="Node000005" href="$classpulsewire_1_1Preamble.html" title="Abstract base class for preamble detection and generation." alt="" coords="313,55,468,80"/>
+<area shape="poly" id="edge6_Node000003_Node000005" title=" " alt="" coords="482,65,1059,65,1059,70,482,70"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="472,80,492,83,679,113,678,119,492,89,471,85"/>
+<area shape="rect" id="Node000006" href="$classpulsewire_1_1Vector.html" title=" " alt="" coords="5,22,193,62"/>
+<area shape="poly" id="edge7_Node000003_Node000006" title=" " alt="" coords="207,32,217,31,289,31,495,30,655,28,815,31,1020,46,1063,52,1062,57,1020,51,815,36,655,33,495,36,289,37,217,37,207,37"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="207,60,218,61,313,65,313,71,217,66,207,65"/>
+<area shape="rect" id="Node000007" href="$classpulsewire_1_1TxProtocol.html" title="Abstract base class for defining transmission protocols." alt="" coords="1044,104,1207,129"/>
+<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="1220,114,1310,110,1368,103,1368,108,1311,115,1221,120"/>
+<area shape="rect" id="Node000008" href="$classpulsewire_1_1RingBuffer.html" title=" " alt="" coords="1045,154,1206,194"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="1219,156,1310,135,1405,103,1407,108,1311,141,1220,161"/>
+</map>

@@ -1,0 +1,29 @@
+<map id="pulsewire::TxDriverArduino" name="pulsewire::TxDriverArduino">
+<area shape="rect" id="Node000001" title="Generic driver for transmitting data using a specified codec and signal implementation." alt="" coords="1675,251,1873,277"/>
+<area shape="rect" id="Node000002" href="$classpulsewire_1_1TxDriverCommon.html" title="Provides common logic for transmitting signals using various framing modes." alt="" coords="1339,105,1547,130"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1487,133,1745,249,1743,254,1485,138"/>
+<area shape="rect" id="Node000003" href="$classpulsewire_1_1TxDriver.html" title="Abstract base class for IR transmitters." alt="" coords="1052,70,1201,95"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1215,90,1339,103,1339,109,1215,95"/>
+<area shape="rect" id="Node000004" href="$classpulsewire_1_1Codec.html" title="Abstract base class for IR protocol encoding and decoding." alt="" coords="1060,183,1193,209"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="1196,178,1313,149,1396,127,1397,133,1314,155,1198,183"/>
+<area shape="rect" id="Node000010" href="$classpulsewire_1_1TxProtocolGeneric.html" title="Generic implementation that is supported by all Arduino cores." alt="" coords="1337,251,1549,277"/>
+<area shape="poly" id="edge15_Node000010_Node000004" title=" " alt="" coords="1166,212,1234,237,1285,248,1337,255,1337,260,1285,253,1233,243,1164,217"/>
+<area shape="rect" id="Node000005" href="$classpulsewire_1_1CustomPreambleUs.html" title="CustomPreambleUs: Allows users to define their own preamble by setting expected edges...." alt="" coords="653,158,876,183"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="890,177,1060,189,1060,194,890,182"/>
+<area shape="rect" id="Node000006" href="$classpulsewire_1_1Preamble.html" title="Abstract base class for preamble detection and generation." alt="" coords="313,185,468,210"/>
+<area shape="poly" id="edge7_Node000004_Node000006" title=" " alt="" coords="482,200,653,208,765,210,876,208,1060,198,1060,204,876,213,765,215,653,213,482,206"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="481,188,653,176,653,181,482,194"/>
+<area shape="rect" id="Node000007" href="$classpulsewire_1_1Vector.html" title=" " alt="" coords="5,177,193,217"/>
+<area shape="poly" id="edge8_Node000004_Node000007" title=" " alt="" coords="171,171,217,160,401,135,545,127,690,132,876,143,949,147,1021,159,1093,181,1092,186,1019,164,948,152,876,148,690,137,545,133,401,140,218,165,172,176"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="207,195,313,195,313,200,207,200"/>
+<area shape="poly" id="edge14_Node000010_Node000007" title=" " alt="" coords="153,221,202,241,261,261,324,277,389,283,1128,283,1236,279,1337,272,1337,277,1236,285,1128,288,389,288,324,282,259,267,200,246,151,226"/>
+<area shape="rect" id="Node000008" href="$classpulsewire_1_1TxProtocol.html" title="Abstract base class for defining transmission protocols." alt="" coords="1045,126,1208,151"/>
+<area shape="poly" id="edge9_Node000002_Node000008" title=" " alt="" coords="1221,130,1339,122,1339,127,1222,135"/>
+<area shape="poly" id="edge12_Node000010_Node000008" title=" " alt="" coords="1222,150,1269,162,1314,178,1379,213,1428,249,1425,253,1376,218,1312,182,1267,167,1221,155"/>
+<area shape="rect" id="Node000009" href="$classpulsewire_1_1RingBuffer.html" title=" " alt="" coords="1046,5,1207,45"/>
+<area shape="poly" id="edge10_Node000002_Node000009" title=" " alt="" coords="1210,47,1399,102,1398,107,1209,52"/>
+<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="1563,261,1675,261,1675,267,1563,267"/>
+<area shape="rect" id="Node000011" href="$classpulsewire_1_1SignalBase.html" title="Abstract base class for signal output." alt="" coords="1044,337,1209,362"/>
+<area shape="poly" id="edge16_Node000001_Node000011" title=" " alt="" coords="1223,344,1313,337,1423,324,1533,307,1711,274,1712,279,1534,312,1424,329,1314,343,1223,349"/>
+<area shape="poly" id="edge13_Node000010_Node000011" title=" " alt="" coords="1222,335,1313,316,1369,296,1416,274,1418,279,1371,301,1314,321,1223,341"/>
+</map>

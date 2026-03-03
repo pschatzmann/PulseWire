@@ -1,0 +1,18 @@
+<map id="ir_transceiver::RxDriverGeneric" name="ir_transceiver::RxDriverGeneric">
+<area shape="rect" id="Node000001" title="Header&#45;only Arduino class for Manchester IR decoding using interrupts." alt="" coords="1015,107,1191,147"/>
+<area shape="rect" id="Node000002" href="$classir__transceiver_1_1RxDriverInt.html" title="Interrupt&#45;capable IR RX driver interface for platforms without attachInterruptArg." alt="" coords="709,5,903,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="876,32,903,39,992,70,1065,105,1062,110,990,75,902,45,874,37"/>
+<area shape="rect" id="Node000003" href="$classir__transceiver_1_1RxDriver.html" title="Abstract base class for IR receivers." alt="" coords="353,5,529,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="543,15,709,15,709,21,543,21"/>
+<area shape="rect" id="Node000004" href="$classir__transceiver_1_1Codec.html" title="Abstract base class for IR protocol encoding and decoding." alt="" coords="727,55,885,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="883,80,1015,107,1014,112,882,85"/>
+<area shape="rect" id="Node000005" href="$classir__transceiver_1_1Preamble.html" title="Abstract base class for preamble detection and generation." alt="" coords="351,55,532,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="546,65,727,65,727,70,546,70"/>
+<area shape="rect" id="Node000006" href="$classir__transceiver_1_1Vector.html" title=" " alt="" coords="5,47,231,87"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="244,65,350,65,350,70,244,70"/>
+<area shape="rect" id="Node000007" href="$classir__transceiver_1_1RingBuffer.html" title="Efficient ring buffer for storing frame data." alt="" coords="713,197,899,223"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="912,197,990,179,1030,164,1066,145,1069,150,1032,168,991,185,913,202"/>
+<area shape="rect" id="Node000008" href="$classir__transceiver_1_1Vector.html" title=" " alt="" coords="361,153,521,193"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="535,164,1014,131,1015,136,535,169"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="535,180,713,198,712,203,535,185"/>
+</map>

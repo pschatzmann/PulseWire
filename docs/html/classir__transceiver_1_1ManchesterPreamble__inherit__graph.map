@@ -1,0 +1,5 @@
+<map id="ir_transceiver::ManchesterPreamble" name="ir_transceiver::ManchesterPreamble">
+<area shape="rect" id="Node000001" title="Custom Manchester preamble detector: run&#45;in of alternating edges plus unique start pulse." alt="" coords="5,79,200,119"/>
+<area shape="rect" id="Node000002" href="$classir__transceiver_1_1Preamble.html" title="Abstract base class for preamble detection and generation." alt="" coords="12,5,193,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="105,44,105,79,100,79,100,44"/>
+</map>

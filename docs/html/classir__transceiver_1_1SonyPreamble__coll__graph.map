@@ -1,0 +1,7 @@
+<map id="ir_transceiver::SonyPreamble" name="ir_transceiver::SonyPreamble">
+<area shape="rect" id="Node000001" title="Sony SIRC preamble detector (2.4ms HIGH pulse)" alt="" coords="11,197,225,223"/>
+<area shape="rect" id="Node000002" href="$classir__transceiver_1_1Preamble.html" title="Abstract base class for preamble detection and generation." alt="" coords="27,123,209,148"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="121,162,121,197,115,197,115,162"/>
+<area shape="rect" id="Node000003" href="$classir__transceiver_1_1Vector.html" title=" " alt="" coords="5,5,231,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="121,59,121,122,115,122,115,59"/>
+</map>

@@ -1,0 +1,13 @@
+<map id="ir_transceiver::Transceiver" name="ir_transceiver::Transceiver">
+<area shape="rect" id="Node000001" title="Bi&#45;directional IR transceiver class with Stream interface and driver abstraction." alt="" coords="190,196,383,221"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,108,75,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="87,135,254,193,253,198,85,141"/>
+<area shape="rect" id="Node000003" href="$classir__transceiver_1_1RxDriver.html" title="Abstract base class for IR receivers." alt="" coords="99,108,275,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="212,140,274,193,271,197,209,144"/>
+<area shape="rect" id="Node000004" href="$classir__transceiver_1_1TxDriver.html" title="Abstract base class for IR transmitters." alt="" coords="299,108,474,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="364,144,302,197,299,193,361,140"/>
+<area shape="rect" id="Node000005" href="$classir__transceiver_1_1RingBuffer.html" title="Efficient ring buffer for storing frame data." alt="" coords="499,108,685,133"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="539,140,328,198,327,193,537,135"/>
+<area shape="rect" id="Node000006" href="$classir__transceiver_1_1Vector.html" title=" " alt="" coords="512,5,672,45"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="595,59,595,108,589,108,589,59"/>
+</map>

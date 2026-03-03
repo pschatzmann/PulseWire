@@ -1,0 +1,5 @@
+<map id="pulsewire::TxProtocolGeneric" name="pulsewire::TxProtocolGeneric">
+<area shape="rect" id="Node000001" title="Generic implementation that is supported by all Arduino cores." alt="" coords="5,79,217,104"/>
+<area shape="rect" id="Node000002" href="$classpulsewire_1_1TxProtocol.html" title="Abstract base class for defining transmission protocols." alt="" coords="30,5,193,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="114,44,114,79,109,79,109,44"/>
+</map>

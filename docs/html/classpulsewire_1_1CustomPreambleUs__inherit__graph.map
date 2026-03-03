@@ -1,0 +1,11 @@
+<map id="pulsewire::CustomPreambleUs" name="pulsewire::CustomPreambleUs">
+<area shape="rect" id="Node000001" title="CustomPreambleUs: Allows users to define their own preamble by setting expected edges...." alt="" coords="239,79,462,104"/>
+<area shape="rect" id="Node000003" href="$classpulsewire_1_1CustomPreamble.html" title="CustomPreamble: Allows users to define their own preamble by setting expected edges...." alt="" coords="5,152,211,177"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="300,110,148,154,147,149,298,105"/>
+<area shape="rect" id="Node000004" href="$classpulsewire_1_1ManchesterPreamble.html" title="Custom Manchester preamble detector: run&#45;in of alternating edges plus unique start pulse." alt="" coords="235,152,466,177"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="353,118,353,152,348,152,348,118"/>
+<area shape="rect" id="Node000005" href="$classpulsewire_1_1NRZPreamble.html" title="A Preamble implementation for NRZ protocols: alternating edges at full bit period,..." alt="" coords="490,152,673,177"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="402,106,545,149,543,154,400,111"/>
+<area shape="rect" id="Node000002" href="$classpulsewire_1_1Preamble.html" title="Abstract base class for preamble detection and generation." alt="" coords="273,5,428,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="353,44,353,79,348,79,348,44"/>
+</map>

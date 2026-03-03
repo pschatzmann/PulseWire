@@ -1,0 +1,5 @@
+<map id="ir_transceiver::RC5Preamble" name="ir_transceiver::RC5Preamble">
+<area shape="rect" id="Node000001" title="RC5 protocol preamble detector (889us MARK, 889us SPACE)" alt="" coords="5,79,212,104"/>
+<area shape="rect" id="Node000002" href="$classir__transceiver_1_1Preamble.html" title="Abstract base class for preamble detection and generation." alt="" coords="18,5,199,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="111,44,111,79,106,79,106,44"/>
+</map>

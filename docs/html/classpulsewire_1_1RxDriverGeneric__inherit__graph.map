@@ -1,0 +1,7 @@
+<map id="pulsewire::RxDriverGeneric" name="pulsewire::RxDriverGeneric">
+<area shape="rect" id="Node000001" title="Header&#45;only Arduino class for Manchester IR decoding using interrupts." alt="" coords="5,152,205,177"/>
+<area shape="rect" id="Node000002" href="$classpulsewire_1_1RxDriverInt.html" title="Interrupt&#45;capable IR RX driver interface for platforms without attachInterruptArg." alt="" coords="22,79,189,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,118,108,152,103,152,103,118"/>
+<area shape="rect" id="Node000003" href="$classpulsewire_1_1RxDriver.html" title="Abstract base class for IR receivers." alt="" coords="30,5,181,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="108,44,108,79,103,79,103,44"/>
+</map>

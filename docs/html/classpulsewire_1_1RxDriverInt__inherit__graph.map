@@ -1,0 +1,7 @@
+<map id="pulsewire::RxDriverInt" name="pulsewire::RxDriverInt">
+<area shape="rect" id="Node000001" title="Interrupt&#45;capable IR RX driver interface for platforms without attachInterruptArg." alt="" coords="22,79,189,104"/>
+<area shape="rect" id="Node000003" href="$classpulsewire_1_1RxDriverArduino.html" title="Interrupt&#45;driven Arduino RX driver for pulse&#45;based protocols." alt="" coords="5,152,205,177"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="108,118,108,152,103,152,103,118"/>
+<area shape="rect" id="Node000002" href="$classpulsewire_1_1RxDriver.html" title="Abstract base class for IR receivers." alt="" coords="30,5,181,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,44,108,79,103,79,103,44"/>
+</map>

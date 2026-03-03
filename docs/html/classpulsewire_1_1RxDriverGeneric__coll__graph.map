@@ -1,0 +1,18 @@
+<map id="pulsewire::RxDriverGeneric" name="pulsewire::RxDriverGeneric">
+<area shape="rect" id="Node000001" title="Header&#45;only Arduino class for Manchester IR decoding using interrupts." alt="" coords="924,115,1124,140"/>
+<area shape="rect" id="Node000002" href="$classpulsewire_1_1RxDriverInt.html" title="Interrupt&#45;capable IR RX driver interface for platforms without attachInterruptArg." alt="" coords="645,5,812,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="789,32,813,39,901,69,998,112,996,117,899,74,811,45,787,37"/>
+<area shape="rect" id="Node000003" href="$classpulsewire_1_1RxDriver.html" title="Abstract base class for IR receivers." alt="" coords="315,5,466,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="479,15,645,15,645,21,479,21"/>
+<area shape="rect" id="Node000004" href="$classpulsewire_1_1Codec.html" title="Abstract base class for IR protocol encoding and decoding." alt="" coords="662,55,795,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="806,80,961,112,960,117,805,85"/>
+<area shape="rect" id="Node000005" href="$classpulsewire_1_1Preamble.html" title="Abstract base class for preamble detection and generation." alt="" coords="313,55,468,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="482,65,662,65,662,70,482,70"/>
+<area shape="rect" id="Node000006" href="$classpulsewire_1_1Vector.html" title=" " alt="" coords="5,47,193,87"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="207,65,313,65,313,70,207,70"/>
+<area shape="rect" id="Node000007" href="$classpulsewire_1_1RingBuffer.html" title="Efficient ring buffer for storing frame data." alt="" coords="648,197,809,223"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="823,196,899,179,953,159,998,138,1000,143,955,164,901,185,824,202"/>
+<area shape="rect" id="Node000008" href="$classpulsewire_1_1Vector.html" title=" " alt="" coords="318,153,463,193"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="477,164,923,132,924,137,477,169"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="477,179,648,198,647,204,477,185"/>
+</map>
