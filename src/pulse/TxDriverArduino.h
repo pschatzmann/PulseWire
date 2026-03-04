@@ -1,6 +1,6 @@
 #pragma once
-#include "TxDriverCommon.h"
-#include "pulse/Logger.h"
+#include "pulse/TxDriverCommon.h"
+#include "pulse/tools/Logger.h"
 #include "assert.h"
 
 namespace pulsewire {

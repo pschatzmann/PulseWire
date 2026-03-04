@@ -1,8 +1,8 @@
 #pragma once
-#include "Codec.h"
-#include "SignalBase.h"
 #include "assert.h"
-#include "pulse/Vector.h"
+#include "pulse/SignalBase.h"
+#include "pulse/codecs/Codec.h"
+#include "pulse/tools/Vector.h"
 
 namespace pulsewire {
 
@@ -19,9 +19,8 @@ namespace pulsewire {
  */
 class ManchesterCodec : public Codec {
  public:
-
   ManchesterCodec() = default;
-  
+
   ManchesterCodec(Preamble& preambleDetector) : Codec(preambleDetector) {}
 
   CodecEnum getCodecType() const override { return CodecEnum::Manchester; }
@@ -70,19 +69,14 @@ class ManchesterCodec : public Codec {
     return valid;
   }
 
-  int getEndOfFrameDelayUs() override {
-    return 16 * _bitPeriodUs; 
-  }
-
+  int getEndOfFrameDelayUs() override { return 16 * _bitPeriodUs; }
 
  protected:
-
   /**
    * @brief Get the number of edges used to encode a byte (16 for Manchester).
    */
   size_t getEdgeCount() const override { return 16; }
 
-  
   /**
    * @brief Fill output vector with Manchester OutputSpec(s) for a bit.
    *

@@ -5,8 +5,8 @@
 
 #include "Stream.h"
 #include "TransceiverConfig.h"
-#include "pulse/Logger.h"
-#include "pulse/RingBuffer.h"
+#include "pulse/tools/Logger.h"
+#include "pulse/tools/RingBuffer.h"
 #include "pulse/RxDriver.h"
 #include "pulse/TxDriver.h"
 

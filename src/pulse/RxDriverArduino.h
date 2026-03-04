@@ -1,13 +1,13 @@
 #pragma once
 #include <Arduino.h>
 
-#include "Codec.h"
-#include "ManchesterCodec.h"
-#include "RingBuffer.h"
-#include "RxDriver.h"
 #include "TransceiverConfig.h"
-#include "pulse/Logger.h"
-#include "pulse/Vector.h"
+#include "pulse/RxDriver.h"
+#include "pulse/codecs/Codec.h"
+#include "pulse/codecs/ManchesterCodec.h"
+#include "pulse/tools/Logger.h"
+#include "pulse/tools/RingBuffer.h"
+#include "pulse/tools/Vector.h"
 
 namespace pulsewire {
 
@@ -196,8 +196,7 @@ class RxDriverArduino : public RxDriverInt {
         _freqHz, _bitPeriodUs, _minUs, _maxUs);
 
     if (_timeoutUs == 0) {
-      _timeoutUs = 0.95 *  _codec.getEndOfFrameDelayUs();  
-
+      _timeoutUs = 0.95 * _codec.getEndOfFrameDelayUs();
     }
 
     // Ensure byte buffer is sized for frame

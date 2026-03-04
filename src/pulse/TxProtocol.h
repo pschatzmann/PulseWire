@@ -1,13 +1,13 @@
 #pragma once
 #include <Arduino.h>
 
-#include "Codec.h"
-#include "RingBuffer.h"
-#include "SignalBase.h"
+#include "pulse/codecs/Codec.h"
+#include "pulse/tools/RingBuffer.h"
+#include "pulse/SignalBase.h"
 #include "TransceiverConfig.h"
-#include "TxDriver.h"
-#include "pulse/Logger.h"
-#include "pulse/Vector.h"
+#include "pulse/TxDriver.h"
+#include "pulse/tools/Logger.h"
+#include "pulse/tools/Vector.h"
 
 namespace pulsewire {
 

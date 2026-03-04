@@ -1,11 +1,11 @@
 #pragma once
-#include "PulseDistanceCodec.h"
-#include "PulseWidthCodec.h"
-#include "ManchesterCodec.h"
-#include "NRZCodec.h"
+#include "codecs/PulseDistanceCodec.h"
+#include "codecs/PulseWidthCodec.h"
+#include "codecs/ManchesterCodec.h"
+#include "codecs/NRZCodec.h"
 #include "Preamble.h"
-#include "Codec.h"
-#include "Vector.h"
+#include "codecs/Codec.h"
+#include "tools/Vector.h"
 
 namespace pulsewire {
 /**

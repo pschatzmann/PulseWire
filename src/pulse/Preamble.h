@@ -2,8 +2,8 @@
 #include <stdint.h>
 
 #include "TransceiverConfig.h"
-#include "pulse/Logger.h"
-#include "pulse/Vector.h"
+#include "pulse/tools/Logger.h"
+#include "pulse/tools/Vector.h"
 
 namespace pulsewire {
 

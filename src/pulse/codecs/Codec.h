@@ -3,10 +3,10 @@
 #include <stdint.h>
 #include <assert.h>
 
-#include "Preamble.h"
-#include "SignalBase.h"
-#include "pulse/Vector.h"
-#include "pulse/Logger.h"
+#include "pulse/Preamble.h"
+#include "pulse/SignalBase.h"
+#include "pulse/tools/Vector.h"
+#include "pulse/tools/Logger.h"
 
 namespace pulsewire {
 

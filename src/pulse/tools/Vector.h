@@ -1,7 +1,7 @@
 #pragma once
 #include <stddef.h>
 #include <stdint.h>
-#include "../TransceiverConfig.h"
+#include "TransceiverConfig.h"
 #if defined(HAS_STL)
 #  include <vector>
 #endif

@@ -4,7 +4,7 @@
 #include <stdint.h>
 
 #include "Codec.h"
-#include "pulse/Vector.h"
+#include "pulse/tools/Vector.h"
 
 namespace pulsewire {
 
