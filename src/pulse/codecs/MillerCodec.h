@@ -134,7 +134,8 @@ class MillerCodec : public Codec {
   /**
    * @brief Decode Miller encoding edge by edge.
    *
-   * Interprets edge durations in terms of half-periods (hp):
+   * Handles preamble detection using the base Codec's preamble logic,
+   * then interprets edge durations in terms of half-periods (hp):
    * - hp=1 (0.5T): Half of a '1' bit (start or complete)
    * - hp=2 (1T):   One '0' bit with transition at boundary
    * - hp=3 (1.5T): '0' followed by start of '1', OR '1' followed by '0'
@@ -144,7 +145,30 @@ class MillerCodec : public Codec {
    */
   bool decodeEdge(uint32_t durationUs, bool level, uint8_t& result) override {
     // Handle idle gap (end of frame)
-    if (durationUs > getEndOfFrameDelayUs()) {
+    if (handleIdleGap(durationUs, level, result)) {
+      return true;
+    }
+
+    // Handle preamble detection
+    if (!handlePreamble(durationUs, level)) {
+      return false;
+    }
+
+    // Decode the Miller-encoded edge
+    int hp = durationToHalfPeriods(durationUs);
+    decodeMiller(hp, level);
+
+    // Check if we've collected a complete byte
+    return checkByteComplete(result);
+  }
+
+ protected:
+  /**
+   * @brief Handle idle gap detection and end-of-frame processing.
+   * @return true if a complete byte was output, false otherwise.
+   */
+  bool handleIdleGap(uint32_t durationUs, bool level, uint8_t& result) {
+    if (level == getIdleLevel() && durationUs > getEndOfFrameDelayUs()) {
       Logger::debug("Miller: Idle gap %lu us, resetting",
                     (unsigned long)durationUs);
       // If we were mid-'1', complete it before resetting
@@ -159,70 +183,122 @@ class MillerCodec : public Codec {
         }
       }
       reset();
-      return false;
     }
+    return false;
+  }
 
+  /**
+   * @brief Handle preamble detection.
+   * @return true if we're in a frame and should process data, false to skip.
+   */
+  bool handlePreamble(uint32_t durationUs, bool level) {
+    OutputEdge newEdge{level, durationUs};
+    assert(_preamble != nullptr);
+    if (!_inFrame) {
+      if (_preamble->preambleLength() == 0) {
+        // No preamble configured - first edge starts the frame
+        // Don't process this edge as data - its duration is the idle gap
+        _inFrame = true;
+        Logger::debug("Miller: No preamble, starting new frame");
+        return false;  // Skip this edge, wait for next
+      } else if (_preamble->detect(newEdge)) {
+        // Preamble detected - start new frame
+        _inFrame = true;
+        Logger::debug("Miller: Preamble detected, starting new frame");
+        // Don't process the preamble edge as data, wait for next edge
+        return false;
+      } else {
+        // Still waiting for preamble
+        return false;
+      }
+    }
+    return true;
+  }
+
+  /**
+   * @brief Convert duration to half-periods (rounded to nearest).
+   */
+  int durationToHalfPeriods(uint32_t durationUs) {
     uint32_t halfT = _bitPeriodUs / 2;
-
-    // Convert duration to half-periods (rounded to nearest)
     int hp = (durationUs + halfT / 2) / halfT;
     if (hp < 1) hp = 1;
     if (hp > 4) hp = 4;  // Cap at 2T (4 half-periods)
+    return hp;
+  }
 
-    Logger::debug(
-        "Miller decode: dur=%lu, level=%d, hp=%d, bitPos=%d, expectMid=%d",
-        (unsigned long)durationUs, level, hp, _rxBitPos,
-        _rxExpectingMidTransition);
+  /**
+   * @brief Decode Miller half-periods into bits.
+   */
+  void decodeMiller(int hp, bool level) {
+    Logger::debug("Miller decode: hp=%d, bitPos=%d, expectMid=%d", hp,
+                  _rxBitPos, _rxExpectingMidTransition);
 
     if (_rxExpectingMidTransition) {
-      // We're in the first half of a '1' bit, expecting mid-transition
-      if (hp == 1) {
-        // 0.5T: Second half of '1' - complete the bit
-        Logger::debug("  '1' complete");
-        pushBit(true);
-        _rxExpectingMidTransition = false;
-      } else if (hp == 2) {
-        // 1T = 0.5T + 0.5T: Complete '1', then start another '1'
-        Logger::debug("  '1', start '1'");
-        pushBit(true);
-        // Stay in expectMid state for next '1'
-      } else if (hp == 3) {
-        // 1.5T = 0.5T + 1T: Complete '1', then full '0' bit
-        Logger::debug("  '1', '0'");
-        pushBit(true);
-        pushBit(false);
-        _rxExpectingMidTransition = false;
-      } else if (hp == 4) {
-        // 2T = 0.5T + 1T + 0.5T: Complete '1', '0', start '1'
-        Logger::debug("  '1', '0', start '1'");
-        pushBit(true);
-        pushBit(false);
-        // Stay in expectMid state for next '1'
-      }
+      decodeWhileExpectingMid(hp);
     } else {
-      // Not expecting mid-transition - at bit boundary
-      if (hp == 1) {
-        // 0.5T: First half of '1' bit
-        Logger::debug("  start '1'");
-        _rxExpectingMidTransition = true;
-      } else if (hp == 2) {
-        // 1T: One '0' bit (with transition at boundary)
-        Logger::debug("  '0'");
-        pushBit(false);
-      } else if (hp == 3) {
-        // 1.5T = 1T + 0.5T: '0' bit, then start of '1'
-        Logger::debug("  '0', start '1'");
-        pushBit(false);
-        _rxExpectingMidTransition = true;
-      } else if (hp == 4) {
-        // 2T: Two '0' bits
-        Logger::debug("  '0', '0'");
-        pushBit(false);
-        pushBit(false);
-      }
+      decodeAtBoundary(hp);
     }
+  }
 
-    // Check if we've collected a complete byte
+  /**
+   * @brief Decode when expecting mid-transition of a '1' bit.
+   */
+  void decodeWhileExpectingMid(int hp) {
+    if (hp == 1) {
+      // 0.5T: Second half of '1' - complete the bit
+      Logger::debug("  '1' complete");
+      pushBit(true);
+      _rxExpectingMidTransition = false;
+    } else if (hp == 2) {
+      // 1T = 0.5T + 0.5T: Complete '1', then start another '1'
+      Logger::debug("  '1', start '1'");
+      pushBit(true);
+      // Stay in expectMid state for next '1'
+    } else if (hp == 3) {
+      // 1.5T = 0.5T + 1T: Complete '1', then full '0' bit
+      Logger::debug("  '1', '0'");
+      pushBit(true);
+      pushBit(false);
+      _rxExpectingMidTransition = false;
+    } else if (hp == 4) {
+      // 2T = 0.5T + 1T + 0.5T: Complete '1', '0', start '1'
+      Logger::debug("  '1', '0', start '1'");
+      pushBit(true);
+      pushBit(false);
+      // Stay in expectMid state for next '1'
+    }
+  }
+
+  /**
+   * @brief Decode when at bit boundary (not expecting mid-transition).
+   */
+  void decodeAtBoundary(int hp) {
+    if (hp == 1) {
+      // 0.5T: First half of '1' bit
+      Logger::debug("  start '1'");
+      _rxExpectingMidTransition = true;
+    } else if (hp == 2) {
+      // 1T: One '0' bit (with transition at boundary)
+      Logger::debug("  '0'");
+      pushBit(false);
+    } else if (hp == 3) {
+      // 1.5T = 1T + 0.5T: '0' bit, then start of '1'
+      Logger::debug("  '0', start '1'");
+      pushBit(false);
+      _rxExpectingMidTransition = true;
+    } else if (hp == 4) {
+      // 2T: Two '0' bits
+      Logger::debug("  '0', '0'");
+      pushBit(false);
+      pushBit(false);
+    }
+  }
+
+  /**
+   * @brief Check if a complete byte has been assembled.
+   * @return true if byte complete, with result set.
+   */
+  bool checkByteComplete(uint8_t& result) {
     if (_rxBitPos >= 8) {
       result = _rxByte;
       Logger::debug("  Byte complete: 0x%02X", result);
@@ -233,7 +309,6 @@ class MillerCodec : public Codec {
     return false;
   }
 
- protected:
   /**
    * @brief Push a decoded bit into the receive buffer.
    *
