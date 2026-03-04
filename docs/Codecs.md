@@ -15,3 +15,20 @@ Represents bits by varying pulse widths. Typically, a short pulse is '0' and a l
 ### PulseDistanceCodec (Pulse Distance Modulation)
 
 The PulseDistanceCodec encodes data by varying the distance (time interval) between consecutive pulses. Each bit is represented by a pulse, and the duration between pulses determines whether the bit is a '0' or a '1'. This method is robust against signal level shifts and is commonly used in infrared remote control protocols. It is well-suited for environments with variable signal amplitude or where only timing information is reliable.
+
+
+#### Example Code
+
+
+```C++
+#include "Codecs.h"
+
+ManchesterCodec codec;
+```
+
+Or you can set it up with a preamble:
+
+```C++
+ManchesterPreamble preamble;
+ManchesterCodec codec(preamble);
+```

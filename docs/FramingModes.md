@@ -21,3 +21,25 @@ Data is buffered until explicitly flushed.
 The flush() method is used to finalize the frame and send the buffered data.
 This mode is useful for scenarios where the frame size is dynamic or determined at runtime.
 
+#### Example Code
+
+
+```C++
+#include "Codecs.h"
+#include "DriverArduino.h"
+#include "Transceiver.h"
+
+const uint8_t rxPin = 22;
+const uint8_t txPin = 23;
+int baud = 8000;
+DigitalSignal digitalSignal;
+ManchesterCodec codec;
+TxDriverArduino tx(codec, txPin, digitalSignal);
+RxDriverArduino rx(codec, rxPin);
+Transceiver transceiver(rx, tx);
+
+// set up framing to Fixed Size 1024 bytes
+transceiver.setFrameSize (1024);
+transceiver.setFramingMode(FramingMode::FixedSize);
+```
+

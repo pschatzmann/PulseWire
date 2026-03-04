@@ -24,3 +24,42 @@
 | Telefunken       | 2600        | 600        |             |            | Pulse Distance         | 38000          |
 | TECHNICS         | 3456        | 1728       |             |            | Pulse Distance         | 37900          |
 
+
+#### Predefined Objects
+
+Using the table above, the following [IRProtocol](https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1IRProtocol.html) objects have been predefinded:
+
+- IRProtocolNEC
+- IRProtocolNEC16
+- IRProtocolNEC42
+- IRProtocolSony
+- IRProtocolSamsung
+- IRProtocolSamsung48
+- IRProtocolWhynter
+- IRProtocolApple
+- IRProtocolOnkyo
+- IRProtocolMatsushita
+- IRProtocolGrundig
+- IRProtocolSiemensGigaset
+- IRProtocolNokia
+- IRProtocolThomson
+- IRProtocolTelefunken
+- IRProtocolTechnics
+- IRProtocolJVC
+- IRProtocolSharp
+- IRProtocolKaseikyo
+- IRProtocolDenon
+
+
+#### Example Code
+
+```C++
+
+#include "IRTransceiver.h"
+
+int tx_pin = 3;
+IRTrasmitter tx(IRInfoNEC, tx_pin);
+
+```
+
+

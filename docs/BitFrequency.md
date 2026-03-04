@@ -24,3 +24,14 @@ The Bit frequency (in Hz) determines how many bits are transmitted per second an
 - Use lower frequencies for longer range, better noise immunity, and simpler hardware.
 - Use higher frequencies for faster data transfer, but ensure your receiver and transmission medium can handle it reliably.
 - Consider environmental factors (noise, interference, signal attenuation) and hardware limitations when selecting the optimal bit frequency.
+
+
+#### Example Code
+
+```C++
+#include "Transceiver.h"
+
+Transceiver transceiver;
+// strting with 1000 baud (bits/second)
+transceiver.begin(1000);
+```
