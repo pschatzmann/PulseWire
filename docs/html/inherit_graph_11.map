@@ -1,11 +1,11 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
 <area shape="rect" id="Node000000" href="$classpulsewire_1_1TxDriver.html" title="Abstract base class for IR transmitters." alt="" coords="5,55,155,80"/>
 <area shape="rect" id="Node000001" href="$classpulsewire_1_1TxDriverCommon.html" title="Provides common logic for transmitting signals using various framing modes." alt="" coords="203,55,411,80"/>
-<area shape="poly" id="edge20_Node000000_Node000001" title=" " alt="" coords="168,65,203,65,203,70,168,70"/>
+<area shape="poly" id="edge21_Node000000_Node000001" title=" " alt="" coords="168,65,203,65,203,70,168,70"/>
 <area shape="rect" id="Node000002" href="$classpulsewire_1_1TxDriverArduino.html" title="Generic driver for transmitting data using a specified codec and signal implementation." alt="" coords="459,5,657,31"/>
-<area shape="poly" id="edge21_Node000001_Node000002" title=" " alt="" coords="385,49,492,28,493,33,386,55"/>
+<area shape="poly" id="edge22_Node000001_Node000002" title=" " alt="" coords="385,49,492,28,493,33,386,55"/>
 <area shape="rect" id="Node000003" href="$classpulsewire_1_1TxDriverESP32.html" title="ESP32&#45;specific TxDriver implementation that uses TxProtocolESP32 for transmission." alt="" coords="463,55,653,80"/>
-<area shape="poly" id="edge22_Node000001_Node000003" title=" " alt="" coords="424,65,463,65,463,70,424,70"/>
+<area shape="poly" id="edge23_Node000001_Node000003" title=" " alt="" coords="424,65,463,65,463,70,424,70"/>
 <area shape="rect" id="Node000004" href="$classpulsewire_1_1TxDriverRP2040.html" title="RP2040&#45;specific TxDriver implementation that uses TxProtocolRP2040 for transmission." alt="" coords="459,104,657,129"/>
-<area shape="poly" id="edge23_Node000001_Node000004" title=" " alt="" coords="386,80,493,101,492,107,385,85"/>
+<area shape="poly" id="edge24_Node000001_Node000004" title=" " alt="" coords="386,80,493,101,492,107,385,85"/>
 </map>

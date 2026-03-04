@@ -1,13 +1,15 @@
 <map id="pulsewire::Codec" name="pulsewire::Codec">
-<area shape="rect" id="Node000001" title="Abstract base class for IR protocol encoding and decoding." alt="" coords="5,112,139,137"/>
-<area shape="rect" id="Node000002" href="$classpulsewire_1_1ManchesterCodec.html" title="Manchester encoding/decoding utility class for IR communication." alt="" coords="187,5,396,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,101,136,69,186,40,217,28,219,33,188,44,139,73,99,105"/>
-<area shape="rect" id="Node000003" href="$classpulsewire_1_1NRZCodec.html" title="NRZ (Non&#45;Return&#45;to&#45;Zero) codec for serial&#45;like encoding/decoding with start/stop bit framing." alt="" coords="211,55,372,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="130,105,186,90,236,78,237,83,187,95,131,111"/>
-<area shape="rect" id="Node000004" href="$classpulsewire_1_1PulseDistanceCodec.html" title="Pulse&#45;distance encoding/decoding utility class for IR communication." alt="" coords="199,105,384,145"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="152,122,199,122,199,127,152,127"/>
-<area shape="rect" id="Node000005" href="$classpulsewire_1_1PulseWidthCodec.html" title="Pulse&#45;width encoding/decoding utility class for IR communication." alt="" coords="188,169,395,195"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="131,139,187,154,237,167,236,172,186,159,130,144"/>
-<area shape="rect" id="Node000006" href="$classpulsewire_1_1RecorderCodec.html" title="Codec Wrapper that records all edges passed to decodeEdge() for later analysis or testing." alt="" coords="196,219,387,244"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="99,144,139,175,188,204,223,216,221,221,186,208,136,179,96,148"/>
+<area shape="rect" id="Node000001" title="Abstract base class for IR protocol encoding and decoding." alt="" coords="5,119,139,145"/>
+<area shape="rect" id="Node000002" href="$classpulsewire_1_1ManchesterCodec.html" title="Manchester encoding/decoding utility class for IR communication." alt="" coords="187,13,396,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,108,136,76,186,47,217,36,219,41,188,52,139,81,99,112"/>
+<area shape="rect" id="Node000004" href="$classpulsewire_1_1NRZCodec.html" title="NRZ (Non&#45;Return&#45;to&#45;Zero) codec for serial&#45;like encoding/decoding with start/stop bit framing." alt="" coords="211,62,372,87"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="130,113,186,97,236,85,237,90,187,103,131,118"/>
+<area shape="rect" id="Node000005" href="$classpulsewire_1_1PulseDistanceCodec.html" title="Pulse&#45;distance encoding/decoding utility class for IR communication." alt="" coords="199,112,384,152"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="152,129,199,129,199,135,152,135"/>
+<area shape="rect" id="Node000006" href="$classpulsewire_1_1PulseWidthCodec.html" title="Pulse&#45;width encoding/decoding utility class for IR communication." alt="" coords="188,177,395,202"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="131,146,187,161,237,174,236,179,186,167,130,151"/>
+<area shape="rect" id="Node000007" href="$classpulsewire_1_1RecorderCodec.html" title="Codec Wrapper that records all edges passed to decodeEdge() for later analysis or testing." alt="" coords="196,226,387,251"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="99,151,139,182,188,211,223,223,221,228,186,216,136,187,96,156"/>
+<area shape="rect" id="Node000003" href="$classpulsewire_1_1DifferentialManchesterCodec.html" title="Differential Manchester encoding/decoding utility class for IR communication." alt="" coords="444,5,687,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="410,23,444,23,444,28,410,28"/>
 </map>

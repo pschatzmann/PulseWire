@@ -89,17 +89,19 @@ Inheritance diagram for pulsewire::Codec:</div>
 <div class="dyncontent">
 <div class="center"><img src="classpulsewire_1_1Codec__inherit__graph.png" border="0" usemap="#apulsewire_1_1Codec_inherit__map" alt="Inheritance graph"/></div>
 <map name="apulsewire_1_1Codec_inherit__map" id="apulsewire_1_1Codec_inherit__map">
-<area shape="rect" title="Abstract base class for IR protocol encoding and decoding." alt="" coords="5,112,139,137"/>
-<area shape="rect" href="classpulsewire_1_1ManchesterCodec.html" title="Manchester encoding/decoding utility class for IR communication." alt="" coords="187,5,396,31"/>
-<area shape="poly" title=" " alt="" coords="95,101,136,69,186,40,217,28,219,33,188,44,139,73,99,105"/>
-<area shape="rect" href="classpulsewire_1_1NRZCodec.html" title="NRZ (Non&#45;Return&#45;to&#45;Zero) codec for serial&#45;like encoding/decoding with start/stop bit framing." alt="" coords="211,55,372,80"/>
-<area shape="poly" title=" " alt="" coords="130,105,186,90,236,78,237,83,187,95,131,111"/>
-<area shape="rect" href="classpulsewire_1_1PulseDistanceCodec.html" title="Pulse&#45;distance encoding/decoding utility class for IR communication." alt="" coords="199,105,384,145"/>
-<area shape="poly" title=" " alt="" coords="152,122,199,122,199,127,152,127"/>
-<area shape="rect" href="classpulsewire_1_1PulseWidthCodec.html" title="Pulse&#45;width encoding/decoding utility class for IR communication." alt="" coords="188,169,395,195"/>
-<area shape="poly" title=" " alt="" coords="131,139,187,154,237,167,236,172,186,159,130,144"/>
-<area shape="rect" href="classpulsewire_1_1RecorderCodec.html" title="Codec Wrapper that records all edges passed to decodeEdge() for later analysis or testing." alt="" coords="196,219,387,244"/>
-<area shape="poly" title=" " alt="" coords="99,144,139,175,188,204,223,216,221,221,186,208,136,179,96,148"/>
+<area shape="rect" title="Abstract base class for IR protocol encoding and decoding." alt="" coords="5,119,139,145"/>
+<area shape="rect" href="classpulsewire_1_1ManchesterCodec.html" title="Manchester encoding/decoding utility class for IR communication." alt="" coords="187,13,396,38"/>
+<area shape="poly" title=" " alt="" coords="95,108,136,76,186,47,217,36,219,41,188,52,139,81,99,112"/>
+<area shape="rect" href="classpulsewire_1_1NRZCodec.html" title="NRZ (Non&#45;Return&#45;to&#45;Zero) codec for serial&#45;like encoding/decoding with start/stop bit framing." alt="" coords="211,62,372,87"/>
+<area shape="poly" title=" " alt="" coords="130,113,186,97,236,85,237,90,187,103,131,118"/>
+<area shape="rect" href="classpulsewire_1_1PulseDistanceCodec.html" title="Pulse&#45;distance encoding/decoding utility class for IR communication." alt="" coords="199,112,384,152"/>
+<area shape="poly" title=" " alt="" coords="152,129,199,129,199,135,152,135"/>
+<area shape="rect" href="classpulsewire_1_1PulseWidthCodec.html" title="Pulse&#45;width encoding/decoding utility class for IR communication." alt="" coords="188,177,395,202"/>
+<area shape="poly" title=" " alt="" coords="131,146,187,161,237,174,236,179,186,167,130,151"/>
+<area shape="rect" href="classpulsewire_1_1RecorderCodec.html" title="Codec Wrapper that records all edges passed to decodeEdge() for later analysis or testing." alt="" coords="196,226,387,251"/>
+<area shape="poly" title=" " alt="" coords="99,151,139,182,188,211,223,223,221,228,186,216,136,187,96,156"/>
+<area shape="rect" href="classpulsewire_1_1DifferentialManchesterCodec.html" title="Differential Manchester encoding/decoding utility class for IR communication." alt="" coords="444,5,687,45"/>
+<area shape="poly" title=" " alt="" coords="410,23,444,23,444,28,410,28"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
@@ -128,19 +130,17 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a241439a5049b2ca98b069c2cce836fe1" id="r_a241439a5049b2ca98b069c2cce836fe1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpulsewire_1_1Vector.html">virtual</a> <a class="el" href="classpulsewire_1_1Vector.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpulsewire_1_1Codec.html#a241439a5049b2ca98b069c2cce836fe1">begin</a> (<a class="el" href="classpulsewire_1_1Vector.html">uint16_t</a> <a class="el" href="classpulsewire_1_1Vector.html">bitFrequencyHz</a>)</td></tr>
 <tr class="memdesc:a241439a5049b2ca98b069c2cce836fe1"><td class="mdescLeft">&#160;</td><td class="mdescRight">initialization method for codecs that require setup before use (e.g., loading PIO programs, configuring state machines).  <br /></td></tr>
 <tr class="separator:a241439a5049b2ca98b069c2cce836fe1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acfad773a897669b5332d1333c02af807" id="r_acfad773a897669b5332d1333c02af807"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpulsewire_1_1Vector.html">virtual</a> <a class="el" href="classpulsewire_1_1Vector.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpulsewire_1_1Codec.html#acfad773a897669b5332d1333c02af807">getIdleLevel</a> ()</td></tr>
-<tr class="separator:acfad773a897669b5332d1333c02af807"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa9f41d216ce0e1a2b7b10af60f2f9992" id="r_aa9f41d216ce0e1a2b7b10af60f2f9992"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpulsewire_1_1Vector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpulsewire_1_1Codec.html#aa9f41d216ce0e1a2b7b10af60f2f9992">reset</a> ()</td></tr>
-<tr class="separator:aa9f41d216ce0e1a2b7b10af60f2f9992"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5c27adab6f5dc6224946847b704e172" id="r_af5c27adab6f5dc6224946847b704e172"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpulsewire_1_1Vector.html">virtual</a> <a class="el" href="classpulsewire_1_1Vector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpulsewire_1_1Codec.html#af5c27adab6f5dc6224946847b704e172">reset</a> ()</td></tr>
+<tr class="separator:af5c27adab6f5dc6224946847b704e172"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6aec59de33e8fd8704f7610c2aed3e68" id="r_a6aec59de33e8fd8704f7610c2aed3e68"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpulsewire_1_1Preamble.html">Preamble</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpulsewire_1_1Codec.html#a6aec59de33e8fd8704f7610c2aed3e68">getPreamble</a> ()</td></tr>
 <tr class="memdesc:a6aec59de33e8fd8704f7610c2aed3e68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the preamble detector associated with this codec.  <br /></td></tr>
 <tr class="separator:a6aec59de33e8fd8704f7610c2aed3e68"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3ec584238df6cf04424d5f800c9e25ec" id="r_a3ec584238df6cf04424d5f800c9e25ec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpulsewire_1_1Vector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpulsewire_1_1Codec.html#a3ec584238df6cf04424d5f800c9e25ec">setPreamble</a> (<a class="el" href="classpulsewire_1_1Preamble.html">Preamble</a> &amp;<a class="el" href="classpulsewire_1_1Vector.html">preamble</a>)</td></tr>
 <tr class="memdesc:a3ec584238df6cf04424d5f800c9e25ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the <a class="el" href="classpulsewire_1_1Preamble.html" title="Abstract base class for preamble detection and generation.">Preamble</a> Detector object.  <br /></td></tr>
 <tr class="separator:a3ec584238df6cf04424d5f800c9e25ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa0a68e4b1f4d1dc7655acf04c5790c22" id="r_aa0a68e4b1f4d1dc7655acf04c5790c22"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpulsewire_1_1Vector.html">virtual</a> <a class="el" href="classpulsewire_1_1Vector.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpulsewire_1_1Codec.html#aa0a68e4b1f4d1dc7655acf04c5790c22">getBitCount</a> () <a class="el" href="classpulsewire_1_1Vector.html">const</a> =0</td></tr>
-<tr class="memdesc:aa0a68e4b1f4d1dc7655acf04c5790c22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of protocol symbols (bits, pulses, etc.) per encoded byte.  <br /></td></tr>
-<tr class="separator:aa0a68e4b1f4d1dc7655acf04c5790c22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f93fc579818bb7267752079739b4946" id="r_a9f93fc579818bb7267752079739b4946"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpulsewire_1_1Vector.html">virtual</a> <a class="el" href="classpulsewire_1_1Vector.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpulsewire_1_1Codec.html#a9f93fc579818bb7267752079739b4946">getEdgeCount</a> () <a class="el" href="classpulsewire_1_1Vector.html">const</a> =0</td></tr>
+<tr class="memdesc:a9f93fc579818bb7267752079739b4946"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of protocol symbols (bits, pulses, etc.) per encoded byte.  <br /></td></tr>
+<tr class="separator:a9f93fc579818bb7267752079739b4946"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a21ad641a92ef12f27332103b8dcb0d2e" id="r_a21ad641a92ef12f27332103b8dcb0d2e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpulsewire_1_1Vector.html">virtual</a> <a class="el" href="classpulsewire_1_1Vector.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpulsewire_1_1Codec.html#a21ad641a92ef12f27332103b8dcb0d2e">decodeEdge</a> (<a class="el" href="classpulsewire_1_1Vector.html">uint32_t</a> <a class="el" href="classpulsewire_1_1Vector.html">durationUs</a>, <a class="el" href="classpulsewire_1_1Vector.html">bool</a> level, <a class="el" href="classpulsewire_1_1Vector.html">uint8_t</a> &amp;<a class="el" href="classpulsewire_1_1Vector.html">result</a>)</td></tr>
 <tr class="memdesc:a21ad641a92ef12f27332103b8dcb0d2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Edge-based decoding for protocol-agnostic RX drivers.  <br /></td></tr>
 <tr class="separator:a21ad641a92ef12f27332103b8dcb0d2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -149,22 +149,29 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a04317971bd97014605aec2629eb85069" id="r_a04317971bd97014605aec2629eb85069"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpulsewire_1_1Vector.html">virtual</a> <a class="el" href="classpulsewire_1_1Vector.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpulsewire_1_1Codec.html#a04317971bd97014605aec2629eb85069">encode</a> (<a class="el" href="classpulsewire_1_1Vector.html">uint8_t</a> <a class="el" href="classpulsewire_1_1Vector.html">byte</a>, <a class="el" href="classpulsewire_1_1Vector.html">Vector</a>&lt; <a class="el" href="structpulsewire_1_1OutputEdge.html">OutputEdge</a> &gt; &amp;output)</td></tr>
 <tr class="memdesc:a04317971bd97014605aec2629eb85069"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fill output vector with protocol-specific OutputSpec(s) for a byte.  <br /></td></tr>
 <tr class="separator:a04317971bd97014605aec2629eb85069"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a648f20a9cfcdd7c5d3baaba06e9ac31d" id="r_a648f20a9cfcdd7c5d3baaba06e9ac31d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpulsewire_1_1Vector.html">virtual</a> CodecEnum&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpulsewire_1_1Codec.html#a648f20a9cfcdd7c5d3baaba06e9ac31d">getCodecType</a> () <a class="el" href="classpulsewire_1_1Vector.html">const</a> =0</td></tr>
-<tr class="separator:a648f20a9cfcdd7c5d3baaba06e9ac31d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f31eab98232b75c6eef3acae04bc1a1" id="r_a3f31eab98232b75c6eef3acae04bc1a1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpulsewire_1_1Vector.html">const</a> <a class="el" href="classpulsewire_1_1Vector.html">char</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpulsewire_1_1Codec.html#a3f31eab98232b75c6eef3acae04bc1a1">name</a> () <a class="el" href="classpulsewire_1_1Vector.html">const</a></td></tr>
-<tr class="memdesc:a3f31eab98232b75c6eef3acae04bc1a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the codec type as a string (e.g., "PulseDistance", "Manchester").  <br /></td></tr>
-<tr class="separator:a3f31eab98232b75c6eef3acae04bc1a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3b481e6321eb4bbb0e3054250d8d566" id="r_af3b481e6321eb4bbb0e3054250d8d566"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpulsewire_1_1Vector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpulsewire_1_1Codec.html#af3b481e6321eb4bbb0e3054250d8d566">setFrameSize</a> (<a class="el" href="classpulsewire_1_1Vector.html">uint16_t</a> size)</td></tr>
 <tr class="separator:af3b481e6321eb4bbb0e3054250d8d566"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a28786c9b70e3e6355eebf454b066c867" id="r_a28786c9b70e3e6355eebf454b066c867"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpulsewire_1_1Vector.html">virtual</a> <a class="el" href="classpulsewire_1_1Vector.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpulsewire_1_1Codec.html#a28786c9b70e3e6355eebf454b066c867">encodeBit</a> (<a class="el" href="classpulsewire_1_1Vector.html">bool</a> <a class="el" href="classpulsewire_1_1Vector.html">bit</a>, <a class="el" href="classpulsewire_1_1Vector.html">Vector</a>&lt; <a class="el" href="structpulsewire_1_1OutputEdge.html">OutputEdge</a> &gt; &amp;output)</td></tr>
 <tr class="memdesc:a28786c9b70e3e6355eebf454b066c867"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fill output vector with protocol-specific OutputSpec(s) for a bit.  <br /></td></tr>
 <tr class="separator:a28786c9b70e3e6355eebf454b066c867"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a620791d0a27019d52900e1dc8564b6d7" id="r_a620791d0a27019d52900e1dc8564b6d7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpulsewire_1_1Vector.html">virtual</a> <a class="el" href="classpulsewire_1_1Vector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpulsewire_1_1Codec.html#a620791d0a27019d52900e1dc8564b6d7">encodeByte</a> (<a class="el" href="classpulsewire_1_1Vector.html">uint8_t</a> <a class="el" href="classpulsewire_1_1Vector.html">byte</a>, <a class="el" href="classpulsewire_1_1Vector.html">uint8_t</a> *<a class="el" href="classpulsewire_1_1Vector.html">bits</a>) <a class="el" href="classpulsewire_1_1Vector.html">const</a></td></tr>
-<tr class="memdesc:a620791d0a27019d52900e1dc8564b6d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encode a byte to protocol bitstream. Default implementation encodes to raw bits (MSB first), but can be overridden by protocols that require different bit formatting (e.g., Manchester). The output bits are stored in.  <br /></td></tr>
-<tr class="separator:a620791d0a27019d52900e1dc8564b6d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ffe2023b5866082eaa554568125fa4a" id="r_a5ffe2023b5866082eaa554568125fa4a"><td class="memItemLeft" align="right" valign="top"><a id="a5ffe2023b5866082eaa554568125fa4a" name="a5ffe2023b5866082eaa554568125fa4a"></a>
-<a class="el" href="classpulsewire_1_1Vector.html">virtual</a> <a class="el" href="classpulsewire_1_1Vector.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><b>decodeByte</b> (<a class="el" href="classpulsewire_1_1Vector.html">Vector</a>&lt; <a class="el" href="structpulsewire_1_1OutputEdge.html">OutputEdge</a> &gt; &amp;<a class="el" href="classpulsewire_1_1Vector.html">edges</a>, <a class="el" href="classpulsewire_1_1Vector.html">uint8_t</a> &amp;<a class="el" href="classpulsewire_1_1Vector.html">result</a>) <a class="el" href="classpulsewire_1_1Vector.html">const</a> =0</td></tr>
-<tr class="separator:a5ffe2023b5866082eaa554568125fa4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab08b648959cbbc6fcbb111f036263ba1" id="r_ab08b648959cbbc6fcbb111f036263ba1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpulsewire_1_1Vector.html">virtual</a> <a class="el" href="classpulsewire_1_1Vector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpulsewire_1_1Codec.html#ab08b648959cbbc6fcbb111f036263ba1">encodeByte</a> (<a class="el" href="classpulsewire_1_1Vector.html">uint8_t</a> <a class="el" href="classpulsewire_1_1Vector.html">byte</a>, std::vector&lt; <a class="el" href="classpulsewire_1_1Vector.html">bool</a> &gt; &amp;<a class="el" href="classpulsewire_1_1Vector.html">bits</a>) <a class="el" href="classpulsewire_1_1Vector.html">const</a></td></tr>
+<tr class="memdesc:ab08b648959cbbc6fcbb111f036263ba1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encode a byte to protocol bitstream. Default implementation encodes to raw bits (MSB first), but can be overridden by protocols that require different bit formatting (e.g., Manchester). The output bits are stored in.  <br /></td></tr>
+<tr class="separator:ab08b648959cbbc6fcbb111f036263ba1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83653e8c8807782b9859558054a72b5e" id="r_a83653e8c8807782b9859558054a72b5e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpulsewire_1_1Vector.html">virtual</a> <a class="el" href="classpulsewire_1_1Vector.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpulsewire_1_1Codec.html#a83653e8c8807782b9859558054a72b5e">decodeByte</a> (<a class="el" href="classpulsewire_1_1Vector.html">Vector</a>&lt; <a class="el" href="structpulsewire_1_1OutputEdge.html">OutputEdge</a> &gt; &amp;<a class="el" href="classpulsewire_1_1Vector.html">edges</a>, <a class="el" href="classpulsewire_1_1Vector.html">uint8_t</a> &amp;<a class="el" href="classpulsewire_1_1Vector.html">result</a>)=0</td></tr>
+<tr class="memdesc:a83653e8c8807782b9859558054a72b5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decode edges into a byte.  <br /></td></tr>
+<tr class="separator:a83653e8c8807782b9859558054a72b5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a340d36ba559663aa8fd601a6602cb2dc" id="r_a340d36ba559663aa8fd601a6602cb2dc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpulsewire_1_1Vector.html">virtual</a> <a class="el" href="classpulsewire_1_1Vector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpulsewire_1_1Codec.html#a340d36ba559663aa8fd601a6602cb2dc">getEndOfFrameDelayUs</a> ()=0</td></tr>
+<tr class="memdesc:a340d36ba559663aa8fd601a6602cb2dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provide the end of frame delay in microseconds for this protocol, used by RX driver to.  <br /></td></tr>
+<tr class="separator:a340d36ba559663aa8fd601a6602cb2dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40689adab15f5fa5d7db930b9b8d8ad1" id="r_a40689adab15f5fa5d7db930b9b8d8ad1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpulsewire_1_1Vector.html">virtual</a> <a class="el" href="classpulsewire_1_1Vector.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpulsewire_1_1Codec.html#a40689adab15f5fa5d7db930b9b8d8ad1">getIdleLevel</a> () <a class="el" href="classpulsewire_1_1Vector.html">const</a></td></tr>
+<tr class="memdesc:a40689adab15f5fa5d7db930b9b8d8ad1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides the initial ldle state (low or hith)  <br /></td></tr>
+<tr class="separator:a40689adab15f5fa5d7db930b9b8d8ad1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a648f20a9cfcdd7c5d3baaba06e9ac31d" id="r_a648f20a9cfcdd7c5d3baaba06e9ac31d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpulsewire_1_1Vector.html">virtual</a> CodecEnum&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpulsewire_1_1Codec.html#a648f20a9cfcdd7c5d3baaba06e9ac31d">getCodecType</a> () <a class="el" href="classpulsewire_1_1Vector.html">const</a> =0</td></tr>
+<tr class="memdesc:a648f20a9cfcdd7c5d3baaba06e9ac31d"><td class="mdescLeft">&#160;</td><td class="mdescRight">instance.  <br /></td></tr>
+<tr class="separator:a648f20a9cfcdd7c5d3baaba06e9ac31d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f31eab98232b75c6eef3acae04bc1a1" id="r_a3f31eab98232b75c6eef3acae04bc1a1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpulsewire_1_1Vector.html">const</a> <a class="el" href="classpulsewire_1_1Vector.html">char</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpulsewire_1_1Codec.html#a3f31eab98232b75c6eef3acae04bc1a1">name</a> () <a class="el" href="classpulsewire_1_1Vector.html">const</a></td></tr>
+<tr class="memdesc:a3f31eab98232b75c6eef3acae04bc1a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the codec type as a string (e.g., "PulseDistance", "Manchester").  <br /></td></tr>
+<tr class="separator:a3f31eab98232b75c6eef3acae04bc1a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -185,7 +192,7 @@ Protected Attributes</h2></td></tr>
 <div class="textblock"><p>Abstract base class for IR protocol encoding and decoding. </p>
 <p>Provides a unified interface for encoding bytes to protocol-specific bitstreams, edge-based decoding for protocol-agnostic drivers, and protocol symbol count. Derived classes implement protocol-specific logic (e.g., Manchester, pulse-distance). </p>
 
-<p class="definition">Definition at line <a class="el" href="Codec_8h_source.html#l00038">38</a> of file <a class="el" href="Codec_8h_source.html">Codec.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Codec_8h_source.html#l00041">41</a> of file <a class="el" href="Codec_8h_source.html">Codec.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aefa283a232cfb5ea085a3876f1f28572" name="aefa283a232cfb5ea085a3876f1f28572"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aefa283a232cfb5ea085a3876f1f28572">&#9670;&#160;</a></span>Codec()</h2>
@@ -211,7 +218,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Codec_8h_source.html#l00042">42</a> of file <a class="el" href="Codec_8h_source.html">Codec.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Codec_8h_source.html#l00045">45</a> of file <a class="el" href="Codec_8h_source.html">Codec.h</a>.</p>
 
 </div>
 </div>
@@ -242,9 +249,49 @@ Protected Attributes</h2></td></tr>
 
 <p>initialization method for codecs that require setup before use (e.g., loading PIO programs, configuring state machines). </p>
 
-<p>Reimplemented in <a class="el" href="classpulsewire_1_1RecorderCodec.html#af682eba51054bdaa0fda082cd8b87c5f">pulsewire::RecorderCodec</a>, <a class="el" href="classpulsewire_1_1ManchesterCodec.html#acdb7da6c91cc1aca3c5aa99adf955bd8">pulsewire::ManchesterCodec</a>, <a class="el" href="classpulsewire_1_1NRZCodec.html#afdc472e966045b9e754b45b87fcd5b18">pulsewire::NRZCodec</a>, <a class="el" href="classpulsewire_1_1PulseDistanceCodec.html#aaa757980525f7c5ccded7d02aece2c96">pulsewire::PulseDistanceCodec</a>, and <a class="el" href="classpulsewire_1_1PulseWidthCodec.html#a9cd7ca81a95dca25e6fbaead8fef3461">pulsewire::PulseWidthCodec</a>.</p>
+<p>Reimplemented in <a class="el" href="classpulsewire_1_1RecorderCodec.html#af682eba51054bdaa0fda082cd8b87c5f">pulsewire::RecorderCodec</a>, <a class="el" href="classpulsewire_1_1DifferentialManchesterCodec.html#ab5ad89b5afbdf6be74a693c08b16d761">pulsewire::DifferentialManchesterCodec</a>, <a class="el" href="classpulsewire_1_1ManchesterCodec.html#acdb7da6c91cc1aca3c5aa99adf955bd8">pulsewire::ManchesterCodec</a>, <a class="el" href="classpulsewire_1_1NRZCodec.html#afdc472e966045b9e754b45b87fcd5b18">pulsewire::NRZCodec</a>, <a class="el" href="classpulsewire_1_1PulseDistanceCodec.html#aaa757980525f7c5ccded7d02aece2c96">pulsewire::PulseDistanceCodec</a>, and <a class="el" href="classpulsewire_1_1PulseWidthCodec.html#a9cd7ca81a95dca25e6fbaead8fef3461">pulsewire::PulseWidthCodec</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Codec_8h_source.html#l00053">53</a> of file <a class="el" href="Codec_8h_source.html">Codec.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Codec_8h_source.html#l00056">56</a> of file <a class="el" href="Codec_8h_source.html">Codec.h</a>.</p>
+
+</div>
+</div>
+<a id="a83653e8c8807782b9859558054a72b5e" name="a83653e8c8807782b9859558054a72b5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83653e8c8807782b9859558054a72b5e">&#9670;&#160;</a></span>decodeByte()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classpulsewire_1_1Vector.html">virtual</a> <a class="el" href="classpulsewire_1_1Vector.html">bool</a> pulsewire::Codec::decodeByte </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classpulsewire_1_1Vector.html">Vector</a>&lt; <a class="el" href="structpulsewire_1_1OutputEdge.html">OutputEdge</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>edges</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classpulsewire_1_1Vector.html">uint8_t</a> &amp;&#160;</td>
+          <td class="paramname"><em>result</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Decode edges into a byte. </p>
+
+<p>Implemented in <a class="el" href="classpulsewire_1_1DifferentialManchesterCodec.html#aa6a7b5fa191bcc6ab0b6f1c8e58fed54">pulsewire::DifferentialManchesterCodec</a>, <a class="el" href="classpulsewire_1_1ManchesterCodec.html#a46816a993a361d0ab50d19de500780df">pulsewire::ManchesterCodec</a>, <a class="el" href="classpulsewire_1_1NRZCodec.html#adbeadfe55f640ebc654f2d448832c495">pulsewire::NRZCodec</a>, <a class="el" href="classpulsewire_1_1PulseDistanceCodec.html#a87e4e51982a10a5d5e83c8a5e5b3dc30">pulsewire::PulseDistanceCodec</a>, <a class="el" href="classpulsewire_1_1PulseWidthCodec.html#a0fc9ba5bc7f954bcfd64e63674dfbf73">pulsewire::PulseWidthCodec</a>, and <a class="el" href="classpulsewire_1_1RecorderCodec.html#abae7b63d4dda122eff4542aa7302e1b6">pulsewire::RecorderCodec</a>.</p>
 
 </div>
 </div>
@@ -304,7 +351,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Reimplemented in <a class="el" href="classpulsewire_1_1ManchesterCodec.html#a0cbf5d34c77f466c642df5848f83b9e7">pulsewire::ManchesterCodec</a>, <a class="el" href="classpulsewire_1_1NRZCodec.html#adc7041fc62668650a7d758e5bab23efd">pulsewire::NRZCodec</a>, and <a class="el" href="classpulsewire_1_1RecorderCodec.html#a521b152f509a8021830a66baf34d2e69">pulsewire::RecorderCodec</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Codec_8h_source.html#l00107">107</a> of file <a class="el" href="Codec_8h_source.html">Codec.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Codec_8h_source.html#l00106">106</a> of file <a class="el" href="Codec_8h_source.html">Codec.h</a>.</p>
 
 </div>
 </div>
@@ -355,7 +402,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Reimplemented in <a class="el" href="classpulsewire_1_1NRZCodec.html#ac1eeab59cb1fc84c94199e03d9fdf033">pulsewire::NRZCodec</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Codec_8h_source.html#l00156">156</a> of file <a class="el" href="Codec_8h_source.html">Codec.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Codec_8h_source.html#l00162">162</a> of file <a class="el" href="Codec_8h_source.html">Codec.h</a>.</p>
 
 </div>
 </div>
@@ -403,14 +450,14 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Number of OutputSpec entries added. </dd></dl>
 
-<p>Reimplemented in <a class="el" href="classpulsewire_1_1RecorderCodec.html#a98501fb676f5e23c42dfaef131e85357">pulsewire::RecorderCodec</a>, <a class="el" href="classpulsewire_1_1ManchesterCodec.html#a1905c5ae6be64b1b7b06ba96243c1e92">pulsewire::ManchesterCodec</a>, <a class="el" href="classpulsewire_1_1PulseDistanceCodec.html#a91489697c9a7840af2559f7a7d27e0a8">pulsewire::PulseDistanceCodec</a>, and <a class="el" href="classpulsewire_1_1PulseWidthCodec.html#ae9542d986d83393887cfccab57735049">pulsewire::PulseWidthCodec</a>.</p>
+<p>Reimplemented in <a class="el" href="classpulsewire_1_1RecorderCodec.html#a98501fb676f5e23c42dfaef131e85357">pulsewire::RecorderCodec</a>, <a class="el" href="classpulsewire_1_1DifferentialManchesterCodec.html#a1b1c3bb9c54be7bfe76223b655ac0b9a">pulsewire::DifferentialManchesterCodec</a>, <a class="el" href="classpulsewire_1_1ManchesterCodec.html#a1905c5ae6be64b1b7b06ba96243c1e92">pulsewire::ManchesterCodec</a>, <a class="el" href="classpulsewire_1_1PulseDistanceCodec.html#a91489697c9a7840af2559f7a7d27e0a8">pulsewire::PulseDistanceCodec</a>, and <a class="el" href="classpulsewire_1_1PulseWidthCodec.html#ae9542d986d83393887cfccab57735049">pulsewire::PulseWidthCodec</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Codec_8h_source.html#l00186">186</a> of file <a class="el" href="Codec_8h_source.html">Codec.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Codec_8h_source.html#l00184">184</a> of file <a class="el" href="Codec_8h_source.html">Codec.h</a>.</p>
 
 </div>
 </div>
-<a id="a620791d0a27019d52900e1dc8564b6d7" name="a620791d0a27019d52900e1dc8564b6d7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a620791d0a27019d52900e1dc8564b6d7">&#9670;&#160;</a></span>encodeByte()</h2>
+<a id="ab08b648959cbbc6fcbb111f036263ba1" name="ab08b648959cbbc6fcbb111f036263ba1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab08b648959cbbc6fcbb111f036263ba1">&#9670;&#160;</a></span>encodeByte()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -427,7 +474,7 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classpulsewire_1_1Vector.html">uint8_t</a> *&#160;</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="classpulsewire_1_1Vector.html">bool</a> &gt; &amp;&#160;</td>
           <td class="paramname"><em>bits</em>&#160;</td>
         </tr>
         <tr>
@@ -452,9 +499,9 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Reimplemented in <a class="el" href="classpulsewire_1_1RecorderCodec.html#a3505cc8ddd5bd6885a29e0affbb1db60">pulsewire::RecorderCodec</a>.</p>
+<p>Reimplemented in <a class="el" href="classpulsewire_1_1RecorderCodec.html#a763f53eb1e7d6784ff6e60e5de68ba2b">pulsewire::RecorderCodec</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Codec_8h_source.html#l00196">196</a> of file <a class="el" href="Codec_8h_source.html">Codec.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Codec_8h_source.html#l00194">194</a> of file <a class="el" href="Codec_8h_source.html">Codec.h</a>.</p>
 
 </div>
 </div>
@@ -482,37 +529,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Codec_8h_source.html#l00140">140</a> of file <a class="el" href="Codec_8h_source.html">Codec.h</a>.</p>
-
-</div>
-</div>
-<a id="aa0a68e4b1f4d1dc7655acf04c5790c22" name="aa0a68e4b1f4d1dc7655acf04c5790c22"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa0a68e4b1f4d1dc7655acf04c5790c22">&#9670;&#160;</a></span>getBitCount()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classpulsewire_1_1Vector.html">virtual</a> <a class="el" href="classpulsewire_1_1Vector.html">size_t</a> pulsewire::Codec::getBitCount </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Get the number of protocol symbols (bits, pulses, etc.) per encoded byte. </p>
-<dl class="section return"><dt>Returns</dt><dd>Number of protocol symbols per byte. </dd></dl>
-
-<p>Implemented in <a class="el" href="classpulsewire_1_1RecorderCodec.html#af200ecda063b0c76bbe2becd4748dac1">pulsewire::RecorderCodec</a>, <a class="el" href="classpulsewire_1_1ManchesterCodec.html#a1d35379c84eb6bfa170c08d481443294">pulsewire::ManchesterCodec</a>, <a class="el" href="classpulsewire_1_1NRZCodec.html#ae0afbd456869972c39428677cc04a09c">pulsewire::NRZCodec</a>, <a class="el" href="classpulsewire_1_1PulseDistanceCodec.html#a93883eeec1a3f3dab5069a333166e167">pulsewire::PulseDistanceCodec</a>, and <a class="el" href="classpulsewire_1_1PulseWidthCodec.html#ab1aafca2f071dc9bdc0488a257d63549">pulsewire::PulseWidthCodec</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Codec_8h_source.html#l00146">146</a> of file <a class="el" href="Codec_8h_source.html">Codec.h</a>.</p>
 
 </div>
 </div>
@@ -538,14 +555,75 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Get the codec type (e.g., PulseDistance, Manchester) for this <a class="el" href="classpulsewire_1_1Codec.html" title="Abstract base class for IR protocol encoding and decoding.">Codec</a> instance. </p>
 
-<p>Implemented in <a class="el" href="classpulsewire_1_1ManchesterCodec.html#aa691ad4a5f38a350d3505946c20e9d4b">pulsewire::ManchesterCodec</a>, <a class="el" href="classpulsewire_1_1NRZCodec.html#a8672898ab47848b2fc5a4d77f5e8c166">pulsewire::NRZCodec</a>, <a class="el" href="classpulsewire_1_1PulseDistanceCodec.html#a5b9ded2fa012cb85bda46288caf35c32">pulsewire::PulseDistanceCodec</a>, <a class="el" href="classpulsewire_1_1PulseWidthCodec.html#a33dd0b6cb76dcbf8c84561efa28244a1">pulsewire::PulseWidthCodec</a>, and <a class="el" href="classpulsewire_1_1RecorderCodec.html#abbe879f947fbd970842c6b63d3393d48">pulsewire::RecorderCodec</a>.</p>
+<p>instance. </p>
+<p>Get the codec type (e.g., PulseDistance, Manchester) for this <a class="el" href="classpulsewire_1_1Codec.html" title="Abstract base class for IR protocol encoding and decoding.">Codec</a> </p>
+
+<p>Implemented in <a class="el" href="classpulsewire_1_1DifferentialManchesterCodec.html#aa84f4a6b59ce64bf0069f2e81388fe8c">pulsewire::DifferentialManchesterCodec</a>, <a class="el" href="classpulsewire_1_1ManchesterCodec.html#aa691ad4a5f38a350d3505946c20e9d4b">pulsewire::ManchesterCodec</a>, <a class="el" href="classpulsewire_1_1NRZCodec.html#a8672898ab47848b2fc5a4d77f5e8c166">pulsewire::NRZCodec</a>, <a class="el" href="classpulsewire_1_1PulseDistanceCodec.html#a5b9ded2fa012cb85bda46288caf35c32">pulsewire::PulseDistanceCodec</a>, <a class="el" href="classpulsewire_1_1PulseWidthCodec.html#a33dd0b6cb76dcbf8c84561efa28244a1">pulsewire::PulseWidthCodec</a>, and <a class="el" href="classpulsewire_1_1RecorderCodec.html#abbe879f947fbd970842c6b63d3393d48">pulsewire::RecorderCodec</a>.</p>
 
 </div>
 </div>
-<a id="acfad773a897669b5332d1333c02af807" name="acfad773a897669b5332d1333c02af807"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acfad773a897669b5332d1333c02af807">&#9670;&#160;</a></span>getIdleLevel()</h2>
+<a id="a9f93fc579818bb7267752079739b4946" name="a9f93fc579818bb7267752079739b4946"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f93fc579818bb7267752079739b4946">&#9670;&#160;</a></span>getEdgeCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classpulsewire_1_1Vector.html">virtual</a> <a class="el" href="classpulsewire_1_1Vector.html">size_t</a> pulsewire::Codec::getEdgeCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the number of protocol symbols (bits, pulses, etc.) per encoded byte. </p>
+<dl class="section return"><dt>Returns</dt><dd>Number of protocol symbols per byte. </dd></dl>
+
+<p>Implemented in <a class="el" href="classpulsewire_1_1RecorderCodec.html#a03ca56be88db343c041605341f36be89">pulsewire::RecorderCodec</a>, <a class="el" href="classpulsewire_1_1ManchesterCodec.html#aaf5c684e89ece74c632670a1f69841f6">pulsewire::ManchesterCodec</a>, <a class="el" href="classpulsewire_1_1NRZCodec.html#a8ce5b6cbb38fe99038684bbe0086a164">pulsewire::NRZCodec</a>, <a class="el" href="classpulsewire_1_1PulseDistanceCodec.html#ac9dfc574c55441beec69169805a16fe2">pulsewire::PulseDistanceCodec</a>, and <a class="el" href="classpulsewire_1_1PulseWidthCodec.html#a779aae24105549c4694a273bcd2fa733">pulsewire::PulseWidthCodec</a>.</p>
+
+</div>
+</div>
+<a id="a340d36ba559663aa8fd601a6602cb2dc" name="a340d36ba559663aa8fd601a6602cb2dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a340d36ba559663aa8fd601a6602cb2dc">&#9670;&#160;</a></span>getEndOfFrameDelayUs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classpulsewire_1_1Vector.html">virtual</a> <a class="el" href="classpulsewire_1_1Vector.html">int</a> pulsewire::Codec::getEndOfFrameDelayUs </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Provide the end of frame delay in microseconds for this protocol, used by RX driver to. </p>
+
+<p>Implemented in <a class="el" href="classpulsewire_1_1ManchesterCodec.html#a870d9992a649d835b148cb3ccfbcecab">pulsewire::ManchesterCodec</a>, <a class="el" href="classpulsewire_1_1NRZCodec.html#a45d5085b539907d400ce7fbceb5d07ac">pulsewire::NRZCodec</a>, <a class="el" href="classpulsewire_1_1PulseDistanceCodec.html#af2e6b618ec1f7cded7e463d3766b2468">pulsewire::PulseDistanceCodec</a>, <a class="el" href="classpulsewire_1_1PulseWidthCodec.html#ab9c7760f1db0918fb514bc030438af8f">pulsewire::PulseWidthCodec</a>, and <a class="el" href="classpulsewire_1_1RecorderCodec.html#a023bb3aa3e2f673cd706ea1c751f862e">pulsewire::RecorderCodec</a>.</p>
+
+</div>
+</div>
+<a id="a40689adab15f5fa5d7db930b9b8d8ad1" name="a40689adab15f5fa5d7db930b9b8d8ad1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40689adab15f5fa5d7db930b9b8d8ad1">&#9670;&#160;</a></span>getIdleLevel()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -557,7 +635,7 @@ Protected Attributes</h2></td></tr>
           <td class="memname"><a class="el" href="classpulsewire_1_1Vector.html">virtual</a> <a class="el" href="classpulsewire_1_1Vector.html">bool</a> pulsewire::Codec::getIdleLevel </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -567,7 +645,11 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Codec_8h_source.html#l00064">64</a> of file <a class="el" href="Codec_8h_source.html">Codec.h</a>.</p>
+<p>Provides the initial ldle state (low or hith) </p>
+
+<p>Reimplemented in <a class="el" href="classpulsewire_1_1DifferentialManchesterCodec.html#aa57da3b9ff2ddb7cf643f18311638fd5">pulsewire::DifferentialManchesterCodec</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="Codec_8h_source.html#l00208">208</a> of file <a class="el" href="Codec_8h_source.html">Codec.h</a>.</p>
 
 </div>
 </div>
@@ -597,7 +679,7 @@ Protected Attributes</h2></td></tr>
 <p>Get the preamble detector associated with this codec. </p>
 <dl class="section return"><dt>Returns</dt><dd>Reference to the <a class="el" href="classpulsewire_1_1Preamble.html" title="Abstract base class for preamble detection and generation.">Preamble</a> instance used for preamble detection. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Codec_8h_source.html#l00078">78</a> of file <a class="el" href="Codec_8h_source.html">Codec.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Codec_8h_source.html#l00077">77</a> of file <a class="el" href="Codec_8h_source.html">Codec.h</a>.</p>
 
 </div>
 </div>
@@ -648,9 +730,9 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Used by <a class="el" href="classpulsewire_1_1IRTransceiver.html" title="IRTransceiver: High-level interface for sending and receiving IR signals.">IRTransceiver</a> to initialize codec with protocol-specific parameters </p>
 
-<p>Reimplemented in <a class="el" href="classpulsewire_1_1PulseDistanceCodec.html#a30829a772cf26530f6d555a6af180337">pulsewire::PulseDistanceCodec</a>, <a class="el" href="classpulsewire_1_1PulseWidthCodec.html#a4f2c5d779921ce8180fe0505fd824b67">pulsewire::PulseWidthCodec</a>, and <a class="el" href="classpulsewire_1_1RecorderCodec.html#a78279989a2c23d339ba2e0142ca3b7d4">pulsewire::RecorderCodec</a>.</p>
+<p>Reimplemented in <a class="el" href="classpulsewire_1_1PulseWidthCodec.html#ad194b0a695a1216a832e93f50107c290">pulsewire::PulseWidthCodec</a>, <a class="el" href="classpulsewire_1_1PulseDistanceCodec.html#ab79c2eea2930066ee007a4e8870be625">pulsewire::PulseDistanceCodec</a>, and <a class="el" href="classpulsewire_1_1RecorderCodec.html#a78279989a2c23d339ba2e0142ca3b7d4">pulsewire::RecorderCodec</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Codec_8h_source.html#l00046">46</a> of file <a class="el" href="Codec_8h_source.html">Codec.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Codec_8h_source.html#l00049">49</a> of file <a class="el" href="Codec_8h_source.html">Codec.h</a>.</p>
 
 </div>
 </div>
@@ -679,12 +761,12 @@ Protected Attributes</h2></td></tr>
 
 <p>Get the name of the codec type as a string (e.g., "PulseDistance", "Manchester"). </p>
 
-<p class="definition">Definition at line <a class="el" href="Codec_8h_source.html#l00173">173</a> of file <a class="el" href="Codec_8h_source.html">Codec.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Codec_8h_source.html#l00218">218</a> of file <a class="el" href="Codec_8h_source.html">Codec.h</a>.</p>
 
 </div>
 </div>
-<a id="aa9f41d216ce0e1a2b7b10af60f2f9992" name="aa9f41d216ce0e1a2b7b10af60f2f9992"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa9f41d216ce0e1a2b7b10af60f2f9992">&#9670;&#160;</a></span>reset()</h2>
+<a id="af5c27adab6f5dc6224946847b704e172" name="af5c27adab6f5dc6224946847b704e172"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5c27adab6f5dc6224946847b704e172">&#9670;&#160;</a></span>reset()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -693,7 +775,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classpulsewire_1_1Vector.html">void</a> pulsewire::Codec::reset </td>
+          <td class="memname"><a class="el" href="classpulsewire_1_1Vector.html">virtual</a> <a class="el" href="classpulsewire_1_1Vector.html">void</a> pulsewire::Codec::reset </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -701,12 +783,12 @@ Protected Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Codec_8h_source.html#l00068">68</a> of file <a class="el" href="Codec_8h_source.html">Codec.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Codec_8h_source.html#l00067">67</a> of file <a class="el" href="Codec_8h_source.html">Codec.h</a>.</p>
 
 </div>
 </div>
@@ -734,7 +816,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Codec_8h_source.html#l00175">175</a> of file <a class="el" href="Codec_8h_source.html">Codec.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Codec_8h_source.html#l00173">173</a> of file <a class="el" href="Codec_8h_source.html">Codec.h</a>.</p>
 
 </div>
 </div>
@@ -770,7 +852,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="Codec_8h_source.html#l00085">85</a> of file <a class="el" href="Codec_8h_source.html">Codec.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Codec_8h_source.html#l00084">84</a> of file <a class="el" href="Codec_8h_source.html">Codec.h</a>.</p>
 
 </div>
 </div>
@@ -795,7 +877,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Codec_8h_source.html#l00208">208</a> of file <a class="el" href="Codec_8h_source.html">Codec.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Codec_8h_source.html#l00224">224</a> of file <a class="el" href="Codec_8h_source.html">Codec.h</a>.</p>
 
 </div>
 </div>
@@ -819,7 +901,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Codec_8h_source.html#l00209">209</a> of file <a class="el" href="Codec_8h_source.html">Codec.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Codec_8h_source.html#l00225">225</a> of file <a class="el" href="Codec_8h_source.html">Codec.h</a>.</p>
 
 </div>
 </div>
@@ -843,7 +925,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Codec_8h_source.html#l00210">210</a> of file <a class="el" href="Codec_8h_source.html">Codec.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Codec_8h_source.html#l00226">226</a> of file <a class="el" href="Codec_8h_source.html">Codec.h</a>.</p>
 
 </div>
 </div>
@@ -867,7 +949,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Codec_8h_source.html#l00206">206</a> of file <a class="el" href="Codec_8h_source.html">Codec.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Codec_8h_source.html#l00222">222</a> of file <a class="el" href="Codec_8h_source.html">Codec.h</a>.</p>
 
 </div>
 </div>
@@ -891,7 +973,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Codec_8h_source.html#l00211">211</a> of file <a class="el" href="Codec_8h_source.html">Codec.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Codec_8h_source.html#l00227">227</a> of file <a class="el" href="Codec_8h_source.html">Codec.h</a>.</p>
 
 </div>
 </div>
@@ -915,7 +997,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Codec_8h_source.html#l00207">207</a> of file <a class="el" href="Codec_8h_source.html">Codec.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Codec_8h_source.html#l00223">223</a> of file <a class="el" href="Codec_8h_source.html">Codec.h</a>.</p>
 
 </div>
 </div>

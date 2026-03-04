@@ -89,50 +89,98 @@ In addition, specific to transmitting IR data, we need to modulate the &lt;stron
 - Protocol-agnostic drivers for generic Arduino 
 - Hardware abstraction via OutputEdge for transmission and reception
 - [Examples](examples) for all supported platforms and protocols
-- An untested @ref "/home/pschatzmann/Development/Arduino/libraries/PulseWire/docs/IRProtocols.md" "draft implementation for IR Protocols"</p>
-<h1><a class="anchor" id="autotoc_md2"></a>
-Architechture</h1>
-<p>This library uses the Arduino Stream API, so that we can easily integrate with other Arduino functionality and provides quite a few <b>composable classes</b>, so that you can configure your individual communication scenario:</p>
-<ul>
-<li>Transceiver<ul>
-<li>RxDriver<ul>
-<li>Preamble</li>
-<li>Codec</li>
-</ul>
-</li>
-<li>TxDriver<ul>
-<li>Preamble</li>
-<li>Codec</li>
-<li>Signal</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Signal<ul>
-<li>Tone</li>
-<li>Binary</li>
-<li>PWM</li>
-</ul>
-</li>
-<li>Codec<ul>
-<li>PulseDistance</li>
-<li>PulseWidth</li>
-<li>Manchaster</li>
-<li>NRZ</li>
-</ul>
-</li>
-<li>Preambles<ul>
-<li>None</li>
-<li>Custom</li>
-<li>NEC</li>
-<li>Sony</li>
-<li>Kaseikyo</li>
-<li>Samsung</li>
-<li>Whynter</li>
-<li>... </li>
-</ul>
-</li>
-</ul>
+- An untested @ref "/home/pschatzmann/Development/Arduino/libraries/PulseWire/docs/IRProtocols.md" "draft implementation for IR Protocols"
+
+
+@section autotoc_md2 Architechture
+
+This library uses the Arduino Stream API, so that we can easily integrate with other Arduino functionality and provides &lt;a href="<a href="https://pschatzmann.github.io/PulseWire/html/annotated.html">https://pschatzmann.github.io/PulseWire/html/annotated.html</a>" &gt;quite a few &lt;strong&gt;composable classes&lt;/strong&gt;&lt;/a&gt;, so that you can configure your individual communication scenario:
+
+- &lt;a href="<a href="https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1Transceiver.html">https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1Transceiver.html</a>" &gt;Transceiver&lt;/a&gt;
+  - &lt;a href="<a href="https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1RxDriver.html">https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1RxDriver.html</a>" &gt;RxDriver&lt;/a&gt; (&lt;a href="<a href="https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1RxDriverArduino.html">https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1RxDriverArduino.html</a>" &gt;RxDriverArduino&lt;/a&gt;)
+    - Preamble
+    - Codec
+  - &lt;a href="<a href="https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1TxDriver.html">https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1TxDriver.html</a>" &gt;TxDriver&lt;/a&gt; (&lt;a href="<a href="https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1TxDriverArduino.html">https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1TxDriverArduino.html</a>" &gt;TxDriverArduino&lt;/a&gt;)
+    - Preamble
+    - Codec 
+    - Signal 
+
+- &lt;a href="<a href="https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1SignalBase.html">https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1SignalBase.html</a>" &gt;Signal&lt;/a&gt; 
+    - &lt;a href="<a href="https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1ToneSignal.html">https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1ToneSignal.html</a>" &gt;Tone&lt;/a&gt;
+    - &lt;a href="<a href="https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1DigitalSignal.html">https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1DigitalSignal.html</a>" &gt;Digital&lt;/a&gt;
+    - &lt;a href="<a href="https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1PWMSignal.html">https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1PWMSignal.html</a>" &gt;PWM&lt;/a&gt;
+
+- &lt;a href="<a href="https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1Codec.html">https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1Codec.html</a>" &gt;Codec&lt;/a&gt;
+    - &lt;a href="<a href="https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1PulseDistanceCodec.html">https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1PulseDistanceCodec.html</a>" &gt;PulseDistance&lt;/a&gt;
+    - &lt;a href="<a href="https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1PulseWidthCodec.html">https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1PulseWidthCodec.html</a>" &gt;PulseWidth&lt;/a&gt;
+    - &lt;a href="<a href="https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1ManchesterCodec.html">https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1ManchesterCodec.html</a>" &gt;Manchaster&lt;/a&gt;
+    - &lt;a href="<a href="https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1NRZCodec.html">https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1NRZCodec.html</a>" &gt;NRZ&lt;/a&gt;
+
+- &lt;a href="<a href="https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1Preamble.html">https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1Preamble.html</a>" &gt;Preamble&lt;/a&gt;
+   - &lt;a href="<a href="https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1NoPreamble.html">https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1NoPreamble.html</a>" &gt;NoPreamble&lt;/a&gt;
+   - &lt;a href="<a href="https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1CustomPreamble.html">https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1CustomPreamble.html</a>" &gt;CustomPreamble&lt;/a&gt;
+   - &lt;a href="<a href="https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1CustomPreambleUs.html">https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1CustomPreambleUs.html</a>" &gt;CustomPreambleUs&lt;/a&gt;
+   - &lt;a href="<a href="https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1ManchesterPreamble.html">https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1ManchesterPreamble.html</a>" &gt;ManchesterPreable&lt;/a&gt;
+   - &lt;a href="<a href="https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1NRZPreamble.html">https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1NRZPreamble.html</a>" &gt;NRZPreamble&lt;/a&gt;
+   - &lt;a href="<a href="https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1IRProtocol.html#details">https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1IRProtocol.html#details</a>" &gt;IRProtocol&lt;/a&gt;
+
+
+@section autotoc_md3 Code Example
+
+Here is a simple Arduino Sketch that sends binary manchester encoded data from one pin and receives it on another pin on the same microcontroller. Just connect the two pins with a wire.
+
+Further exampes can be found in the [examples](examples) directory
+
+@icode{C} ++
+
+#include "<a class="el" href="Codecs_8h_source.html">Codecs.h</a>"
+#include "<a class="el" href="DriverArduino_8h_source.html">DriverArduino.h</a>"
+#include "<a class="el" href="Transceiver_8h_source.html">Transceiver.h</a>"
+
+const uint8_t rxPin = 22;
+const uint8_t txPin = 23;
+int baud = 8000;
+DigitalSignal digitalSignal;
+ManchesterPreamble preamble;
+ManchesterCodec codec(preamble);
+TxDriverArduino tx(codec, txPin, digitalSignal);
+RxDriverArduino rx(codec, rxPin);
+Transceiver transceiver(rx, tx);
+
+void setup() {
+  Serial.begin(115200);
+  Logger::setLogLevel(Logger::LOG_LEVEL_INFO);
+  transceiver.begin(baud);
+}
+
+void loop() {
+  // send a frame
+  const uint8_t frameSize = 10;
+  const uint8_t data[] = {0x01, 0x02, 0x03, 0x04, 0x05,
+                          0x06, 0x07, 0x08, 0x09, 0x0A};  // Test data to encode
+
+  size_t written = tx.write(data, frameSize);
+  if (written != frameSize) {
+    Serial.println("Error: Failed to write full frame");
+  } else {
+    Serial.print("Written: ");
+    for (size_t i = 0; i &lt; frameSize; ++i) {
+      Serial.print((uint8_t)data[i], HEX);
+      Serial.print(" ");
+    }
+    Serial.println();
+  }
+
+  // receive a frame
+  size_t receivedCount = 0;
+  uint8_t receiveBuffer[frameSize]{};
+
+  receivedCount = rx.readBytes(receiveBuffer, frameSize);
+  Serial.print("Received: ");
+  for (size_t i = 0; i &lt; receivedCount; ++i) {
+    Serial.print((uint8_t)receiveBuffer[i], HEX);
+    Serial.print(" "); } Serial.println();</p>
+<p>// delay(1000); }  </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- start footer part -->
