@@ -236,6 +236,8 @@ class TxProtocolGeneric : public TxProtocol {
       check_sum += data[i];
       _codec->encode(data[i], _output_buffer);
     }
+    // Flush any pending encoder state (e.g., Miller pending duration)
+    _codec->flushEncoder(_output_buffer);
     for (const auto& spec : _output_buffer) {
       p_signal->sendBit(spec.level);
       delayUs(spec.pulseUs);
@@ -267,6 +269,7 @@ class TxProtocolGeneric : public TxProtocol {
       if (_useChecksum) {
         _output_buffer.clear();
         _codec->encode(check_sum, _output_buffer);
+        _codec->flushEncoder(_output_buffer);
         for (const auto& spec : _output_buffer) {
           p_signal->sendBit(spec.level);
           delayUs(spec.pulseUs);

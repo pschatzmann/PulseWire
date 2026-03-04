@@ -1,17 +1,24 @@
 #pragma once
+#include <assert.h>
 #include <stddef.h>
 #include <stdint.h>
-#include <assert.h>
 
 #include "pulse/Preamble.h"
 #include "pulse/SignalBase.h"
-#include "pulse/tools/Vector.h"
 #include "pulse/tools/Logger.h"
+#include "pulse/tools/Vector.h"
 
 namespace pulsewire {
 
 /// List of supported codec types
-enum class CodecEnum { PulseDistance, PulseWidth, Manchester, DifferentialManchester, NRZ };
+enum class CodecEnum {
+  PulseDistance,
+  PulseWidth,
+  Manchester,
+  DifferentialManchester,
+  NRZ,
+  Miller
+};
 
 const char* toStr(CodecEnum codec) {
   switch (codec) {
@@ -25,6 +32,8 @@ const char* toStr(CodecEnum codec) {
       return "DifferentialManchester";
     case CodecEnum::NRZ:
       return "NRZ";
+    case CodecEnum::Miller:
+      return "Miller";
     default:
       return "Unknown";
   }
@@ -107,13 +116,13 @@ class Codec {
     // ensure that edges are allocated
     assert(_decodeEdgeStream.capacity() > 0);
 
-     // Filter idle gaps
+    // Filter idle gaps
     if (level == getIdleLevel() && durationUs > getEndOfFrameDelayUs()) {
       Logger::debug("Idle gap detected: %d us, resetting decoder", durationUs);
       reset();
       return false;
     }
-   
+
     OutputEdge newEdge{level, durationUs};
     assert(_preamble != nullptr);
     if (!_inFrame) {
@@ -184,6 +193,18 @@ class Codec {
   virtual size_t encodeBit(bool bit, Vector<OutputEdge>& output) { return 0; };
 
   /**
+   * @brief Flush any pending encoder state at end of frame.
+   * 
+   * Some codecs (e.g., Miller) accumulate pending duration that must be
+   * output at the end of the frame. This method outputs any remaining
+   * pending state. Default implementation does nothing.
+   * 
+   * @param output Vector to append OutputSpec(s).
+   * @return Number of OutputSpec entries added.
+   */
+  virtual size_t flushEncoder(Vector<OutputEdge>& output) { return 0; }
+
+  /**
    * @brief Encode a byte to protocol bitstream. Default implementation encodes
    * to raw bits (MSB first), but can be overridden by protocols that require
    * different bit formatting (e.g., Manchester). The output bits are stored in
@@ -191,7 +212,7 @@ class Codec {
    * @param byte The input byte to encode.
    * @param bits Output buffer for encoded bits (protocol-specific format).
    */
-  virtual void encodeByte(uint8_t byte, std::vector<bool> &bits) const {
+  virtual void encodeByte(uint8_t byte, std::vector<bool>& bits) const {
     for (int i = 7; i >= 0; --i) {
       bool bit = (byte >> i) & 0x01;
       bits[7 - i] = bit ? 1 : 0;
@@ -199,24 +220,24 @@ class Codec {
   }
 
   /// Decode edges into a byte
-  virtual bool decodeByte(Vector<OutputEdge>& edges, uint8_t& result) = 0;
-
-  /// Provide the end of frame delay in microseconds for this protocol, used by RX driver to
-  virtual int getEndOfFrameDelayUs() = 0;
-
-  /// Provides the initial ldle state (low or hith)
-  virtual bool getIdleLevel() const {
+  virtual bool decodeByte(Vector<OutputEdge>& edges, uint8_t& result) {
     return false;
   }
 
-   /// Get the codec type (e.g., PulseDistance, Manchester) for this Codec
+  /// Provide the end of frame delay in microseconds for this protocol, used by
+  /// RX driver to
+  virtual int getEndOfFrameDelayUs() = 0;
+
+  /// Provides the initial ldle state (low or hith)
+  virtual bool getIdleLevel() const { return false; }
+
+  /// Get the codec type (e.g., PulseDistance, Manchester) for this Codec
   /// instance.
   virtual CodecEnum getCodecType() const = 0;
 
   /// @brief  Get the name of the codec type as a string (e.g., "PulseDistance",
   /// "Manchester").
   const char* name() const { return toStr(getCodecType()); }
- 
 
  protected:
   CustomPreambleUs _defaultPreamble;
