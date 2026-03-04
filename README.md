@@ -57,7 +57,9 @@ This library uses the Arduino Stream API, so that we can easily integrate with o
 
 ## Code Example
 
-Here is a simple Arduino Sketch that sends binary manchester encoded data from one pin and receives it on another pin on the same microcontroller. Further exampes can be found in the [examples](examples) directory
+Here is a simple Arduino Sketch that sends binary manchester encoded data from one pin and receives it on another pin on the same microcontroller. Just connect the two pins with a wire.
+
+Further exampes can be found in the [examples](examples) directory
 
 ```C++
 
