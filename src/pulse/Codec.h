@@ -11,7 +11,7 @@
 namespace pulsewire {
 
 /// List of supported codec types
-enum class CodecEnum { PulseDistance, PulseWidth, Manchester, NRZ };
+enum class CodecEnum { PulseDistance, PulseWidth, Manchester, DifferentialManchester, NRZ };
 
 const char* toStr(CodecEnum codec) {
   switch (codec) {
@@ -21,6 +21,8 @@ const char* toStr(CodecEnum codec) {
       return "PulseWidth";
     case CodecEnum::Manchester:
       return "Manchester";
+    case CodecEnum::DifferentialManchester:
+      return "DifferentialManchester";
     case CodecEnum::NRZ:
       return "NRZ";
     default:
@@ -62,11 +64,7 @@ class Codec {
     return true;
   }
 
-  virtual bool getIdleLevel() {
-    return false;
-  }
-
-  void reset() {
+  virtual void reset() {
     _decodeEdgeStream.clear();  // clear() keeps capacity, no realloc
     _inFrame = false;
     _preamble->reset();
@@ -172,14 +170,6 @@ class Codec {
     return total;
   }
 
-  /// Get the codec type (e.g., PulseDistance, Manchester) for this Codec
-  /// instance.
-  virtual CodecEnum getCodecType() const = 0;
-
-  /// @brief  Get the name of the codec type as a string (e.g., "PulseDistance",
-  /// "Manchester").
-  const char* name() const { return toStr(getCodecType()); }
-
   void setFrameSize(uint16_t size) {
     _decodeEdgeStream.reserve(size * getEdgeCount());
   }
@@ -209,10 +199,24 @@ class Codec {
   }
 
   /// Decode edges into a byte
-  virtual bool decodeByte(Vector<OutputEdge>& edges, uint8_t& result) const = 0;
+  virtual bool decodeByte(Vector<OutputEdge>& edges, uint8_t& result) = 0;
 
   /// Provide the end of frame delay in microseconds for this protocol, used by RX driver to
   virtual int getEndOfFrameDelayUs() = 0;
+
+  /// Provides the initial ldle state (low or hith)
+  virtual bool getIdleLevel() const {
+    return false;
+  }
+
+   /// Get the codec type (e.g., PulseDistance, Manchester) for this Codec
+  /// instance.
+  virtual CodecEnum getCodecType() const = 0;
+
+  /// @brief  Get the name of the codec type as a string (e.g., "PulseDistance",
+  /// "Manchester").
+  const char* name() const { return toStr(getCodecType()); }
+ 
 
  protected:
   CustomPreambleUs _defaultPreamble;

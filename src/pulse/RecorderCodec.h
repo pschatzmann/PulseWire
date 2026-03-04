@@ -42,7 +42,7 @@ class RecorderCodec : public Codec {
     return _ref.encodeBit(bit, output);
   };
 
-  bool decodeByte(Vector<OutputEdge>& edges, uint8_t& result) const override {
+  bool decodeByte(Vector<OutputEdge>& edges, uint8_t& result) override {
     return _ref.decodeByte(edges, result);
   };
 

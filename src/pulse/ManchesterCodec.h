@@ -110,7 +110,7 @@ class ManchesterCodec : public Codec {
     return 2;
   }
 
-  bool decodeByte(Vector<OutputEdge>& edges, uint8_t& result) const override {
+  bool decodeByte(Vector<OutputEdge>& edges, uint8_t& result) override {
     assert(edges.size() == getEdgeCount());
     bool valid = true;
 

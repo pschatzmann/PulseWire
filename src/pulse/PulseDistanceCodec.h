@@ -82,7 +82,7 @@ class PulseDistanceCodec : public Codec {
   uint32_t _longPulseUs = 0;
   uint32_t _toleranceUs = 0;
 
-  bool decodeByte(Vector<OutputEdge>& edges, uint8_t& result) const override {
+  bool decodeByte(Vector<OutputEdge>& edges, uint8_t& result) override {
     if (edges.size() < 16) {
       Logger::error("Not enough edges to decode byte: %d", edges.size());
       return false;

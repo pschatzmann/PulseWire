@@ -88,7 +88,7 @@ class NRZCodec : public Codec {
     return valid;
   }
 
-  bool decodeByte(Vector<OutputEdge>& edges, uint8_t& result) const override {
+  bool decodeByte(Vector<OutputEdge>& edges, uint8_t& result) override {
     if (edges.size() < 1 + 8 + _stopBits) return false;
     bool valid = true;
     if (edges[0].level != false) return false;  // Start bit
