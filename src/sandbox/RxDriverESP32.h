@@ -1,4 +1,3 @@
-
 #pragma once
 #include <driver/rmt_rx.h>
 #include <driver/rmt_tx.h>
@@ -236,27 +235,30 @@ class RxDriverESP32 : public RxDriver {
                   xQueueSend(self->_frameQueue, frame.data(), 0);
                 }
                 frame.clear();
+                memset(frame.data(), 0, frame.capacity());
               }
             }
           }
         }
         // Timeout logic: if no symbol received for timeoutUs, flush buffer
         uint32_t now = micros();
-        if (!gotSymbol && (now - self->_lastSymbolTime > self->_timeoutUs)) {
-          // Try to decode with a zero-duration edge to flush the buffer
-          size_t frameLen = 0;
-          if (self->_codec.decodeEdge(0, 0, data)) {
+        if (!gotSymbol && (now - self->_lastSymbolTime > self->_timeoutUs) && !frame.empty()) {
+          // Signal end-of-frame to codec
+          if (self->_codec.decodeEdge(self->_codec.getEndOfFrameDelayUs(), self->_codec.getIdleLevel(), data)) {
+            frame.push_back(data);
             if (self->_useChecksum) {
-              if (frameLen >= 2) {
+              if (frame.size() >= 2) {
                 uint8_t sum = 0;
-                for (size_t j = 0; j < frameLen - 1; ++j) sum += frame[j];
-                if (sum == frame[frameLen - 1]) {
+                for (size_t j = 0; j < frame.size() - 1; ++j) sum += frame[j];
+                if (sum == frame[frame.size() - 1]) {
                   xQueueSend(self->_frameQueue, frame.data(), 0);
                 }
               }
             } else {
               xQueueSend(self->_frameQueue, frame.data(), 0);
             }
+            frame.clear();
+            memset(frame.data(), 0, frame.capacity());
           }
           self->_lastSymbolTime = now;
         }

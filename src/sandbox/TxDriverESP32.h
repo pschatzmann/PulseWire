@@ -33,7 +33,7 @@ class TxProtocolESP32 : public TxProtocol {
         size * 2);  // Each byte can produce up to 2 edges (for Manchester)
   }
 
-  void setCarrierHz(uint16_t carrierHz) { _carrierHz = carrierHz; }
+  void setCarrierHz(uint32_t carrierHz) { _carrierHz = carrierHz; }
 
   bool begin(uint16_t bitFrequencyHz, Codec* p_codec, uint8_t pin) {
     this->_codec = p_codec;
@@ -175,7 +175,7 @@ class TxProtocolESP32 : public TxProtocol {
   Vector<OutputEdge> output;
   uint8_t sum = 0;
   bool is_frame_closed = true;
-  int _carrierHz = 0;
+  uint32_t _carrierHz = 0;
 };
 
 /**
@@ -192,7 +192,7 @@ class TxDriverESP32 : public TxDriverCommon {
    * @param duty Duty cycle
    * @param useChecksum If true, append checksum to frame (default: false)
    */
-  TxDriverESP32(Codec& codec, uint8_t pin, uint16_t freq = CARRIER_HZ,
+  TxDriverESP32(Codec& codec, uint8_t pin, uint32_t freq = CARRIER_HZ,
                 bool useChecksum = false) {
     init(codec, pin, useChecksum);
   }
@@ -205,7 +205,7 @@ class TxDriverESP32 : public TxDriverCommon {
 
  protected:
   TxProtocolESP32 protocol;
-  uint16_t _carrierHz = CARRIER_HZ;
+  uint32_t _carrierHz = CARRIER_HZ;
 
   void sendPreamble() { protocol.sendPreamble(); }
 
