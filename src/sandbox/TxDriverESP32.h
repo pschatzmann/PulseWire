@@ -33,6 +33,8 @@ class TxProtocolESP32 : public TxProtocol {
         size * 2);  // Each byte can produce up to 2 edges (for Manchester)
   }
 
+  void setCarrierHz(uint16_t carrierHz) { _carrierHz = carrierHz; }
+
   bool begin(uint16_t bitFrequencyHz, Codec* p_codec, uint8_t pin) {
     this->_codec = p_codec;
     this->_txPin = pin;
@@ -50,11 +52,24 @@ class TxProtocolESP32 : public TxProtocol {
                                              .invert_out = 0,
                                              .with_dma = dma,
                                          }};
+
     rmt_channel_handle_t tx_channel = nullptr;
     esp_err_t tx_result = rmt_new_tx_channel(&tx_config, &tx_channel);
     if (tx_result != ESP_OK || tx_channel == nullptr) {
       Logger::error("RMT TX channel initialization failed");
       return false;
+    }
+    // Set carrier frequency and duty cycle for IR
+    if (_carrierHz > 0) {
+      rmt_carrier_config_t carrier_cfg = {
+        .frequency_hz = _carrierHz, // e.g. 38000 for 38kHz
+        .duty_cycle = 33,           // 33% duty cycle
+      };
+      esp_err_t carrier_result = rmt_apply_carrier(tx_channel, &carrier_cfg);
+      if (carrier_result != ESP_OK) {
+        Logger::error("RMT carrier config failed");
+        return false;
+      }
     }
     // Encoder setup
     rmt_bytes_encoder_config_t encoder_config = {};
@@ -160,6 +175,7 @@ class TxProtocolESP32 : public TxProtocol {
   Vector<OutputEdge> output;
   uint8_t sum = 0;
   bool is_frame_closed = true;
+  int _carrierHz = 0;
 };
 
 /**
@@ -176,7 +192,7 @@ class TxDriverESP32 : public TxDriverCommon {
    * @param duty Duty cycle
    * @param useChecksum If true, append checksum to frame (default: false)
    */
-  TxDriverESP32(Codec& codec, uint8_t pin, uint8_t duty = 33,
+  TxDriverESP32(Codec& codec, uint8_t pin, uint16_t freq = CARRIER_HZ,
                 bool useChecksum = false) {
     init(codec, pin, useChecksum);
   }
@@ -184,10 +200,12 @@ class TxDriverESP32 : public TxDriverCommon {
   void init(Codec& codec, uint8_t pin, uint8_t duty = 33,
             bool useChecksum = false) {
     TxDriverCommon::init(protocol, codec, pin, useChecksum);
+    protocol.setCarrierHz(_carrierHz);
   }
 
  protected:
   TxProtocolESP32 protocol;
+  uint16_t _carrierHz = CARRIER_HZ;
 
   void sendPreamble() { protocol.sendPreamble(); }
 
