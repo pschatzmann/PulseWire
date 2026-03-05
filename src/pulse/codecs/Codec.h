@@ -73,6 +73,9 @@ class Codec {
     return true;
   }
 
+  /**
+   * @brief Reset the internal state of the codec.
+   */
   virtual void reset() {
     _decodeEdgeStream.clear();  // clear() keeps capacity, no realloc
     _inFrame = false;
@@ -152,6 +155,10 @@ class Codec {
     return false;
   }
 
+  /***
+   * @brief Fill output vector with protocol-specific preamble for the
+   * preamble. 
+   */
   size_t encodePreamble(Vector<OutputEdge>& output) {
     if (_preamble == nullptr) return 0;
     return _preamble->getEdges(output);
@@ -179,6 +186,11 @@ class Codec {
     return total;
   }
 
+  /**
+   * @brief Set the Frame Size FOR THE CODEC
+   * 
+   * @param size 
+   */
   void setFrameSize(uint16_t size) {
     _decodeEdgeStream.reserve(size * getEdgeCount());
   }

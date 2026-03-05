@@ -67,12 +67,6 @@ class NRZCodec : public Codec {
   }
 
   bool decodeEdge(uint32_t durationUs, bool level, uint8_t& result) override {
-    // Filter idle gaps — full reset
-    // uint32_t maxDuration = _bitPeriodUs * getEdgeCount() * 2;
-    // if (durationUs > maxDuration) {
-    //   reset();
-    //   return false;
-    // }
 
     // Split long pulses into individual bit-period edges
     int count = (durationUs + _bitPeriodUs / 2) / _bitPeriodUs;

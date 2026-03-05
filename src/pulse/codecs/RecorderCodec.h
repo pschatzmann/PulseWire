@@ -56,9 +56,6 @@ class RecorderCodec : public Codec {
   Codec& _ref;
   Vector<OutputEdge> _recordedEdges;
 
-//   bool bitMatch(uint32_t duration, bool bit) const override {
-//     return _ref.bitMatch(duration, bit);
-//   }
 };
 
 }  // namespace pulsewire

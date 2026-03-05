@@ -48,11 +48,6 @@ class ManchesterCodec : public Codec {
    * @return false
    */
   bool decodeEdge(uint32_t durationUs, bool level, uint8_t& result) override {
-    // // Filter idle gaps
-    // if (durationUs > _bitPeriodUs * 2) {
-    //   reset();
-    //   return false;
-    // }
 
     int edgePeriod = 0.45f * _bitPeriodUs;
     int edgeCount = durationUs / edgePeriod;
