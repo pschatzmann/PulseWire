@@ -207,10 +207,6 @@ class TxProtocolGeneric : public TxProtocol {
       check_sum = 0;  // Reset checksum at the start of a new frame
       _output_buffer.clear();
       _codec->encodePreamble(_output_buffer);
-      // for (const auto& spec : _output_buffer) {
-      //   p_signal->sendBit(spec.level);
-      //   delayUs(spec.pulseUs);
-      // }
       is_frame_closed = false;
     }
   }

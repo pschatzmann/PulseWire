@@ -187,7 +187,7 @@ class Codec {
   }
 
   /**
-   * @brief Set the Frame Size FOR THE CODEC
+   * @brief Set the Frame Size 
    * 
    * @param size 
    */

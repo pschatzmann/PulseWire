@@ -8,14 +8,14 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#include "../TransceiverConfig.h"
-#include "pulse/Codec.h"
-#include "pulse/RingBuffer.h"
+#include "TransceiverConfig.h"
 #include "pulse/RxDriver.h"
 #include "pulse/TxDriver.h"
 #include "pulse/TxDriverCommon.h"
 #include "pulse/TxProtocol.h"
-#include "pulse/Vector.h"
+#include "pulse/codecs/Codec.h"
+#include "pulse/tools/RingBuffer.h"
+#include "pulse/tools/Vector.h"
 
 namespace pulsewire {
 
@@ -33,10 +33,10 @@ class TxProtocolESP32 : public TxProtocol {
         size * 2);  // Each byte can produce up to 2 edges (for Manchester)
   }
 
-  bool begin(Codec* p_codec, uint8_t pin) {
+  bool begin(uint16_t bitFrequencyHz, Codec* p_codec, uint8_t pin) {
     this->_codec = p_codec;
     this->_txPin = pin;
-    if (!_codec->begin()) {
+    if (!_codec->begin(bitFrequencyHz)) {
       Logger::error("Codec initialization failed");
       return false;
     }
@@ -89,7 +89,7 @@ class TxProtocolESP32 : public TxProtocol {
     for (int byteIdx = 0; byteIdx < len; ++byteIdx) {
       uint8_t b = data[byteIdx];
       sum += b;
-      _codec->encode(b, bitPeriod, output);
+      _codec->encode(b, output);
     }
 
     // Convert OutputSpec to RMT symbols (step by 2)
@@ -117,13 +117,14 @@ class TxProtocolESP32 : public TxProtocol {
     // Optionally append checksum
     if (is_frame_closed) return;
     if (useChecksum) {
-      _codec->encode(sum, bitPeriod, output);
+      _codec->encode(sum, output);
       sum = 0;
     }
 
     // add delay
     if (isDelayAfterFrame) {
-      output.push_back(OutputEdge(_codec->getEndOfFrameUs(), 0));
+      output.push_back(
+          OutputEdge(_codec->getEndOfFrameDelayUs(), _codec->getIdleLevel()));
       output.push_back(OutputEdge(0, 0));
     }
     // Convert OutputSpec to RMT symbols
@@ -175,23 +176,14 @@ class TxDriverESP32 : public TxDriverCommon {
    * @param duty Duty cycle
    * @param useChecksum If true, append checksum to frame (default: false)
    */
-  TxDriverESP32(Codec& codec, uint8_t pin, uint32_t carrierHz = CARRIER_HZ,
-                uint32_t freqHz = DEFAULT_BIT_FREQ_HZ, uint8_t duty = 33,
+  TxDriverESP32(Codec& codec, uint8_t pin, uint8_t duty = 33,
                 bool useChecksum = false) {
-    begin(codec, pin, freqHz, useChecksum);
+    init(codec, pin, useChecksum);
   }
 
-  bool begin(Codec& codec, uint8_t pin, uint32_t carrierHz = CARRIER_HZ,
-             uint32_t freqHz = DEFAULT_BIT_FREQ_HZ, uint8_t duty = 33,
-             bool useChecksum = false) {
-    if (!TxDriverCommon::begin(protocol, codec, pin, freqHz, useChecksum)) {
-      Logger::error("TxDriverCommon initialization failed");
-      return false;
-    }
-    if (!protocol.begin(&codec, pin)) {
-      Logger::error("TxProtocolESP32 initialization failed");
-      return false;
-    }
+  void init(Codec& codec, uint8_t pin, uint8_t duty = 33,
+            bool useChecksum = false) {
+    TxDriverCommon::init(protocol, codec, pin, useChecksum);
   }
 
  protected:
@@ -200,7 +192,7 @@ class TxDriverESP32 : public TxDriverCommon {
   void sendPreamble() { protocol.sendPreamble(); }
 
   void sendData(const uint8_t* data, uint8_t len) {
-    protocol.sendData(data, len, _bitPeriod);
+    protocol.sendData(data, len);
   }
 
   void sendEnd() { protocol.sendEnd(_useChecksum, true); }

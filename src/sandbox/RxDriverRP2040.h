@@ -36,7 +36,7 @@ class RxDriverRP2040 : public RxDriver {
     _lastEdgeTime = micros();
   }
 
-  void setFrameSize(uint8_t size) override { _frameSize = size; }
+  void setFrameSize(uint16_t size) override { _frameSize = size; }
 
   bool begin(uint8_t frameSize) override {
     setFrameSize(frameSize);

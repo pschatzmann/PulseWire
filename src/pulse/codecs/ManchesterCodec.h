@@ -64,13 +64,19 @@ class ManchesterCodec : public Codec {
     return valid;
   }
 
+  /**
+   * @brief Get delay to mark End Of Frame in us   
+   * 
+   * @return int 
+   */
   int getEndOfFrameDelayUs() override { return 16 * _bitPeriodUs; }
 
- protected:
   /**
    * @brief Get the number of edges used to encode a byte (16 for Manchester).
    */
   size_t getEdgeCount() const override { return 16; }
+
+ protected:
 
   /**
    * @brief Fill output vector with Manchester OutputSpec(s) for a bit.

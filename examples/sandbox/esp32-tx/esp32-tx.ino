@@ -1,8 +1,9 @@
 // IR Transceiver Example for the ESP32 using a high performance RMT
 // implementation
 
-#include "DriverESP32.h"
 #include "Transceiver.h"
+#include "Codecs.h"
+#include "sandbox/DriverESP32.h"
 
 const uint8_t txPin = 17;
 const uint8_t frameSize = 20;

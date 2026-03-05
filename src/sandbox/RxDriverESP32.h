@@ -5,17 +5,16 @@
 #include <freertos/FreeRTOS.h>
 #include <freertos/queue.h>
 #include <freertos/task.h>
-
 #include <stddef.h>
 #include <stdint.h>
 
-#include "Config.h"
-#include "pulse/Vector.h"
-#include "pulse/Logger.h"
+#include "TransceiverConfig.h"
 #include "pulse/RxDriver.h"
 #include "pulse/TxDriver.h"
-#include "pulse/Codec.h"
-#include "pulse/RingBuffer.h"
+#include "pulse/codecs/Codec.h"
+#include "pulse/tools/Logger.h"
+#include "pulse/tools/RingBuffer.h"
+#include "pulse/tools/Vector.h"
 
 namespace pulsewire {
 
@@ -41,34 +40,35 @@ namespace pulsewire {
  * conflicts.
  */
 class RxDriverESP32 : public RxDriver {
-public:
+ public:
   /**
    * @param codec IR codec
    * @param pin RX pin
    * @param freqHz Bit frequency
    * @param useChecksum If true, validate checksum (default: false)
-   * @param timeoutUs Timeout in microseconds to flush frame if no symbol received (default: 5000)
+   * @param timeoutUs Timeout in microseconds to flush frame if no symbol
+   * received (default: 5000)
    */
   RxDriverESP32(ManchesterCodec& codec, uint8_t pin,
-                  uint32_t freqHz = DEFAULT_BIT_FREQ_HZ, bool useChecksum = false, uint32_t timeoutUs = 5000)
-      : _codec(codec), _rxPin(pin), _freqHz(freqHz), _useChecksum(useChecksum), _timeoutUs(timeoutUs) {
+                uint32_t freqHz = DEFAULT_BIT_FREQ_HZ, bool useChecksum = false,
+                uint32_t timeoutUs = 5000)
+      : _codec(codec),
+        _rxPin(pin),
+        _freqHz(freqHz),
+        _useChecksum(useChecksum),
+        _timeoutUs(timeoutUs) {
     _lastSymbolTime = 0;
   }
 
-  void setFrameSize(uint8_t size) override { _frameSize = size; }
+  void setFrameSize(uint16_t size) override { _frameSize = size; }
 
   void setRxBufferSize(size_t size) override { _rxBufferSize = size; }
 
-  bool begin(uint8_t frameSize) override {
-    setFrameSize(frameSize);
-    return begin();
-  }
-
-  bool begin() override {
-    if (!_codec.begin()){
+  bool begin(uint16_t bitFrequencyHz) override {
+    if (!_codec.begin(bitFrequencyHz)) {
       return false;
     }
-    manchesterBits.reserve(_codec.getBitCount());
+    manchesterBits.reserve(_codec.getEdgeCount());
     // Enable DMA for large frames
     uint8_t dma = (_frameSize > 64) ? 1 : 0;
     rmt_rx_channel_config_t rx_config = {.gpio_num = (gpio_num_t)_rxPin,
@@ -191,9 +191,13 @@ public:
    */
   static void rxTask(void* arg) {
     auto* self = static_cast<RxDriverESP32*>(arg);
-    size_t symbolCount = self->_frameSize * self->_codec.getBitCount();
+    size_t symbolCount = self->_frameSize * self->_codec.getEdgeCount();
+    int frameSize = self->_frameSize;
     Vector<rmt_symbol_word_t> symbols(symbolCount);
-    uint8_t data[self->_frameSize]{};
+    uint8_t data;
+    Vector<uint8_t> frame;
+    frame.reserve(frameSize);
+
     self->_lastSymbolTime = micros();
     while (!self->_stopTask) {
       size_t rx_size = 0;
@@ -217,42 +221,45 @@ public:
             bool level = isOne ? 1 : 0;
             self->_lastSymbolTime = micros();
             gotSymbol = true;
-            if (self->_codec.decodeEdge(duration, level, minUs, maxUs, data,
-                                        self->_frameSize, frameLen)) {
-              if (self->_useChecksum) {
-                // Validate checksum
-                if (frameLen < 2) continue;
-                uint8_t sum = 0;
-                for (size_t j = 0; j < frameLen - 1; ++j) sum += data[j];
-                if (sum == data[frameLen - 1]) {
-                  xQueueSend(self->_frameQueue, data, 0);
+            bool isOK = true;
+            if (self->_codec.decodeEdge(duration, level, data)) {
+              frame.push_back(data);
+
+              if (frame.size() == frameSize) {
+                if (self->_useChecksum) {
+                  // Validate checksum
+                  uint8_t sum = 0;
+                  for (size_t j = 0; j < frameLen - 1; ++j) sum += frame[j];
+                  isOK = (sum == frame[frameLen - 1]);
                 }
-              } else {
-                xQueueSend(self->_frameQueue, data, 0);
+                if (isOK) {
+                  xQueueSend(self->_frameQueue, frame.data(), 0);
+                }
+                frame.clear();
               }
             }
           }
         }
-      }
-      // Timeout logic: if no symbol received for timeoutUs, flush buffer
-      uint32_t now = micros();
-      if (!gotSymbol && (now - self->_lastSymbolTime > self->_timeoutUs)) {
-        // Try to decode with a zero-duration edge to flush the buffer
-        size_t frameLen = 0;
-        if (self->_codec.decodeEdge(0, 0, 0, 0, data, self->_frameSize, frameLen)) {
-          if (self->_useChecksum) {
-            if (frameLen >= 2) {
-              uint8_t sum = 0;
-              for (size_t j = 0; j < frameLen - 1; ++j) sum += data[j];
-              if (sum == data[frameLen - 1]) {
-                xQueueSend(self->_frameQueue, data, 0);
+        // Timeout logic: if no symbol received for timeoutUs, flush buffer
+        uint32_t now = micros();
+        if (!gotSymbol && (now - self->_lastSymbolTime > self->_timeoutUs)) {
+          // Try to decode with a zero-duration edge to flush the buffer
+          size_t frameLen = 0;
+          if (self->_codec.decodeEdge(0, 0, data)) {
+            if (self->_useChecksum) {
+              if (frameLen >= 2) {
+                uint8_t sum = 0;
+                for (size_t j = 0; j < frameLen - 1; ++j) sum += frame[j];
+                if (sum == frame[frameLen - 1]) {
+                  xQueueSend(self->_frameQueue, frame.data(), 0);
+                }
               }
+            } else {
+              xQueueSend(self->_frameQueue, frame.data(), 0);
             }
-          } else {
-            xQueueSend(self->_frameQueue, data, 0);
           }
+          self->_lastSymbolTime = now;
         }
-        self->_lastSymbolTime = now;
       }
       delay(1);
     }
