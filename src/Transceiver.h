@@ -103,6 +103,12 @@ class Transceiver : public Stream {
     return false;
   }
 
+  void setTimeout(uint32_t timeoutUs) {
+    if (_rxDriver) {
+      _rxDriver->setTimeout(timeoutUs);
+    }
+  }
+
   /**
    * @brief Initialize the transceiver and drivers
    */
@@ -135,6 +141,7 @@ class Transceiver : public Stream {
     if (_txDriver) _txDriver->end();
     if (_rxDriver) _rxDriver->end();
   }
+
 
   /**
    * @brief Write a single byte to the TX driver

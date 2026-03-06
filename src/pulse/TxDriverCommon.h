@@ -92,6 +92,7 @@ class TxDriverCommon : public TxDriver {
       for (int j = 0; j < _frameSize; j++) {
         frameData[j] = _byteBuffer.read();
       }
+      sendPreamble();
       sendData(frameData, _frameSize);
       sendEnd();
     }
@@ -100,42 +101,31 @@ class TxDriverCommon : public TxDriver {
 
   /// Build frames in the buffer and send when full
   size_t write(const uint8_t* data, size_t len) {
+    Logger::debug("Writing %d bytes to TxDriverCommon", len);
     switch (_framingMode) {
       case FramingMode::FixedSize:
         for (size_t i = 0; i < len; i++) {
-          _byteBuffer.write(data[i]);
-          if (_byteBuffer.isFull()) {
-            // Handle full buffer (e.g., send frame)
-            uint8_t frameData[_frameSize];
-            for (int j = 0; j < _frameSize; j++) {
-              frameData[j] = _byteBuffer.read();
-            }
-            sendData(data, len);
-            sendEnd();
-          }
+          write(data[i]);
         }
         break;
       case FramingMode::WriteBytes:
-        sendPreamble();
-        sendData(data, len);
-        sendEnd();
-        break;
-      case FramingMode::Flush:
-        if (_protocol->isFrameClosed()) {
-          sendPreamble();
+        for (size_t i = 0; i < len; i++) {
+          write(data[i]);
         }
-        sendData(data, len);
+        flush();
         break;
     }
     return len;
   }
 
   void flush() override {
-    if (_byteBuffer.available() > 0) {
-      uint8_t frameData[_frameSize]{};
-      _byteBuffer.readArray(frameData, _frameSize);
-      sendData(frameData, _frameSize);
+    if (_byteBuffer.available() == 0) {
+      return;  // Nothing to flush
     }
+    sendPreamble();
+    uint8_t frameData[_frameSize]{};
+    int len = _byteBuffer.readArray(frameData, _frameSize);
+    sendData(frameData, len);
     sendEnd();
   }
 
@@ -149,21 +139,27 @@ class TxDriverCommon : public TxDriver {
   bool _useChecksum = false;
   uint8_t check_sum = 0;
   uint8_t _pin = -1;
+  bool isPreambleSent = false;
 
   void sendPreamble() {
+    Logger::debug("Sending preamble");
     assert(_protocol != nullptr);
-    _protocol->sendPreamble();
+    if (!isPreambleSent) _protocol->sendPreamble();
+    isPreambleSent = true;
   }
 
   void sendData(const uint8_t* data, uint8_t len) {
+    Logger::debug("Sending data: %d bytes", len);
     assert(_protocol != nullptr);
     _protocol->sendData(data, len);
   }
 
   void sendEnd() {
+    Logger::debug("Sending end");
     assert(_protocol != nullptr);
-    bool isDelayAfterFrame = (_framingMode != FramingMode::FixedSize);
+    bool isDelayAfterFrame = true;
     _protocol->sendEnd(_useChecksum, isDelayAfterFrame);
+    isPreambleSent = false;  // reset for next frame
   }
 };  // end of TxDriverArduino
 

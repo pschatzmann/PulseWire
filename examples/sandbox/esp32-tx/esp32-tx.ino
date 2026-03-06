@@ -1,14 +1,13 @@
 // IR Transceiver Example for the ESP32 using a high performance RMT
 // implementation
 
-
-#include "Transceiver.h"
 #include "Codecs.h"
+#include "Transceiver.h"
 #include "sandbox/DriverESP32.h"
 
 const uint8_t txPin = 23;
 const uint8_t frameSize = 20;
-int carrierFreq = 0; 
+int carrierFreq = 0;
 uint32_t baud = 1000;
 
 ManchesterPreamble preamble;
@@ -24,11 +23,12 @@ void setup() {
 
 void loop() {
   // Example: send a frame
-  uint8_t data[frameSize] = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100,
-                              110, 120, 130, 140, 150, 160, 170, 180, 190, 200};
+  uint8_t data[frameSize];
+  for (int j = 0; j < frameSize; j++) data[j] = j;
+
   if (tx.write(data, frameSize) == frameSize) {
-    Serial.print("data sent:  ");                            
-    for (int j=0;j<frameSize;j++){
+    Serial.print("data sent:  ");
+    for (int j = 0; j < frameSize; j++) {
       Serial.print("0x");
       Serial.print(data[j], HEX);
       Serial.print(" ");
@@ -36,5 +36,5 @@ void loop() {
     Serial.println();
   } else {
     Serial.println("Send Error");
-  } 
+  }
 }

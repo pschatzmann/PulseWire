@@ -229,8 +229,11 @@ class RxDriverArduino : public RxDriverInt {
   }
 
   size_t readBytes(uint8_t* buffer, size_t length) override {
-    processEdges();
-    checkTimeout();
+    uint32_t timeout = millis() + _readTimeoutMs;
+    while (_rxBuffer.available() < length && millis() < timeout) {
+      processEdges();
+      checkTimeout();
+    }
     if (_rxBuffer.size() == 0) {
       return 0;
     }
@@ -305,9 +308,16 @@ class RxDriverArduino : public RxDriverInt {
       ok = _edgeBuffer.read(edge);
       interrupts();
       uint8_t byte_data = 0;
+      Logger::debug("RX Processing edge: level=%d, duration=%d us", edge.level,
+                    edge.pulseUs);
       if (ok && _codec.decodeEdge(edge.pulseUs, edge.level, byte_data)) {
         _rxBuffer.write(byte_data);
         _is_open = true;
+      }
+      if (edge.pulseUs > _codec.getEndOfFrameDelayUs()) {
+        Logger::debug("End of frame detected: pulse duration %d us",
+                      edge.pulseUs);
+        reset();
       }
     }
   }
@@ -319,8 +329,9 @@ class RxDriverArduino : public RxDriverInt {
     uint8_t byte_data = 0;
 
     // Process pending final edge (e.g., last stop bit)
-    if (_is_open) {
-      // Protect codec state from ISR preemption
+    if (_is_open && duration > _timeoutUs) {
+      Logger::debug("Processing final edge after timeout: duration %d us",
+                    duration);
       bool has_data = _codec.decodeEdge(_bitPeriodUs, _lastLevel, byte_data);
       if (has_data) {
         _rxBuffer.write(byte_data);
@@ -330,8 +341,10 @@ class RxDriverArduino : public RxDriverInt {
 
     // Process timeout — reset state atomically
     if (duration > _timeoutUs) {
+      Logger::debug("RX timeout: duration %d us, resetting state, edges: %d",
+                    duration, _edgeBuffer.available());
       // noInterrupts();
-      _codec.reset();
+      reset();
       // interrupts();
       //  Don't touch _lastEdge/_lastLevel here — ISR owns them
     }
@@ -341,6 +354,7 @@ class RxDriverArduino : public RxDriverInt {
     _lastEdge = micros();
     _lastLevel = 0;
     _is_open = false;
+    _codec.reset();
   }
 };
 

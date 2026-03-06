@@ -22,6 +22,11 @@ class RxDriver {
   virtual int available() = 0;
   /// Set the size of the internal RX buffer.
   virtual void setRxBufferSize(size_t size) = 0;
+  /// Defines the read timeout for readBytes() in milliseconds
+  void setTimeout(uint32_t timeoutMs) { _readTimeoutMs = timeoutMs; }
+
+ protected:
+  uint32_t _readTimeoutMs = 50;
 };
 
 }  // namespace pulsewire

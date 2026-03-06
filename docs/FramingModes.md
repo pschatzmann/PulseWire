@@ -12,14 +12,9 @@ This mode is suitable for low-latency applications where data needs to be sent a
 - FixedSize:
 
 Data is transmitted in fixed-size frames.
-The frame size is pre-configured, and the transmitter waits until the buffer is full before sending the frame.
+The frame size is pre-configured, and the transmitter waits until the buffer is full before sending the frame. 
 This mode is ideal for applications where the frame size is known in advance and consistent.
 
-- Flush:
-
-Data is buffered until explicitly flushed.
-The flush() method is used to finalize the frame and send the buffered data.
-This mode is useful for scenarios where the frame size is dynamic or determined at runtime.
 
 #### Example Code
 

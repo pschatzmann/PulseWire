@@ -7,9 +7,8 @@ namespace pulsewire {
  * @brief Framing modes for data transmission.
  */
 enum class FramingMode {
-  FixedSize,   // Send when buffer is full
+  FixedSize,   // Send when buffer is full or flushed
   WriteBytes,  // Send immediately with writeBytes
-  Flush        // Send all buffered data on flush
 };
 
 /**
