@@ -62,7 +62,7 @@ class Codec {
    * @brief  initialization method for codecs that require setup before
    * use (e.g., loading PIO programs, configuring state machines).
    */
-  virtual bool begin(uint16_t bitFrequencyHz) {
+  virtual bool begin(uint32_t bitFrequencyHz) {
     TRACE();
     assert(_preamble != nullptr);
     _inFrame = false;

@@ -16,7 +16,7 @@ class DifferentialManchesterCodec : public ManchesterCodec {
   DifferentialManchesterCodec(Preamble& preambleDetector)
       : ManchesterCodec(preambleDetector) {}
 
-  bool begin(uint16_t bitFrequencyHz) override {
+  bool begin(uint32_t bitFrequencyHz) override {
     _lastLevelEncode = getIdleLevel();
     return ManchesterCodec::begin(bitFrequencyHz);
   }

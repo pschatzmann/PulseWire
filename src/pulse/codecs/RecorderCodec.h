@@ -25,7 +25,7 @@ class RecorderCodec : public Codec {
     _recordedEdges.push_back({level, durationUs});
     return _ref.decodeEdge(durationUs, level, result);
   }
-  bool begin(uint16_t bitFrequencyHz) {
+  bool begin(uint32_t bitFrequencyHz) {
     //_recordedEdges.clear();
     return _ref.begin(bitFrequencyHz);
   }

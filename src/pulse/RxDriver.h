@@ -12,7 +12,7 @@ class RxDriver {
   /// Set the expected frame size for dynamic data reception.
   virtual void setFrameSize(uint16_t size) = 0;
   /// Start the receiver.
-  virtual bool begin(uint16_t bitFrequencyHz) = 0;
+  virtual bool begin(uint32_t bitFrequencyHz) = 0;
   /// Stop the receiver.
   virtual void end() = 0;
   /// Read up to 'size' bytes from the internal buffer into 'data'. Returns

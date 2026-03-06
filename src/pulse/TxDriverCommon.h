@@ -59,7 +59,7 @@ class TxDriverCommon : public TxDriver {
     _pin = pin;
   }
 
-  bool begin(uint16_t bitFrequencyHz) override {
+  bool begin(uint32_t bitFrequencyHz) override {
     // make sure that frame size is set before beginning
     TRACE();
     _bitFrequencyHz = bitFrequencyHz;

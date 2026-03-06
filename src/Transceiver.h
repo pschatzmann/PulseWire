@@ -106,7 +106,7 @@ class Transceiver : public Stream {
   /**
    * @brief Initialize the transceiver and drivers
    */
-  bool begin(uint16_t bitFrequencyHz = DEFAULT_BIT_FREQ_HZ) {
+  bool begin(uint32_t bitFrequencyHz = DEFAULT_BIT_FREQ_HZ) {
     TRACE();
     bool success = true;
     // intialize frame size if not set
@@ -132,8 +132,8 @@ class Transceiver : public Stream {
    * @brief End/stop the RX driver
    */
   void end() {
-    if (_rxDriver) _rxDriver->end();
     if (_txDriver) _txDriver->end();
+    if (_rxDriver) _rxDriver->end();
   }
 
   /**

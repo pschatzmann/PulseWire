@@ -17,6 +17,17 @@
 
 namespace pulsewire {
 
+bool rmt_rx_done_callback(rmt_channel_handle_t channel,
+                          const rmt_rx_done_event_data_t* edata,
+                          void* user_data) {
+  BaseType_t high_task_wakeup = pdFALSE;
+  QueueHandle_t receive_queue = (QueueHandle_t)user_data;
+  // send the received RMT symbols to the parser task
+  xQueueSendFromISR(receive_queue, edata, &high_task_wakeup);
+  // return whether any task is woken up
+  return high_task_wakeup == pdTRUE;
+}
+
 /**
  * @brief High-performance ESP32 IR RX driver using the RMT peripheral and
  * Manchester decoding.
@@ -48,227 +59,206 @@ class RxDriverESP32 : public RxDriver {
    * @param timeoutUs Timeout in microseconds to flush frame if no symbol
    * received (default: 5000)
    */
-  RxDriverESP32(ManchesterCodec& codec, uint8_t pin,
-                uint32_t freqHz = DEFAULT_BIT_FREQ_HZ, bool useChecksum = false,
-                uint32_t timeoutUs = 5000)
-      : _codec(codec),
-        _rxPin(pin),
-        _freqHz(freqHz),
-        _useChecksum(useChecksum),
-        _timeoutUs(timeoutUs) {
-    _lastSymbolTime = 0;
-  }
+  RxDriverESP32(ManchesterCodec& codec, uint8_t pin, bool useChecksum = false)
+      : _codec(codec), _rxPin(pin), _useChecksum(useChecksum) {}
 
   void setFrameSize(uint16_t size) override { _frameSize = size; }
 
   void setRxBufferSize(size_t size) override { _rxBufferSize = size; }
 
-  bool begin(uint16_t bitFrequencyHz) override {
+  bool begin(uint32_t bitFrequencyHz) override {
+    Logger::info("begin: RxDriverESP32 with bitFrequencyHz=%d, pin=%d",
+                 bitFrequencyHz, _rxPin);
+    if (isActive && _freqHz == bitFrequencyHz) {
+      return true;
+    }
+    if (isActive) {
+      Logger::info("Reinitializing RxDriverESP32 with new frequency: %d Hz",
+                   bitFrequencyHz);
+      end();
+    }
+    _freqHz = bitFrequencyHz;
     if (!_codec.begin(bitFrequencyHz)) {
       return false;
     }
-    manchesterBits.reserve(_codec.getEdgeCount());
-    // Enable DMA for large frames
+    size_t symbols = _frameSize * 8;
+    int n64 = (symbols / 64) + 1;
+    symbols = n64 * 64;
+
+    if (n64 > 7){
+      Logger::error("Frame size too large for RMT buffer: %d symbols (max 448)",
+                    symbols);
+      return false;
+    }
+
     uint8_t dma = (_frameSize > 64) ? 1 : 0;
     rmt_rx_channel_config_t rx_config = {.gpio_num = (gpio_num_t)_rxPin,
                                          .clk_src = RMT_CLK_SRC_DEFAULT,
                                          .resolution_hz = 1000000,
-                                         .mem_block_symbols = 64,
+                                         .mem_block_symbols = symbols,
                                          .flags = {
                                              .invert_in = 0,
                                              .with_dma = dma,
                                          }};
 
-    // Setup channel
+    // Setup channel, try with DMA first if requested
     rmt_channel_handle_t rx_channel = nullptr;
     esp_err_t rmt_result = rmt_new_rx_channel(&rx_config, &rx_channel);
+    if ((rmt_result != ESP_OK || rx_channel == nullptr) && dma) {
+      Logger::warning(
+          "RMT RX channel with DMA failed (%d), retrying without DMA",
+          rmt_result);
+      rx_config.flags.with_dma = 0;
+      rmt_result = rmt_new_rx_channel(&rx_config, &rx_channel);
+    }
     if (rmt_result != ESP_OK || rx_channel == nullptr) {
       Logger::error("RMT RX channel initialization failed: %d", rmt_result);
       return false;
     }
     _rxChannel = rx_channel;
 
-    // Setup FreeRTOS queue for received frames
-    int count = _rxBufferSize / _frameSize;
-    if (_rxBufferSize % _frameSize != 0) count++;
-
-    // Create Queue
-    _frameQueue = xQueueCreate(count, _frameSize);  // n frames max in queue
-    if (_frameQueue == nullptr) {
-      Logger::error("Failed to create frame queue");
+    esp_err_t enable_result = rmt_enable(_rxChannel);
+    if (enable_result != ESP_OK) {
+      Logger::error("Failed to enable RX channel: %d", enable_result);
       return false;
     }
-    rxOverflow.resize(_rxBufferSize);
-    _stopTask = false;
 
-    // Create task
-    BaseType_t taskResult = xTaskCreatePinnedToCore(rxTask, "rmt_rx", 4096,
-                                                    this, 1, &_taskHandle, 1);
-    if (taskResult != pdPASS || _taskHandle == nullptr) {
-      Logger::error("Failed to create RX task: %d", taskResult);
+    receive_queue = xQueueCreate(1, sizeof(rmt_rx_done_event_data_t));
+    rmt_rx_event_callbacks_t cbs = {
+        .on_recv_done = rmt_rx_done_callback,
+    };
+    esp_err_t cb_result =
+        rmt_rx_register_event_callbacks(_rxChannel, &cbs, receive_queue);
+    if (cb_result != ESP_OK) {
+      Logger::error("Failed to register RX event callbacks: %d", cb_result);
       return false;
     }
+
+    _rxBuffer.resize(_rxBufferSize);
+    _symbols.resize(symbols);  // Each symbol has 2 edges, +1 for safety margin
+    _edgeBuffer.resize(
+        _frameSize *
+        _codec.getEdgeCount());  // Ensure edge buffer can hold all edges
+    Logger::info("_frameSize=%d", _frameSize);
+    Logger::info("_rxBufferSize=%d", _rxBufferSize);
+    Logger::info("_symbols size=%d", _symbols.size());
+    Logger::info("_edgeBuffer size=%d", _edgeBuffer.size());
+    isActive = true;
     return true;
   }
 
   void end() override {
-    _stopTask = true;
-    if (_taskHandle) {
-      // Wait for task to exit
-      while (eTaskGetState(_taskHandle) != eDeleted) {
-        delay(1);
-      }
-      _taskHandle = nullptr;
-    }
     if (_rxChannel) {
+      rmt_disable(_rxChannel);
       rmt_del_channel(_rxChannel);
       _rxChannel = nullptr;
     }
+    isActive = false;
   }
 
   size_t readBytes(uint8_t* buffer, size_t length) override {
-    size_t totalRead = 0;
-    // First, serve from rxOverflow if any
-    while (length > 0 && rxOverflow.available() > 0) {
-      int b = rxOverflow.read();
-      if (b < 0) break;
-      *buffer++ = (uint8_t)b;
-      --length;
-      ++totalRead;
+    if (_rxBuffer.available() == 0) {
+      // No data available, attempt to read a new frame
+      readFrame();
     }
-    // Then, read full frames from the queue as needed
-    uint8_t frame[_frameSize]{};
-    while (length > 0 && _frameQueue &&
-           uxQueueMessagesWaiting(_frameQueue) > 0) {
-      if (xQueueReceive(_frameQueue, frame, 0) == pdTRUE) {
-        size_t toCopy = (length < _frameSize) ? length : _frameSize;
-        memcpy(buffer, frame, toCopy);
-        totalRead += toCopy;
-        buffer += toCopy;
-        length -= toCopy;
-        // If we didn't consume the whole frame, store the rest in rxOverflow
-        if (toCopy < _frameSize) {
-          rxOverflow.writeArray(frame + toCopy, _frameSize - toCopy);
-        }
-      }
-    }
-    return totalRead;
+    return _rxBuffer.readArray(buffer, length);
   }
 
   int available() override {
-    if (!_frameQueue) return 0;
-    return uxQueueMessagesWaiting(_frameQueue) * _frameSize;
+    if (_rxBuffer.available() == 0) {
+      // No data available, attempt to read a new frame
+      readFrame();
+    }
+    return _rxBuffer.available();
   }
 
  protected:
-  size_t _rxBufferSize = 256;
+  size_t _rxBufferSize = 1024;
+  size_t _frameSize = 0;
   uint8_t _rxPin;
-  uint16_t _frameSize = DEFAULT_FRAME_SIZE;
   uint32_t _freqHz;
   rmt_channel_handle_t _rxChannel = nullptr;
-  TaskHandle_t _taskHandle = nullptr;
-  volatile bool _stopTask = false;
-  uint16_t _preambleBits = 0;
-  bool _inFrame = false;
-  QueueHandle_t _frameQueue = nullptr;
-  RingBuffer<uint8_t> rxOverflow;
-  ManchesterCodec& _codec;
-  Vector<uint8_t> manchesterBits;
+  RingBuffer<uint8_t> _rxBuffer;
+  RingBuffer<OutputEdge> _edgeBuffer;
+  Vector<rmt_symbol_word_t> _symbols;
+  Codec& _codec;
   bool _useChecksum = false;
-  uint32_t _timeoutUs = 5000;
-  uint32_t _lastSymbolTime = 0;
+  bool isActive = false;
+  QueueHandle_t receive_queue;
 
-  /**
-   * @brief FreeRTOS task for receiving and decoding IR frames using ESP32 RMT.
-   *
-   * This method is protocol-agnostic: it processes each RMT symbol by summing
-   * durations and inferring the logic level, then passes these to the codec's
-   * decodeEdge method. As long as the codec implements decodeEdge for its
-   * protocol, this works for Manchester, PulseWidth, PulseDistance, etc.
-   *
-   * @param arg Pointer to RxDriverESP32 instance.
-   */
-  static void rxTask(void* arg) {
-    auto* self = static_cast<RxDriverESP32*>(arg);
-    size_t symbolCount = self->_frameSize * self->_codec.getEdgeCount();
-    int frameSize = self->_frameSize;
-    Vector<rmt_symbol_word_t> symbols(symbolCount);
-    uint8_t data;
-    Vector<uint8_t> frame;
-    frame.reserve(frameSize);
+  size_t readFrame() {
+    size_t totalRead = 0;
+    if (_rxChannel == nullptr) {
+      Logger::error("readFrame() called but RX channel is not initialized");
+      return 0;
+    }
 
-    self->_lastSymbolTime = micros();
-    while (!self->_stopTask) {
-      size_t rx_size = 0;
-      rmt_receive_config_t rx_cfg = {};
-      esp_err_t err =
-          rmt_receive(self->_rxChannel, symbols.data(),
-                      symbols.size() * sizeof(rmt_symbol_word_t), &rx_cfg);
-      bool gotSymbol = false;
-      if (err == ESP_OK && rx_size > 0) {
-        size_t num_bits = rx_size / sizeof(rmt_symbol_word_t);
-        // Use decodeEdge for each symbol
-        uint32_t bitPeriodUs = 1000000UL / self->_freqHz;
-        uint32_t minUs = bitPeriodUs / 2;
-        uint32_t maxUs = bitPeriodUs * 2;
-        size_t frameLen = 0;
-        for (size_t i = 0; i < num_bits; ++i) {
-          uint32_t duration = symbols[i].duration0 + symbols[i].duration1;
-          bool isOne = (symbols[i].level0 == 1 && symbols[i].level1 == 0);
-          bool isZero = (symbols[i].level0 == 0 && symbols[i].level1 == 1);
-          if (isOne || isZero) {
-            bool level = isOne ? 1 : 0;
-            self->_lastSymbolTime = micros();
-            gotSymbol = true;
-            bool isOK = true;
-            if (self->_codec.decodeEdge(duration, level, data)) {
-              frame.push_back(data);
+    rmt_receive_config_t rx_cfg = {
+        .signal_range_min_ns = 10,
+        .signal_range_max_ns =
+            static_cast<uint32_t>(_codec.getEndOfFrameDelayUs() * 1000),
+    };
 
-              if (frame.size() == frameSize) {
-                if (self->_useChecksum) {
-                  // Validate checksum
-                  uint8_t sum = 0;
-                  for (size_t j = 0; j < frameLen - 1; ++j) sum += frame[j];
-                  isOK = (sum == frame[frameLen - 1]);
-                }
-                if (isOK) {
-                  xQueueSend(self->_frameQueue, frame.data(), 0);
-                }
-                frame.clear();
-                memset(frame.data(), 0, frame.capacity());
-              }
-            }
-          }
-        }
-        // Timeout logic: if no symbol received for timeoutUs, flush buffer
-        uint32_t now = micros();
-        if (!gotSymbol && (now - self->_lastSymbolTime > self->_timeoutUs) && !frame.empty()) {
-          // Signal end-of-frame to codec
-          if (self->_codec.decodeEdge(self->_codec.getEndOfFrameDelayUs(), self->_codec.getIdleLevel(), data)) {
-            frame.push_back(data);
-            if (self->_useChecksum) {
-              if (frame.size() >= 2) {
-                uint8_t sum = 0;
-                for (size_t j = 0; j < frame.size() - 1; ++j) sum += frame[j];
-                if (sum == frame[frame.size() - 1]) {
-                  xQueueSend(self->_frameQueue, frame.data(), 0);
-                }
-              }
-            } else {
-              xQueueSend(self->_frameQueue, frame.data(), 0);
-            }
-            frame.clear();
-            memset(frame.data(), 0, frame.capacity());
-          }
-          self->_lastSymbolTime = now;
+    rmt_symbol_word_t* symbols_data = _symbols.data();
+    size_t symbols_size = (_symbols.size()) * sizeof(rmt_symbol_word_t);
+
+    Logger::debug("cm_receive: waiting for frame (max %d symbols)",
+                  _symbols.size());
+    esp_err_t err =
+        rmt_receive(_rxChannel, symbols_data, symbols_size, &rx_cfg);
+    if (err != ESP_OK) {
+      Logger::error("RMT receive failed: %d", err);
+      return 0;
+    }
+
+    // wait for the RX-done signal
+    rmt_rx_done_event_data_t rx_data{};
+    esp_err_t esp_err = xQueueReceive(receive_queue, &rx_data,
+                                      2 * _codec.getEndOfFrameDelayUs() / 1000);
+    if (esp_err != pdTRUE) {
+      Logger::error("Failed to receive RMT data from queue: %d", esp_err);
+      return 0;
+    }
+
+    // Process symbols into edges and feed into edge buffer
+    toEdges(rx_data.received_symbols, rx_data.num_symbols, _edgeBuffer);
+
+    Logger::debug("Received %d symbols, converted to %d edges",
+                  rx_data.num_symbols, _edgeBuffer.available());
+    // process edges into codec and fill RX buffer
+    _codec.reset();
+    while (!_edgeBuffer.isEmpty()) {
+      OutputEdge edge;
+      _edgeBuffer.read(edge);
+      Logger::debug("RX edge: level=%d duration=%d us", edge.level,
+                    edge.pulseUs);
+      uint8_t data = 0;
+      if (_codec.decodeEdge(edge.pulseUs, edge.level, data)) {
+        if (_rxBuffer.write(data) == 0) {
+          Logger::error("RX buffer overflow: size=%d, available=%d",
+                        _rxBuffer.size(), _rxBuffer.available());
         }
       }
-      delay(1);
     }
-    vTaskDelete(nullptr);
+    return _rxBuffer.available();
   }
 
-  // processSymbols is no longer needed; decoding is handled by decodeEdge
+  /// Convert RMT symbols to edges and feed into codec
+  void toEdges(rmt_symbol_word_t* symbols, size_t num_symbols,
+               RingBuffer<OutputEdge>& edges) {
+    Logger::debug("toEdges: converting %d symbols to edges", num_symbols);
+    bool is_end = false;
+    int processed = 0;
+    for (size_t i = 0; i < num_symbols; ++i) {
+      bool level = symbols[i].level0;
+      uint32_t duration = symbols[i].duration0;
+      edges.write(OutputEdge(level, duration));
+
+      level = symbols[i].level1;
+      duration = symbols[i].duration1;
+      edges.write(OutputEdge(level, duration));
+    }
+  }
 };
 
 }  // namespace pulsewire

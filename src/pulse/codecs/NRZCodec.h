@@ -22,7 +22,7 @@ class NRZCodec : public Codec {
 
   uint8_t getStopBits() const { return _stopBits; }
 
-  bool begin(uint16_t bitFrequencyHz) override {
+  bool begin(uint32_t bitFrequencyHz) override {
     if (_preamble == &_defaultPreamble) {
       _defaultPreamble.clear();
       // setup default preamble: alternating edges at full bit period, ending

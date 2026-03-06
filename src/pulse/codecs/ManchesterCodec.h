@@ -25,7 +25,7 @@ class ManchesterCodec : public Codec {
 
   CodecEnum getCodecType() const override { return CodecEnum::Manchester; }
 
-  bool begin(uint16_t bitFrequencyHz) override {
+  bool begin(uint32_t bitFrequencyHz) override {
     // Set up default preamble if still using the built-in one
     if (_preamble == &_defaultPreamble) {
       _defaultPreamble.clear();

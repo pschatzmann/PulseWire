@@ -124,7 +124,7 @@ class PWMSignal : public SignalBase {
 
 class TxProtocol {
  public:
-  virtual bool begin(uint16_t bitFrequencyHz, Codec* p_codec, uint8_t pin) = 0;
+  virtual bool begin(uint32_t bitFrequencyHz, Codec* p_codec, uint8_t pin) = 0;
   virtual void setFrameSize(uint16_t size) = 0;
   virtual void sendPreamble() = 0;
   virtual void sendData(const uint8_t* data, uint8_t len) = 0;
@@ -167,7 +167,7 @@ class TxProtocolGeneric : public TxProtocol {
    * @param p_codec Pointer to the `Codec` used for encoding data.
    * @param pin Transmission pin for the signal.
    */
-  bool begin(uint16_t bitFrequencyHz, Codec* p_codec, uint8_t pin) {
+  bool begin(uint32_t bitFrequencyHz, Codec* p_codec, uint8_t pin) {
     TRACE();
     _bitFrequencyHz = bitFrequencyHz;
     _bitPeriod = 1000000UL / bitFrequencyHz;  // Bit period in microseconds

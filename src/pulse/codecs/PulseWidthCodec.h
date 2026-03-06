@@ -35,7 +35,7 @@ class PulseWidthCodec : public Codec {
     _toleranceUs = toleranceUs;
   }
 
-  bool begin(uint16_t bitFrequencyHz) override {
+  bool begin(uint32_t bitFrequencyHz) override {
     Codec::begin(bitFrequencyHz);
     if (_shortPulseUs == 0) _shortPulseUs = 1000000UL / (bitFrequencyHz * 2);
     if (_longPulseUs == 0) _longPulseUs = 1000000UL / (bitFrequencyHz / 2);

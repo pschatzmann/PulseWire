@@ -183,7 +183,7 @@ class RxDriverArduino : public RxDriverInt {
 
   void setRxBufferSize(size_t size) { _rxBuffer.resize(size); }
 
-  bool begin(uint16_t bitFrequencyHz = DEFAULT_BIT_FREQ_HZ) override {
+  bool begin(uint32_t bitFrequencyHz = DEFAULT_BIT_FREQ_HZ) override {
     TRACE();
     _freqHz = bitFrequencyHz;
 

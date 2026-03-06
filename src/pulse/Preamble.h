@@ -41,7 +41,7 @@ class Preamble {
  public:
   virtual ~Preamble() = default;
 
-  virtual bool begin(uint16_t bitFrequencyHz) {
+  virtual bool begin(uint32_t bitFrequencyHz) {
     _history.reserve(preambleLength());
     return true;
   }
@@ -109,7 +109,7 @@ class Preamble {
  */
 class NoPreamble : public Preamble {
  public:
-  bool begin(uint16_t bitFrequencyHz) override { return true; }
+  bool begin(uint32_t bitFrequencyHz) override { return true; }
   bool detect(const pulsewire::OutputEdge& edge) override { return true; }
   int getEdges(
       pulsewire::Vector<pulsewire::OutputEdge>& output) const override {
@@ -168,7 +168,7 @@ class CustomPreamble : public CustomPreambleUs {
   CustomPreamble(const pulsewire::Vector<pulsewire::OutputEdge>& edges) {
     _expected = edges;
   }
-  virtual bool begin(uint16_t bitFrequencyHz) {
+  virtual bool begin(uint32_t bitFrequencyHz) {
     bool rc = Preamble::begin(bitFrequencyHz);
     uint32_t us = 1000000 / bitFrequencyHz;
     for (auto& edge : _expected) {
@@ -203,11 +203,21 @@ class ManchesterPreamble : public CustomPreambleUs {
  public:
   ManchesterPreamble(uint8_t runInCycles = 2) : _runInCycles(runInCycles) {}
 
-  bool begin(uint16_t bitFrequencyHz) override {
+  bool begin(uint32_t bitFrequencyHz) override {
+    constexpr uint8_t MAX_RUN_IN_CYCLES = 32;
+    if (_runInCycles == 0) {
+      _runInCycles = 2;
+    } else if (_runInCycles > MAX_RUN_IN_CYCLES) {
+      Logger::error("ManchesterPreamble: runInCycles=%d too large, clamping to %d",
+                    _runInCycles, MAX_RUN_IN_CYCLES);
+      _runInCycles = MAX_RUN_IN_CYCLES;
+    }
+
     // double the frequency for Manchester since each bit is two edges
     _history.clear();
-    _history.reserve(_runInCycles * 2 + 1);  // run-in edges + start pulse
-    _expected.reserve(_runInCycles * 2 + 1);
+    size_t runInEdges = static_cast<size_t>(_runInCycles) * 2;
+    _history.reserve(runInEdges + 1);  // run-in edges + start pulse
+    _expected.reserve(runInEdges + 1);
     _freqHz = bitFrequencyHz * 2;
     _bitPeriod = 1000000 / _freqHz;
 
@@ -215,7 +225,7 @@ class ManchesterPreamble : public CustomPreambleUs {
     _expected.clear();
     bool level = true;
     // Run-in: alternating edges for clock recovery
-    for (uint8_t i = 0; i < _runInCycles * 2; ++i) {
+    for (size_t i = 0; i < runInEdges; ++i) {
       addEdge(level, _bitPeriod);
       level = !level;
     }
@@ -241,7 +251,7 @@ class NRZPreamble : public CustomPreambleUs {
  public:
   NRZPreamble() = default;
 
-  bool begin(uint16_t bitFrequencyHz) override {
+  bool begin(uint32_t bitFrequencyHz) override {
     _history.clear();
     _history.reserve(4);
     _expected.clear();
