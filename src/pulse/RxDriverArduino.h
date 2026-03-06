@@ -336,17 +336,8 @@ class RxDriverArduino : public RxDriverInt {
       if (has_data) {
         _rxBuffer.write(byte_data);
       }
-      _is_open = false;
-    }
-
-    // Process timeout — reset state atomically
-    if (duration > _timeoutUs) {
-      Logger::debug("RX timeout: duration %d us, resetting state, edges: %d",
-                    duration, _edgeBuffer.available());
-      // noInterrupts();
       reset();
-      // interrupts();
-      //  Don't touch _lastEdge/_lastLevel here — ISR owns them
+      _is_open = false;
     }
   }
 
