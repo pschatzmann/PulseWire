@@ -45,7 +45,7 @@ class PulseDistanceCodec : public Codec {
     if (_longPulseUs == 0) _longPulseUs = 1000000UL / (bitFrequencyHz / 2);
     if (_toleranceUs == 0) _toleranceUs = _bitPeriodUs * 0.4;
 
-    _inFrame = false;
+    _inFrame = _preamble->preambleLength() == 0;  // If preamble is defined, start in "not in frame" state
 
     return true;
   }
@@ -97,7 +97,7 @@ class PulseDistanceCodec : public Codec {
         } else if (bitMatch(edge.pulseUs, false)) {
           // bit is 0
         } else {
-          Logger::error("Invalid pulse duration for bit %d: %d us", bit,
+          Logger::debug("Invalid pulse duration for bit %d: %d us", bit,
                         edge.pulseUs);
         }
         bit++;
