@@ -17,6 +17,7 @@ enum class CodecEnum {
   Manchester,
   DifferentialManchester,
   NRZ,
+  RZ,
   Miller
 };
 
@@ -32,6 +33,8 @@ const char* toStr(CodecEnum codec) {
       return "DifferentialManchester";
     case CodecEnum::NRZ:
       return "NRZ";
+    case CodecEnum::RZ:
+      return "RZ";
     case CodecEnum::Miller:
       return "Miller";
     default:

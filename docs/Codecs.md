@@ -13,9 +13,6 @@ Implements Differential Manchester encoding, where each bit period contains a tr
 
 This encoding is robust for clock recovery and is used in protocols such as IRDA and some industrial communication standards. The implementation maintains separate state for encoding and decoding to ensure correct transitions.
 
-### NRZCodec (Non-Return-to-Zero)
-
-Implements classic NRZ line coding, where '1' is HIGH and '0' is LOW. Efficient for serial-like data transmission, supports configurable stop bits, and uses a preamble for frame synchronization.
 
 ### PulseWidthCodec (Pulse Width Modulation)
 
@@ -35,6 +32,28 @@ Implements Miller encoding (also known as Delay Modulation), a line code that pr
 
 This encoding scheme is used in magnetic recording, RFID systems (ISO 14443), and some industrial protocols. Miller encoding has a maximum run length of 2T (two bit periods without transition), making it suitable for channels that cannot handle long runs of constant level.
 
+### NRZCodec (Non-Return-to-Zero)
+
+Implements classic NRZ (Non-Return-to-Zero) line coding, where each bit is represented by a constant level for the entire bit period:
+
+- **'1' bit**: HIGH for the full bit period
+- **'0' bit**: LOW for the full bit period
+- **Start bit**: LOW (signals the beginning of a byte)
+- **Stop bits**: Configurable number of HIGH periods after each byte
+
+NRZ is efficient for serial-like data transmission and is widely used in UART, RS-232, and other asynchronous protocols. The implementation supports configurable stop bits and start bits for UART-style framing, and uses a preamble for frame synchronization if required.
+
+
+### RZCodec (Return-to-Zero Encoding)
+
+The RZCodec implements Return-to-Zero (RZ) line coding, where each bit is represented by a pulse (HIGH) for half the bit period, followed by a LOW for the other half (for '1'), or a LOW for the full bit period (for '0'). This ensures regular transitions and clear bit boundaries, making it robust for clock recovery and noise resilience.
+
+- **'1' bit**: HIGH for half the bit period, then LOW for half the bit period
+- **'0' bit**: LOW for the full bit period
+- **Start bit**: LOW (signals the beginning of a byte)
+- **Stop bits**: Configurable number of HIGH periods after each byte
+
+RZ encoding is commonly used in communication systems where signal synchronization and error detection are important. The implementation supports configurable stop bits and start bits for UART-like framing.
 
 #### Example Code
 
@@ -42,12 +61,13 @@ This encoding scheme is used in magnetic recording, RFID systems (ISO 14443), an
 ```C++
 #include "Codecs.h"
 
-ManchesterCodec codec;
+RZCodec codec;
+codec.setStopBits(2); // Set number of stop bits if needed
 ```
 
-Or you can set it up with a preamble:
+Or with a custom preamble:
 
 ```C++
-ManchesterPreamble preamble;
-ManchesterCodec codec(preamble);
+CustomPreamble preamble;
+RZCodec codec(preamble);
 ```
