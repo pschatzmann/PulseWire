@@ -43,7 +43,7 @@ class PulseDistanceCodec : public Codec {
     Codec::begin(bitFrequencyHz);
     if (_shortPulseUs == 0) _shortPulseUs = 1000000UL / (bitFrequencyHz * 2);
     if (_longPulseUs == 0) _longPulseUs = 1000000UL / (bitFrequencyHz / 2);
-    if (_toleranceUs == 0) _toleranceUs = _bitPeriodUs * 0.4;
+    if (_toleranceUs == 0) _toleranceUs =  0.5 *_bitPeriodUs ;
 
     _inFrame = _preamble->preambleLength() == 0;  // If preamble is defined, start in "not in frame" state
 
