@@ -5,7 +5,7 @@ namespace pulsewire {
 
 /**
  * @brief NRZ (Non-Return-to-Zero) codec for serial-like encoding/decoding
- * with start/stop bit framing.
+ * with start/stop bit framing. 
  */
 class NRZCodec : public Codec {
  public:
@@ -125,7 +125,7 @@ class NRZCodec : public Codec {
   size_t getEdgeCount() const override { return 1 + 8 + _stopBits; }
 
   int getEndOfFrameDelayUs() override {
-    return (getEdgeCount() + 10) * _bitPeriodUs;
+    return (getEdgeCount() + 2) * _bitPeriodUs;
   }
 
   bool getIdleLevel() const override { return true; }

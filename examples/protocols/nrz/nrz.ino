@@ -24,6 +24,7 @@ void setup() {
 }
 
 void loop() {
+  delay(10);
   // send a frame
   const uint8_t frameSize = 10;
   const uint8_t data[] = {0x01, 0x02, 0x03, 0x04, 0x05,
@@ -52,6 +53,4 @@ void loop() {
     Serial.print(" ");
   }
   Serial.println();
-
-  delay(10);
 }
