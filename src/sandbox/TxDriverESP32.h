@@ -113,7 +113,7 @@ class TxProtocolESP32 : public TxProtocol {
     _itemsBuffer.clear();
   }
 
-  void sendEnd(bool& useChecksum, bool isDelayAfterFrame) {
+  void sendEnd(bool& useChecksum) {
     // Optionally append checksum
     if (is_frame_closed) return;
     if (useChecksum) {
@@ -122,14 +122,12 @@ class TxProtocolESP32 : public TxProtocol {
     }
 
     // add delay: create idle period after frame
-    if (isDelayAfterFrame) {
-      uint32_t delayUs = _codec->getEndOfFrameDelayUs();
-      bool idleLevel = _codec->getIdleLevel();
-      // Ensure the frame ends in idle state with proper delay
-      output.push_back(OutputEdge(idleLevel, delayUs));
-      output.push_back(
-          OutputEdge(idleLevel, 1));  // Minimal opposite edge to close symbol
-    }
+    uint32_t delayUs = _codec->getEndOfFrameDelayUs();
+    bool idleLevel = _codec->getIdleLevel();
+    // Ensure the frame ends in idle state with proper delay
+    output.push_back(OutputEdge(idleLevel, delayUs));
+    output.push_back(OutputEdge(idleLevel, 1));
+    
     // Convert OutputSpec to RMT symbols
     // Ensure even number of edges - pad with minimal edge if needed
     if (output.size() % 2 != 0) {
@@ -302,7 +300,7 @@ class TxDriverESP32 : public TxDriverCommon {
     protocol.sendData(data, len);
   }
 
-  void sendEnd() { protocol.sendEnd(_useChecksum, true); }
+  void sendEnd() { protocol.sendEnd(_useChecksum); }
 };
 
 }  // namespace pulsewire
