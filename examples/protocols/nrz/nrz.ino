@@ -10,7 +10,7 @@
 
 const uint8_t rxPin = 22;
 const uint8_t txPin = 23;
-int baud = 2000;
+int baud = 8000;
 DigitalSignal digitalSignal;
 NRZCodec codec;//(preamble);
 TxDriverArduino tx(codec, txPin, digitalSignal);
@@ -53,5 +53,5 @@ void loop() {
   }
   Serial.println();
 
-  // delay(1000);
+  delay(10);
 }

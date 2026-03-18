@@ -19,9 +19,9 @@ class NRZCodec : public Codec {
   size_t encode(uint8_t byte, Vector<OutputEdge>& output) override {
     size_t edgeCount = 0;
 
-    // Start bit (HIGH)
+    // Start bit (LOW, since idle is HIGH)
     OutputEdge start;
-    start.level = true;
+    start.level = false;
     start.pulseUs = _bitPeriodUs;
     output.push_back(start);
     ++edgeCount;
@@ -86,10 +86,10 @@ class NRZCodec : public Codec {
   }
 
   bool decodeByte(Vector<OutputEdge>& edges, uint8_t& result) override {
-    //if (edges.size() < 1 + 8 + _stopBits) return false;
     bool valid = true;
-    if (edges[0].level != true) {
-      Logger::error("Invalid start bit: expected HIGH, got LOW");
+    if (edges[0].level != false) {
+      Logger::error("Invalid start bit: expected LOW, got HIGH: duration=%d us",
+                    edges[0].pulseUs);
       return false;  // Start bit
     }
 
@@ -106,14 +106,14 @@ class NRZCodec : public Codec {
     // Check stop bits
     for (int s = 0; s < _stopBits; ++s) {
       if (edges[9 + s].level != true) {
-        Logger::error("Stop bit %d: 0", s);
-        valid = false;
+        Logger::error("Stop bit %d: 0, duration=%d us", s, edges[9 + s].pulseUs);
+        //valid = false;
       } else {
-        Logger::debug("Stop bit %d: 1", s);
+        Logger::debug("Stop bit %d: 1, duration=%d us", s, edges[9 + s].pulseUs);
       }
     }
-
     result = byte;
+    reset();  // Ready for next frame
     return valid;
   }
 
@@ -125,10 +125,10 @@ class NRZCodec : public Codec {
   size_t getEdgeCount() const override { return 1 + 8 + _stopBits; }
 
   int getEndOfFrameDelayUs() override {
-    return (getEdgeCount() + 5) * _bitPeriodUs;
+    return (getEdgeCount() + 10) * _bitPeriodUs;
   }
 
-  bool getIdleLevel() { return false; }
+  bool getIdleLevel() const override { return true; }
 
   void setStopBits(uint8_t stopBits) { _stopBits = stopBits; }
 

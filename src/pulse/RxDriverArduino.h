@@ -350,7 +350,7 @@ class RxDriverArduino : public RxDriverInt {
 
   void reset() {
     _lastEdge = micros();
-    _lastLevel = 0;
+    _lastLevel = _codec.getIdleLevel();
     _is_open = false;
     _codec.reset();
   }
