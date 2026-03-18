@@ -157,8 +157,7 @@ class TxDriverCommon : public TxDriver {
   void sendEnd() {
     Logger::debug("Sending end");
     assert(_protocol != nullptr);
-    bool isDelayAfterFrame = true;
-    _protocol->sendEnd(_useChecksum, isDelayAfterFrame);
+    _protocol->sendEnd(_useChecksum);
     isPreambleSent = false;  // reset for next frame
   }
 };  // end of TxDriverArduino

@@ -1,12 +1,12 @@
 #pragma once
 #include <Arduino.h>
 
-#include "pulse/codecs/Codec.h"
-#include "pulse/tools/RingBuffer.h"
-#include "pulse/SignalBase.h"
 #include "TransceiverConfig.h"
+#include "pulse/SignalBase.h"
 #include "pulse/TxDriver.h"
+#include "pulse/codecs/Codec.h"
 #include "pulse/tools/Logger.h"
+#include "pulse/tools/RingBuffer.h"
 #include "pulse/tools/Vector.h"
 
 namespace pulsewire {
@@ -128,7 +128,7 @@ class TxProtocol {
   virtual void setFrameSize(uint16_t size) = 0;
   virtual void sendPreamble() = 0;
   virtual void sendData(const uint8_t* data, uint8_t len) = 0;
-  virtual void sendEnd(bool& _useChecksum, bool isDelayAfterFrame) = 0;
+  virtual void sendEnd(bool& _useChecksum) = 0;
   virtual bool isFrameClosed() const = 0;
 };
 
@@ -249,7 +249,7 @@ class TxProtocolGeneric : public TxProtocol {
    * @param isDelayAfterFrame Whether to add a delay after the frame.
    * @param bitPeriod Duration of each bit in microseconds.
    */
-  void sendEnd(bool& _useChecksum, bool isDelayAfterFrame) {
+  void sendEnd(bool& _useChecksum) {
     if (_codec == nullptr) {
       Logger::error("Codec pointer is null");
       _output_buffer.clear();
@@ -274,12 +274,10 @@ class TxProtocolGeneric : public TxProtocol {
       check_sum = 0;
 
       // Add a final delay to ensure we can recoginse the end of frame
-      if (isDelayAfterFrame) {
-        // Ensure signal is in idle state
-        p_signal->sendBit(_codec->getIdleLevel());  
-        uint32_t period =_codec->getEndOfFrameDelayUs();
-        delayUs(period);
-      }
+      // Ensure signal is in idle state
+      p_signal->sendBit(_codec->getIdleLevel());
+      uint32_t period = _codec->getEndOfFrameDelayUs();
+      delayUs(period);
       is_frame_closed = true;
     }
   }

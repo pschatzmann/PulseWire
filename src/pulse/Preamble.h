@@ -256,10 +256,10 @@ class NRZPreamble : public CustomPreambleUs {
     _history.reserve(4);
     _expected.clear();
     uint32_t bp = 1000000 / bitFrequencyHz;
-    addEdge(false, bp);  // LOW
-    addEdge(true, bp);   // HIGH
-    addEdge(false, bp);  // LOW
-    addEdge(true, bp);   // HIGH — ends HIGH, matching NRZ idle
+    addEdge(true, bp);  // LOW
+    addEdge(false, bp);   // HIGH
+    addEdge(true, bp);  // LOW
+    addEdge(false, bp);   // HIGH — ends HIGH, matching NRZ idle
     return true;
   }
 };

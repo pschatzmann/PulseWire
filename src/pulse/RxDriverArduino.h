@@ -187,23 +187,25 @@ class RxDriverArduino : public RxDriverInt {
     TRACE();
     _freqHz = bitFrequencyHz;
 
+    // Initialize codec once
+    bool rc = _codec.begin(bitFrequencyHz);
+
     // Calculate bit timing window from freqHz
     _bitPeriodUs = 1000000UL / _freqHz;
     _minUs = _bitPeriodUs / 2;
     _maxUs = _bitPeriodUs * 2;
     Logger::info(
-        "Bit frequency: %d Hz, Bit period: %d us, Timing window: [%d, %d] us",
+        "RXDriveer: Bit frequency: %d Hz, Bit period: %d us, Timing window: "
+        "[%d, %d] us",
         _freqHz, _bitPeriodUs, _minUs, _maxUs);
 
     if (_timeoutUs == 0) {
       _timeoutUs = 0.95 * _codec.getEndOfFrameDelayUs();
     }
+    Logger::info("RXDriver: Timeout set to %d us", _timeoutUs);
 
     // Ensure byte buffer is sized for frame
     setFrameSize(_frameSize);
-
-    // Initialize codec once
-    bool rc = _codec.begin(bitFrequencyHz);
 
     if (!_is_active) {
       // Reset state BEFORE attaching interrupt
@@ -222,7 +224,7 @@ class RxDriverArduino : public RxDriverInt {
 #endif
       _is_active = true;
     }
-
+    _is_open = false;
     Logger::info("RX driver started on pin %d with codec %s with frame size %d",
                  _pin, _codec.name(), _frameSize);
     return rc;
@@ -233,6 +235,9 @@ class RxDriverArduino : public RxDriverInt {
     while (_rxBuffer.available() < length && millis() < timeout) {
       processEdges();
       checkTimeout();
+      if (_rxBuffer.available() < length) {
+        delay(10);  // small delay to avoid busy waiting
+      }
     }
     if (_rxBuffer.size() == 0) {
       return 0;
@@ -307,17 +312,20 @@ class RxDriverArduino : public RxDriverInt {
       noInterrupts();
       ok = _edgeBuffer.read(edge);
       interrupts();
-      uint8_t byte_data = 0;
-      Logger::debug("RX Processing edge: level=%d, duration=%d us", edge.level,
-                    edge.pulseUs);
-      if (ok && _codec.decodeEdge(edge.pulseUs, edge.level, byte_data)) {
-        _rxBuffer.write(byte_data);
-        _is_open = true;
-      }
-      if (edge.pulseUs > _codec.getEndOfFrameDelayUs()) {
-        Logger::debug("End of frame detected: pulse duration %d us",
-                      edge.pulseUs);
-        reset();
+
+      if (ok) {
+        uint8_t byte_data = 0;
+        Logger::debug("RX Processing edge: level=%d, duration=%d us",
+                      edge.level, edge.pulseUs);
+        if (_codec.decodeEdge(edge.pulseUs, edge.level, byte_data)) {
+          _rxBuffer.write(byte_data);
+          _is_open = true;
+        }
+        if (edge.pulseUs > _codec.getEndOfFrameDelayUs()) {
+          Logger::debug("End of frame detected: pulse duration %d us",
+                        edge.pulseUs);
+          reset();
+        }
       }
     }
   }
@@ -337,7 +345,6 @@ class RxDriverArduino : public RxDriverInt {
         _rxBuffer.write(byte_data);
       }
       reset();
-      _is_open = false;
     }
   }
 
