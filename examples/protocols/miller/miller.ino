@@ -10,7 +10,7 @@
 
 const uint8_t rxPin = 22;
 const uint8_t txPin = 23;
-int baud = 8000;
+int baud = 2000;
 DigitalSignal digitalSignal;
 MillerCodec codec;
 TxDriverArduino tx(codec, txPin, digitalSignal);

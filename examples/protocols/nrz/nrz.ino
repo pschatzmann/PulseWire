@@ -10,10 +10,9 @@
 
 const uint8_t rxPin = 22;
 const uint8_t txPin = 23;
-int baud = 8000;
+int baud = 2000;
 DigitalSignal digitalSignal;
-NRZPreamble preamble;
-NRZCodec codec(preamble);
+NRZCodec codec;//(preamble);
 TxDriverArduino tx(codec, txPin, digitalSignal);
 RxDriverArduino rx(codec, rxPin);
 Transceiver transceiver(rx, tx);
