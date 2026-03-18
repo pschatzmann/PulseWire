@@ -17,18 +17,6 @@ class RZCodec : public Codec {
 
   virtual ~RZCodec() = default;
 
-   bool begin(uint32_t bitFrequencyHz) override {
-    if (_preamble == &_defaultPreamble) {
-      _defaultPreamble.clear();
-      // setup default preamble: alternating edges at full bit period, ending
-      // with a HIGH level to match NRZ idle state
-      uint32_t bp = 1000000UL / bitFrequencyHz;
-      _defaultPreamble.addEdge(false, bp);  // single HIGH idle edge
-      _defaultPreamble.addEdge(true, bp);   // single HIGH idle edge
-    }
-
-    return Codec::begin(bitFrequencyHz);
-  }
  
   size_t encode(uint8_t byte, Vector<OutputEdge>& output) override {
     size_t edgeCount = 0;
@@ -137,7 +125,6 @@ class RZCodec : public Codec {
     if (!_inFrame) {
       if (_preamble->preambleLength() == 0) {
         _decodeEdgeStream.clear();
-        _decodeEdgeStream.push_back(newEdge);
         _inFrame = true;
         Logger::debug("No preamble, starting new frame");
         return true;
