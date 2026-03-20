@@ -1,17 +1,12 @@
 var searchData=
 [
-  ['senddata_0',['sendData',['../classpulsewire_1_1TxProtocolGeneric.html#a53cc5fe7b16db3edeb170b771a7f8ed9',1,'pulsewire::TxProtocolGeneric']]],
-  ['sendend_1',['sendEnd',['../classpulsewire_1_1TxProtocolGeneric.html#ae8d8f3f89d018ade01cad7ccf0f28d4c',1,'pulsewire::TxProtocolGeneric']]],
-  ['sendpreamble_2',['sendPreamble',['../classpulsewire_1_1TxProtocolGeneric.html#a310deb98bca09b6aa9185521028a3dce',1,'pulsewire::TxProtocolGeneric']]],
-  ['setcallback_3',['setCallback',['../classpulsewire_1_1IRMultiProtocol.html#a33edc306acdca37b4bfdf99c3f939789',1,'pulsewire::IRMultiProtocol']]],
-  ['setframesize_4',['setframesize',['../classpulsewire_1_1RxDriver.html#a40f4b01d78a38236bbff303085ddf465',1,'pulsewire::RxDriver::setFrameSize()'],['../classpulsewire_1_1RxDriverArduino.html#ad343e98d97768a9792f697daac0ca792',1,'pulsewire::RxDriverArduino::setFrameSize()'],['../classpulsewire_1_1TxDriverCommon.html#a28ffd3e85dca11a31fe625799d832e5f',1,'pulsewire::TxDriverCommon::setFrameSize()'],['../classpulsewire_1_1TxProtocolGeneric.html#aaa196f7e5ed359201d97bfe106e72d8f',1,'pulsewire::TxProtocolGeneric::setFrameSize()'],['../classpulsewire_1_1Transceiver.html#a03cd1f30de1fd90640bd7d0681efb1f0',1,'pulsewire::Transceiver::setFrameSize()']]],
-  ['setframingmode_5',['setFramingMode',['../classpulsewire_1_1TxDriverCommon.html#a1ba1053aaed69a2b5217faf3675b4889',1,'pulsewire::TxDriverCommon']]],
-  ['setloglevel_6',['setLogLevel',['../classpulsewire_1_1Logger.html#a82c01e82cf1f9d7af305cf7f1bebb488',1,'pulsewire::Logger']]],
-  ['setoutput_7',['setOutput',['../classpulsewire_1_1Logger.html#a821c3fe91b276e5e1460de0ced0f2ced',1,'pulsewire::Logger']]],
-  ['setpreamble_8',['setPreamble',['../classpulsewire_1_1Codec.html#a3ec584238df6cf04424d5f800c9e25ec',1,'pulsewire::Codec']]],
-  ['setrxbuffersize_9',['setrxbuffersize',['../classpulsewire_1_1RxDriver.html#af8667b9667ea4becccae1d5d2802ff91',1,'pulsewire::RxDriver::setRxBufferSize()'],['../classpulsewire_1_1RxDriverArduino.html#a3634122ad6fa82a17919204be5b4a885',1,'pulsewire::RxDriverArduino::setRxBufferSize()'],['../classpulsewire_1_1RxDriverESP32.html#afeba73a1bf53b636240aa28f44584f96',1,'pulsewire::RxDriverESP32::setRxBufferSize()']]],
-  ['setrxdriver_10',['setRxDriver',['../classpulsewire_1_1Transceiver.html#a75180cc04930d68380d3ac9f520cb863',1,'pulsewire::Transceiver']]],
-  ['settxdriver_11',['setTxDriver',['../classpulsewire_1_1Transceiver.html#a25cac41ea3f15b3991f5c6003363f528',1,'pulsewire::Transceiver']]],
-  ['shortpulseus_12',['shortpulseus',['../classpulsewire_1_1IRProtocol.html#ada021ae5399e62fc9d9711a43ce15d98',1,'pulsewire::IRProtocol::shortPulseUs()'],['../classpulsewire_1_1IRMultiProtocol.html#a96bd70050abb16dcc4a1fafa51c83173',1,'pulsewire::IRMultiProtocol::shortPulseUs()']]],
-  ['size_13',['size',['../classpulsewire_1_1Vector.html#afafdebeef2d938249d8a23595aceaad6',1,'pulsewire::Vector']]]
+  ['read_0',['read',['../classpulsewire_1_1RingBuffer.html#a23534fefe1bc46f9e5b268e71ceaff82',1,'pulsewire::RingBuffer::read()'],['../classpulsewire_1_1Transceiver.html#a35026c05682cfc769a3c1c2194bbe25f',1,'pulsewire::Transceiver::read()'],['../classpulsewire_1_1RingBuffer.html#a57ed8881a18979adadb66cffe0c815df',1,'pulsewire::RingBuffer::read(T &amp;out)']]],
+  ['readarray_1',['readArray',['../classpulsewire_1_1RingBuffer.html#aab5074c495ccc4c491132d6368bb233c',1,'pulsewire::RingBuffer']]],
+  ['readbytes_2',['readbytes',['../classpulsewire_1_1RxDriver.html#a413e2a837babd112db3b31383ca47ba8',1,'pulsewire::RxDriver::readBytes()'],['../classpulsewire_1_1RxDriverArduino.html#ac0206fc52005990704e08c67460a393b',1,'pulsewire::RxDriverArduino::readBytes()'],['../classpulsewire_1_1RxDriverESP32.html#ae41bd303692358428ec85282c1debac5',1,'pulsewire::RxDriverESP32::readBytes()'],['../classpulsewire_1_1RxDriverRP2040.html#a8e115d555603f86f627c4391b683805f',1,'pulsewire::RxDriverRP2040::readBytes()'],['../classpulsewire_1_1Transceiver.html#ab46e11414b5fc899267ca2f2f7b6d832',1,'pulsewire::Transceiver::readBytes()']]],
+  ['reserve_3',['reserve',['../classpulsewire_1_1Vector.html#a8255938040890c3b3120200b96448049',1,'pulsewire::Vector']]],
+  ['reset_4',['reset',['../classpulsewire_1_1Codec.html#af5c27adab6f5dc6224946847b704e172',1,'pulsewire::Codec::reset()'],['../classpulsewire_1_1DifferentialManchesterCodec.html#a9a01364234ffd957c8da78efcfefa172',1,'pulsewire::DifferentialManchesterCodec::reset()'],['../classpulsewire_1_1MillerCodec.html#aae36b3651ed58dc37aeff1b621bcd4d3',1,'pulsewire::MillerCodec::reset()'],['../classpulsewire_1_1NRZCodec.html#ad85b797b5730996148a533a41c6002c0',1,'pulsewire::NRZCodec::reset()'],['../classpulsewire_1_1RZCodec.html#a9503ddb493e52d76658938dd340cdb1d',1,'pulsewire::RZCodec::reset()']]],
+  ['resize_5',['resize',['../classpulsewire_1_1Vector.html#a3ed07d8cf120cc80c2646ffa0c610c19',1,'pulsewire::Vector']]],
+  ['rxdriverarduino_6',['RxDriverArduino',['../classpulsewire_1_1RxDriverArduino.html#ac327f5bd2aaad1f88a1f31172a6248a3',1,'pulsewire::RxDriverArduino']]],
+  ['rxdriveresp32_7',['RxDriverESP32',['../classpulsewire_1_1RxDriverESP32.html#af4b5331b9fdf4ed23df71e67e3a845b7',1,'pulsewire::RxDriverESP32']]],
+  ['rxdriverrp2040_8',['RxDriverRP2040',['../classpulsewire_1_1RxDriverRP2040.html#af848ccde6e3397521f46540d17c1fc39',1,'pulsewire::RxDriverRP2040']]]
 ];

@@ -1,17 +1,17 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
 <area shape="rect" id="Node000000" href="$classpulsewire_1_1Preamble.html" title="Abstract base class for preamble detection and generation." alt="" coords="5,140,160,165"/>
 <area shape="rect" id="Node000001" href="$classpulsewire_1_1CustomPreambleUs.html" title="CustomPreambleUs: Allows users to define their own preamble by setting expected edges...." alt="" coords="208,79,431,104"/>
-<area shape="poly" id="edge7_Node000000_Node000001" title=" " alt="" coords="145,134,269,101,270,107,146,139"/>
+<area shape="poly" id="edge9_Node000000_Node000001" title=" " alt="" coords="145,134,269,101,270,107,146,139"/>
 <area shape="rect" id="Node000005" href="$classpulsewire_1_1IRProtocol.html" title="IRProtocol: Represents a specific IR protocol with all its parameters." alt="" coords="240,140,399,165"/>
-<area shape="poly" id="edge11_Node000000_Node000005" title=" " alt="" coords="175,150,240,150,240,155,175,155"/>
+<area shape="poly" id="edge13_Node000000_Node000005" title=" " alt="" coords="175,150,240,150,240,155,175,155"/>
 <area shape="rect" id="Node000007" href="$classpulsewire_1_1NoPreamble.html" title="NoPreamble: For protocols that do not require a preamble. Always returns true for detect,..." alt="" coords="233,189,406,215"/>
-<area shape="poly" id="edge13_Node000000_Node000007" title=" " alt="" coords="158,166,258,187,257,192,157,171"/>
+<area shape="poly" id="edge15_Node000000_Node000007" title=" " alt="" coords="158,166,258,187,257,192,157,171"/>
 <area shape="rect" id="Node000002" href="$classpulsewire_1_1CustomPreamble.html" title="CustomPreamble: Allows users to define their own preamble by setting expected edges...." alt="" coords="491,5,697,31"/>
-<area shape="poly" id="edge8_Node000001_Node000002" title=" " alt="" coords="370,72,478,39,526,28,527,33,479,45,372,77"/>
+<area shape="poly" id="edge10_Node000001_Node000002" title=" " alt="" coords="370,72,478,39,526,28,527,33,479,45,372,77"/>
 <area shape="rect" id="Node000003" href="$classpulsewire_1_1ManchesterPreamble.html" title="Custom Manchester preamble detector: run&#45;in of alternating edges plus unique start pulse." alt="" coords="479,55,709,80"/>
-<area shape="poly" id="edge9_Node000001_Node000003" title=" " alt="" coords="444,78,478,75,479,80,445,83"/>
+<area shape="poly" id="edge11_Node000001_Node000003" title=" " alt="" coords="444,78,478,75,479,80,445,83"/>
 <area shape="rect" id="Node000004" href="$classpulsewire_1_1NRZPreamble.html" title="A Preamble implementation for NRZ protocols: alternating edges at full bit period,..." alt="" coords="503,104,685,129"/>
-<area shape="poly" id="edge10_Node000001_Node000004" title=" " alt="" coords="445,100,503,106,502,111,444,106"/>
+<area shape="poly" id="edge12_Node000001_Node000004" title=" " alt="" coords="445,100,503,106,502,111,444,106"/>
 <area shape="rect" id="Node000006" href="$classpulsewire_1_1IRMultiProtocol.html" title="IRMultiProtocol: Handles detection and delegation for multiple IR protocols." alt="" coords="498,153,690,179"/>
-<area shape="poly" id="edge12_Node000005_Node000006" title=" " alt="" coords="413,155,498,159,497,164,412,160"/>
+<area shape="poly" id="edge14_Node000005_Node000006" title=" " alt="" coords="413,155,498,159,497,164,412,160"/>
 </map>

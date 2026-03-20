@@ -1,9 +1,9 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
 <area shape="rect" id="Node000000" href="$classpulsewire_1_1TxProtocol.html" title="Abstract base class for defining transmission protocols." alt="" coords="5,55,168,80"/>
 <area shape="rect" id="Node000001" href="$classpulsewire_1_1TxProtocolESP32.html" title="ESP32&#45;specific TxProtocol implementation using RMT for precise timing and DMA support." alt="" coords="221,5,423,31"/>
-<area shape="poly" id="edge25_Node000000_Node000001" title=" " alt="" coords="161,49,260,28,261,33,162,54"/>
+<area shape="poly" id="edge27_Node000000_Node000001" title=" " alt="" coords="161,49,260,28,261,33,162,54"/>
 <area shape="rect" id="Node000002" href="$classpulsewire_1_1TxProtocolGeneric.html" title="Generic implementation that is supported by all Arduino cores." alt="" coords="216,55,428,80"/>
-<area shape="poly" id="edge26_Node000000_Node000002" title=" " alt="" coords="182,65,216,65,216,70,182,70"/>
+<area shape="poly" id="edge28_Node000000_Node000002" title=" " alt="" coords="182,65,216,65,216,70,182,70"/>
 <area shape="rect" id="Node000003" href="$classpulsewire_1_1TxProtocolRP2040.html" title="RP2040&#45;specific TxProtocol implementation using PIO and DMA for precise timing." alt="" coords="217,104,427,129"/>
-<area shape="poly" id="edge27_Node000000_Node000003" title=" " alt="" coords="162,80,261,101,260,107,161,85"/>
+<area shape="poly" id="edge29_Node000000_Node000003" title=" " alt="" coords="162,80,261,101,260,107,161,85"/>
 </map>

@@ -1,19 +1,13 @@
 var searchData=
 [
-  ['read_0',['read',['../classpulsewire_1_1Transceiver.html#a35026c05682cfc769a3c1c2194bbe25f',1,'pulsewire::Transceiver::read()'],['../classpulsewire_1_1RingBuffer.html#a23534fefe1bc46f9e5b268e71ceaff82',1,'pulsewire::RingBuffer::read()'],['../classpulsewire_1_1RingBuffer.html#a57ed8881a18979adadb66cffe0c815df',1,'pulsewire::RingBuffer::read(T &amp;out)']]],
-  ['readarray_1',['readArray',['../classpulsewire_1_1RingBuffer.html#aab5074c495ccc4c491132d6368bb233c',1,'pulsewire::RingBuffer']]],
-  ['readbytes_2',['readbytes',['../classpulsewire_1_1Transceiver.html#ab46e11414b5fc899267ca2f2f7b6d832',1,'pulsewire::Transceiver::readBytes()'],['../classpulsewire_1_1RxDriverRP2040.html#a8e115d555603f86f627c4391b683805f',1,'pulsewire::RxDriverRP2040::readBytes()'],['../classpulsewire_1_1RxDriverESP32.html#ae41bd303692358428ec85282c1debac5',1,'pulsewire::RxDriverESP32::readBytes()'],['../classpulsewire_1_1RxDriverArduino.html#ac0206fc52005990704e08c67460a393b',1,'pulsewire::RxDriverArduino::readBytes()'],['../classpulsewire_1_1RxDriver.html#a413e2a837babd112db3b31383ca47ba8',1,'pulsewire::RxDriver::readBytes()']]],
-  ['receiver_3',['Receiver',['../classpulsewire_1_1Receiver.html',1,'pulsewire']]],
-  ['recordercodec_4',['RecorderCodec',['../classpulsewire_1_1RecorderCodec.html',1,'pulsewire']]],
-  ['reserve_5',['reserve',['../classpulsewire_1_1Vector.html#a8255938040890c3b3120200b96448049',1,'pulsewire::Vector']]],
-  ['resize_6',['resize',['../classpulsewire_1_1Vector.html#a3ed07d8cf120cc80c2646ffa0c610c19',1,'pulsewire::Vector']]],
-  ['ringbuffer_7',['RingBuffer',['../classpulsewire_1_1RingBuffer.html',1,'pulsewire']]],
-  ['ringbuffer_3c_20pulsewire_3a_3aoutputedge_20_3e_8',['RingBuffer&lt; pulsewire::OutputEdge &gt;',['../classpulsewire_1_1RingBuffer.html',1,'pulsewire']]],
-  ['ringbuffer_3c_20uint8_5ft_20_3e_9',['RingBuffer&lt; uint8_t &gt;',['../classpulsewire_1_1RingBuffer.html',1,'pulsewire']]],
-  ['rxdriver_10',['RxDriver',['../classpulsewire_1_1RxDriver.html',1,'pulsewire']]],
-  ['rxdriverarduino_11',['rxdriverarduino',['../classpulsewire_1_1RxDriverArduino.html',1,'pulsewire::RxDriverArduino'],['../classpulsewire_1_1RxDriverArduino.html#ac327f5bd2aaad1f88a1f31172a6248a3',1,'pulsewire::RxDriverArduino::RxDriverArduino()']]],
-  ['rxdriveresp32_12',['rxdriveresp32',['../classpulsewire_1_1RxDriverESP32.html',1,'pulsewire::RxDriverESP32'],['../classpulsewire_1_1RxDriverESP32.html#a066f5b4e3808802b213a1d051f80d68b',1,'pulsewire::RxDriverESP32::RxDriverESP32()']]],
-  ['rxdriverint_13',['RxDriverInt',['../classpulsewire_1_1RxDriverInt.html',1,'pulsewire']]],
-  ['rxdriverrp2040_14',['rxdriverrp2040',['../classpulsewire_1_1RxDriverRP2040.html',1,'pulsewire::RxDriverRP2040'],['../classpulsewire_1_1RxDriverRP2040.html#af848ccde6e3397521f46540d17c1fc39',1,'pulsewire::RxDriverRP2040::RxDriverRP2040()']]],
-  ['rxtask_15',['rxTask',['../classpulsewire_1_1RxDriverESP32.html#ae87d88a75f962e7940bc336eb1938ac7',1,'pulsewire::RxDriverESP32']]]
+  ['p_5fsignal_0',['p_signal',['../classpulsewire_1_1TxProtocolGeneric.html#a804614bf6aee4ce4dcaa6c36f777f42e',1,'pulsewire::TxProtocolGeneric']]],
+  ['peek_1',['peek',['../classpulsewire_1_1RingBuffer.html#af82ee3935598c230dce3a2c2853ae635',1,'pulsewire::RingBuffer::peek(T &amp;out) const'],['../classpulsewire_1_1RingBuffer.html#a9546634efa4ee593ad959a5bcd8ce03f',1,'pulsewire::RingBuffer::peek() const'],['../classpulsewire_1_1Transceiver.html#a265e6a0fa902458505d002c82804591f',1,'pulsewire::Transceiver::peek()']]],
+  ['preamble_2',['Preamble',['../classpulsewire_1_1Preamble.html',1,'pulsewire']]],
+  ['preamblelength_3',['preamblelength',['../classpulsewire_1_1IRProtocol.html#a327c9c84ff284492cc804004599d01c2',1,'pulsewire::IRProtocol::preambleLength()'],['../classpulsewire_1_1IRMultiProtocol.html#a30f4d18a957aa14e7c7f719e5c412126',1,'pulsewire::IRMultiProtocol::preambleLength()']]],
+  ['pulsedistancecodec_4',['PulseDistanceCodec',['../classpulsewire_1_1PulseDistanceCodec.html',1,'pulsewire']]],
+  ['pulsewidthcodec_5',['PulseWidthCodec',['../classpulsewire_1_1PulseWidthCodec.html',1,'pulsewire']]],
+  ['pulsewire_20arduino_20communications_20library_6',['PulseWire Arduino Communications Library',['../md_README.html',1,'']]],
+  ['push_5fback_7',['push_back',['../classpulsewire_1_1Vector.html#a7b64fba6c78236f1373ebce7df490b64',1,'pulsewire::Vector']]],
+  ['pushbit_8',['pushBit',['../classpulsewire_1_1MillerCodec.html#a4ff1419c67b9b598bf458e5b19263001',1,'pulsewire::MillerCodec']]],
+  ['pwmsignal_9',['PWMSignal',['../classpulsewire_1_1PWMSignal.html',1,'pulsewire']]]
 ];

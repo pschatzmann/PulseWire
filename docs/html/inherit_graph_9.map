@@ -1,11 +1,11 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
 <area shape="rect" id="Node000000" href="$classpulsewire_1_1RxDriver.html" title="Abstract base class for IR receivers." alt="" coords="5,55,156,80"/>
 <area shape="rect" id="Node000001" href="$classpulsewire_1_1RxDriverESP32.html" title="High&#45;performance ESP32 IR RX driver using the RMT peripheral and Manchester decoding." alt="" coords="208,5,399,31"/>
-<area shape="poly" id="edge14_Node000000_Node000001" title=" " alt="" coords="151,49,245,28,246,33,152,54"/>
+<area shape="poly" id="edge16_Node000000_Node000001" title=" " alt="" coords="151,49,245,28,246,33,152,54"/>
 <area shape="rect" id="Node000002" href="$classpulsewire_1_1RxDriverInt.html" title="Interrupt&#45;capable IR RX driver interface for platforms without attachInterruptArg." alt="" coords="220,55,387,80"/>
-<area shape="poly" id="edge15_Node000000_Node000002" title=" " alt="" coords="170,65,220,65,220,70,170,70"/>
+<area shape="poly" id="edge17_Node000000_Node000002" title=" " alt="" coords="170,65,220,65,220,70,170,70"/>
 <area shape="rect" id="Node000004" href="$classpulsewire_1_1RxDriverRP2040.html" title="High&#45;performance RP2040 IR RX driver using PIO for edge capture." alt="" coords="204,104,403,129"/>
-<area shape="poly" id="edge17_Node000000_Node000004" title=" " alt="" coords="152,80,246,101,245,107,151,86"/>
+<area shape="poly" id="edge19_Node000000_Node000004" title=" " alt="" coords="152,80,246,101,245,107,151,86"/>
 <area shape="rect" id="Node000003" href="$classpulsewire_1_1RxDriverArduino.html" title="Interrupt&#45;driven Arduino RX driver for pulse&#45;based protocols." alt="" coords="451,55,651,80"/>
-<area shape="poly" id="edge16_Node000002_Node000003" title=" " alt="" coords="400,65,450,65,450,70,400,70"/>
+<area shape="poly" id="edge18_Node000002_Node000003" title=" " alt="" coords="400,65,450,65,450,70,400,70"/>
 </map>

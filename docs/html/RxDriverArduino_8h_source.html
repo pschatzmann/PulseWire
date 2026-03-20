@@ -220,7 +220,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="foldopen" id="foldopen00175" data-start="{" data-end="}">
 <div class="line"><a id="l00175" name="l00175"></a><span class="lineno"><a class="line" href="classpulsewire_1_1RxDriverArduino.html#ad343e98d97768a9792f697daac0ca792">  175</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classpulsewire_1_1RxDriverArduino.html#ad343e98d97768a9792f697daac0ca792">setFrameSize</a>(<a class="code hl_class" href="classpulsewire_1_1Vector.html">uint16_t</a> size)<span class="keyword"> override </span>{</div>
 <div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    TRACE();</div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    _codec.setFrameSize(size);</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    _codec.<a class="code hl_function" href="classpulsewire_1_1Codec.html#af3b481e6321eb4bbb0e3054250d8d566">setFrameSize</a>(size);</div>
 <div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    _frameSize = size;</div>
 <div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>    _rxBuffer.resize(size * 2);</div>
 <div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    _edgeBuffer.<a class="code hl_function" href="classpulsewire_1_1Vector.html#a3ed07d8cf120cc80c2646ffa0c610c19">resize</a>(size * _codec.<a class="code hl_function" href="classpulsewire_1_1Codec.html#a9f93fc579818bb7267752079739b4946">getEdgeCount</a>() *</div>
@@ -231,192 +231,207 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00184" name="l00184"></a><span class="lineno"><a class="line" href="classpulsewire_1_1RxDriverArduino.html#a3634122ad6fa82a17919204be5b4a885">  184</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classpulsewire_1_1RxDriverArduino.html#a3634122ad6fa82a17919204be5b4a885">setRxBufferSize</a>(<span class="keywordtype">size_t</span> size) { _rxBuffer.resize(size); }</div>
 <div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span> </div>
 <div class="foldopen" id="foldopen00186" data-start="{" data-end="}">
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno"><a class="line" href="classpulsewire_1_1RxDriverArduino.html#a69d779f64fd2773578f814f480a9dede">  186</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classpulsewire_1_1RxDriverArduino.html#a69d779f64fd2773578f814f480a9dede">begin</a>(<a class="code hl_class" href="classpulsewire_1_1Vector.html">uint16_t</a> <a class="code hl_class" href="classpulsewire_1_1Vector.html">bitFrequencyHz</a> = DEFAULT_BIT_FREQ_HZ)<span class="keyword"> override </span>{</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno"><a class="line" href="classpulsewire_1_1RxDriverArduino.html#a6b8e3cfe2fe4010c0e99f5414d5eb22a">  186</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classpulsewire_1_1RxDriverArduino.html#a6b8e3cfe2fe4010c0e99f5414d5eb22a">begin</a>(<a class="code hl_class" href="classpulsewire_1_1Vector.html">uint32_t</a> <a class="code hl_class" href="classpulsewire_1_1Vector.html">bitFrequencyHz</a> = DEFAULT_BIT_FREQ_HZ)<span class="keyword"> override </span>{</div>
 <div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    TRACE();</div>
 <div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    _freqHz = <a class="code hl_class" href="classpulsewire_1_1Vector.html">bitFrequencyHz</a>;</div>
 <div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span> </div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    <span class="comment">// Calculate bit timing window from freqHz</span></div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    _bitPeriodUs = 1000000UL / _freqHz;</div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    _minUs = _bitPeriodUs / 2;</div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    _maxUs = _bitPeriodUs * 2;</div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    <a class="code hl_function" href="classpulsewire_1_1Logger.html#afd5b20fcc7486f15485f64aa969b7fa2">Logger::info</a>(</div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>        <span class="stringliteral">&quot;Bit frequency: %d Hz, Bit period: %d us, Timing window: [%d, %d] us&quot;</span>,</div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>        _freqHz, _bitPeriodUs, _minUs, _maxUs);</div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span> </div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    <span class="keywordflow">if</span> (_timeoutUs == 0) {</div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>      _timeoutUs = 0.95 * _codec.<a class="code hl_function" href="classpulsewire_1_1Codec.html#a340d36ba559663aa8fd601a6602cb2dc">getEndOfFrameDelayUs</a>();</div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    }</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    <span class="comment">// Initialize codec once</span></div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    <span class="keywordtype">bool</span> <a class="code hl_class" href="classpulsewire_1_1Vector.html">rc</a> = _codec.<a class="code hl_function" href="classpulsewire_1_1Codec.html#ad0c20ae83e9220c0082a0b66d14b1d8d">begin</a>(<a class="code hl_class" href="classpulsewire_1_1Vector.html">bitFrequencyHz</a>);</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span> </div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    <span class="comment">// Calculate bit timing window from freqHz</span></div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    _bitPeriodUs = 1000000UL / _freqHz;</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    _minUs = _bitPeriodUs / 2;</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    _maxUs = _bitPeriodUs * 2;</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    <a class="code hl_function" href="classpulsewire_1_1Logger.html#afd5b20fcc7486f15485f64aa969b7fa2">Logger::info</a>(</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>        <span class="stringliteral">&quot;RXDriveer: Bit frequency: %d Hz, Bit period: %d us, Timing window: &quot;</span></div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>        <span class="stringliteral">&quot;[%d, %d] us&quot;</span>,</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>        _freqHz, _bitPeriodUs, _minUs, _maxUs);</div>
 <div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span> </div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    <span class="comment">// Ensure byte buffer is sized for frame</span></div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    <a class="code hl_function" href="classpulsewire_1_1RxDriverArduino.html#ad343e98d97768a9792f697daac0ca792">setFrameSize</a>(_frameSize);</div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span> </div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    <span class="comment">// Initialize codec once</span></div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    <span class="keywordtype">bool</span> <a class="code hl_class" href="classpulsewire_1_1Vector.html">rc</a> = _codec.<a class="code hl_function" href="classpulsewire_1_1Codec.html#a241439a5049b2ca98b069c2cce836fe1">begin</a>(<a class="code hl_class" href="classpulsewire_1_1Vector.html">bitFrequencyHz</a>);</div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span> </div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    <span class="keywordflow">if</span> (!_is_active) {</div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>      <span class="comment">// Reset state BEFORE attaching interrupt</span></div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>      reset();</div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>      <span class="comment">// Read initial pin level before first interrupt</span></div>
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>      <a class="code hl_class" href="classpulsewire_1_1Vector.html">pinMode</a>(_pin, <a class="code hl_class" href="classpulsewire_1_1Vector.html">INPUT</a>);</div>
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>      _lastLevel = <a class="code hl_class" href="classpulsewire_1_1Vector.html">digitalRead</a>(_pin);</div>
-<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>      _lastEdge = <a class="code hl_class" href="classpulsewire_1_1Vector.html">micros</a>();</div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span> </div>
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span><span class="preprocessor">#ifdef HAS_INTERRUPT_ARG</span></div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>      <a class="code hl_class" href="classpulsewire_1_1Vector.html">attachInterruptArg</a>(_pin, interruptHandler, <span class="keyword">this</span>, <a class="code hl_class" href="classpulsewire_1_1Vector.html">CHANGE</a>);</div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span><span class="preprocessor">#else</span></div>
-<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>      <span class="keywordflow">if</span> (!ISRManager::attach(_pin, <span class="keyword">this</span>)) {</div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>      }</div>
-<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>      _is_active = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    }</div>
-<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span> </div>
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    <a class="code hl_function" href="classpulsewire_1_1Logger.html#afd5b20fcc7486f15485f64aa969b7fa2">Logger::info</a>(<span class="stringliteral">&quot;RX driver started on pin %d with codec %s with frame size %d&quot;</span>,</div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>                 _pin, _codec.<a class="code hl_function" href="classpulsewire_1_1Codec.html#a3f31eab98232b75c6eef3acae04bc1a1">name</a>(), _frameSize);</div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    <span class="keywordflow">return</span> <a class="code hl_class" href="classpulsewire_1_1Vector.html">rc</a>;</div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>  }</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    <span class="keywordflow">if</span> (_timeoutUs == 0) {</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>      _timeoutUs = 0.95 * _codec.<a class="code hl_function" href="classpulsewire_1_1Codec.html#a340d36ba559663aa8fd601a6602cb2dc">getEndOfFrameDelayUs</a>();</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    }</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    <a class="code hl_function" href="classpulsewire_1_1Logger.html#afd5b20fcc7486f15485f64aa969b7fa2">Logger::info</a>(<span class="stringliteral">&quot;RXDriver: Timeout set to %d us&quot;</span>, _timeoutUs);</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span> </div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    <span class="comment">// Ensure byte buffer is sized for frame</span></div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    <a class="code hl_function" href="classpulsewire_1_1RxDriverArduino.html#ad343e98d97768a9792f697daac0ca792">setFrameSize</a>(_frameSize);</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span> </div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    <span class="keywordflow">if</span> (!_is_active) {</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>      <span class="comment">// Reset state BEFORE attaching interrupt</span></div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>      reset();</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>      <span class="comment">// Read initial pin level before first interrupt</span></div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>      <a class="code hl_class" href="classpulsewire_1_1Vector.html">pinMode</a>(_pin, <a class="code hl_class" href="classpulsewire_1_1Vector.html">INPUT</a>);</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>      _lastLevel = <a class="code hl_class" href="classpulsewire_1_1Vector.html">digitalRead</a>(_pin);</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>      _lastEdge = <a class="code hl_class" href="classpulsewire_1_1Vector.html">micros</a>();</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span> </div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span><span class="preprocessor">#ifdef HAS_INTERRUPT_ARG</span></div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>      <a class="code hl_class" href="classpulsewire_1_1Vector.html">attachInterruptArg</a>(_pin, interruptHandler, <span class="keyword">this</span>, <a class="code hl_class" href="classpulsewire_1_1Vector.html">CHANGE</a>);</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>      <span class="keywordflow">if</span> (!ISRManager::attach(_pin, <span class="keyword">this</span>)) {</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>      }</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>      _is_active = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    }</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    _is_open = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    <a class="code hl_function" href="classpulsewire_1_1Logger.html#afd5b20fcc7486f15485f64aa969b7fa2">Logger::info</a>(<span class="stringliteral">&quot;RX driver started on pin %d with codec %s with frame size %d&quot;</span>,</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>                 _pin, _codec.<a class="code hl_function" href="classpulsewire_1_1Codec.html#a3f31eab98232b75c6eef3acae04bc1a1">name</a>(), _frameSize);</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    <span class="keywordflow">return</span> <a class="code hl_class" href="classpulsewire_1_1Vector.html">rc</a>;</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>  }</div>
 </div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span> </div>
-<div class="foldopen" id="foldopen00231" data-start="{" data-end="}">
-<div class="line"><a id="l00231" name="l00231"></a><span class="lineno"><a class="line" href="classpulsewire_1_1RxDriverArduino.html#ac0206fc52005990704e08c67460a393b">  231</a></span>  <span class="keywordtype">size_t</span> <a class="code hl_function" href="classpulsewire_1_1RxDriverArduino.html#ac0206fc52005990704e08c67460a393b">readBytes</a>(<a class="code hl_class" href="classpulsewire_1_1Vector.html">uint8_t</a>* <a class="code hl_class" href="classpulsewire_1_1Vector.html">buffer</a>, <span class="keywordtype">size_t</span> <a class="code hl_class" href="classpulsewire_1_1Vector.html">length</a>)<span class="keyword"> override </span>{</div>
-<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    processEdges();</div>
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    checkTimeout();</div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    <span class="keywordflow">if</span> (_rxBuffer.size() == 0) {</div>
-<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>      <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    }</div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    <span class="keywordtype">size_t</span> <a class="code hl_class" href="classpulsewire_1_1Vector.html">count</a> = 0;</div>
-<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    <a class="code hl_class" href="classpulsewire_1_1Vector.html">count</a> = _rxBuffer.<a class="code hl_function" href="classpulsewire_1_1RingBuffer.html#aab5074c495ccc4c491132d6368bb233c">readArray</a>((<a class="code hl_class" href="classpulsewire_1_1Vector.html">uint8_t</a>*)<a class="code hl_class" href="classpulsewire_1_1Vector.html">buffer</a>, <a class="code hl_class" href="classpulsewire_1_1Vector.html">length</a>);</div>
-<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    <span class="keywordflow">return</span> <a class="code hl_class" href="classpulsewire_1_1Vector.html">count</a>;</div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>  }</div>
-</div>
-<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span> </div>
-<div class="foldopen" id="foldopen00242" data-start="{" data-end="}">
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno"><a class="line" href="classpulsewire_1_1RxDriverArduino.html#a7f4e334e4063ea06dc9236b5961669c2">  242</a></span>  <span class="keywordtype">int</span> <a class="code hl_function" href="classpulsewire_1_1RxDriverArduino.html#a7f4e334e4063ea06dc9236b5961669c2">available</a>()<span class="keyword"> override </span>{</div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    processEdges();</div>
-<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>    checkTimeout();</div>
-<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    <span class="keywordtype">int</span> <a class="code hl_class" href="classpulsewire_1_1Vector.html">result</a> = _rxBuffer.available();</div>
-<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    <a class="code hl_function" href="classpulsewire_1_1Logger.html#a1a770797b7c1df75cbfa45e4eca267f3">Logger::debug</a>(<span class="stringliteral">&quot;available(): %d&quot;</span>, <a class="code hl_class" href="classpulsewire_1_1Vector.html">result</a>);</div>
-<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    <span class="keywordflow">return</span> <a class="code hl_class" href="classpulsewire_1_1Vector.html">result</a>;</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span> </div>
+<div class="foldopen" id="foldopen00233" data-start="{" data-end="}">
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno"><a class="line" href="classpulsewire_1_1RxDriverArduino.html#ac0206fc52005990704e08c67460a393b">  233</a></span>  <span class="keywordtype">size_t</span> <a class="code hl_function" href="classpulsewire_1_1RxDriverArduino.html#ac0206fc52005990704e08c67460a393b">readBytes</a>(<a class="code hl_class" href="classpulsewire_1_1Vector.html">uint8_t</a>* <a class="code hl_class" href="classpulsewire_1_1Vector.html">buffer</a>, <span class="keywordtype">size_t</span> <a class="code hl_class" href="classpulsewire_1_1Vector.html">length</a>)<span class="keyword"> override </span>{</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    <a class="code hl_class" href="classpulsewire_1_1Vector.html">uint32_t</a> <a class="code hl_class" href="classpulsewire_1_1Vector.html">timeout</a> = <a class="code hl_class" href="classpulsewire_1_1Vector.html">millis</a>() + _readTimeoutMs;</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    <span class="keywordflow">while</span> (_rxBuffer.available() &lt; <a class="code hl_class" href="classpulsewire_1_1Vector.html">length</a> &amp;&amp; <a class="code hl_class" href="classpulsewire_1_1Vector.html">millis</a>() &lt; <a class="code hl_class" href="classpulsewire_1_1Vector.html">timeout</a>) {</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>      processEdges();</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>      checkTimeout();</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>      <span class="keywordflow">if</span> (_rxBuffer.available() &lt; <a class="code hl_class" href="classpulsewire_1_1Vector.html">length</a>) {</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>        <a class="code hl_class" href="classpulsewire_1_1Vector.html">delay</a>(10);  <span class="comment">// small delay to avoid busy waiting</span></div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>      }</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    }</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    <span class="keywordflow">if</span> (_rxBuffer.size() == 0) {</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>      <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>    }</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    <span class="keywordtype">size_t</span> <a class="code hl_class" href="classpulsewire_1_1Vector.html">count</a> = 0;</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    <a class="code hl_class" href="classpulsewire_1_1Vector.html">count</a> = _rxBuffer.<a class="code hl_function" href="classpulsewire_1_1RingBuffer.html#aab5074c495ccc4c491132d6368bb233c">readArray</a>((<a class="code hl_class" href="classpulsewire_1_1Vector.html">uint8_t</a>*)<a class="code hl_class" href="classpulsewire_1_1Vector.html">buffer</a>, <a class="code hl_class" href="classpulsewire_1_1Vector.html">length</a>);</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    <span class="keywordflow">return</span> <a class="code hl_class" href="classpulsewire_1_1Vector.html">count</a>;</div>
 <div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>  }</div>
 </div>
 <div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span> </div>
 <div class="foldopen" id="foldopen00250" data-start="{" data-end="}">
-<div class="line"><a id="l00250" name="l00250"></a><span class="lineno"><a class="line" href="classpulsewire_1_1RxDriverArduino.html#a22a343aa3d6f39c500376bfd4974cfef">  250</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classpulsewire_1_1RxDriverArduino.html#a22a343aa3d6f39c500376bfd4974cfef">end</a>() {</div>
-<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    TRACE();</div>
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    <span class="keywordflow">if</span> (_is_active) {</div>
-<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span><span class="preprocessor">#ifdef HAS_INTERRUPT_ARG</span></div>
-<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>      <a class="code hl_class" href="classpulsewire_1_1Vector.html">detachInterrupt</a>(_pin);</div>
-<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span><span class="preprocessor">#else</span></div>
-<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>      ISRManager::detach(_pin);</div>
-<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>      _is_active = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    }</div>
-<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>  }</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno"><a class="line" href="classpulsewire_1_1RxDriverArduino.html#a7f4e334e4063ea06dc9236b5961669c2">  250</a></span>  <span class="keywordtype">int</span> <a class="code hl_function" href="classpulsewire_1_1RxDriverArduino.html#a7f4e334e4063ea06dc9236b5961669c2">available</a>()<span class="keyword"> override </span>{</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    processEdges();</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    checkTimeout();</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    <span class="keywordtype">int</span> <a class="code hl_class" href="classpulsewire_1_1Vector.html">result</a> = _rxBuffer.available();</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>    <a class="code hl_function" href="classpulsewire_1_1Logger.html#a1a770797b7c1df75cbfa45e4eca267f3">Logger::debug</a>(<span class="stringliteral">&quot;available(): %d&quot;</span>, <a class="code hl_class" href="classpulsewire_1_1Vector.html">result</a>);</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    <span class="keywordflow">return</span> <a class="code hl_class" href="classpulsewire_1_1Vector.html">result</a>;</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>  }</div>
 </div>
-<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span> </div>
-<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span> <span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>  <span class="keyword">volatile</span> <a class="code hl_class" href="classpulsewire_1_1Vector.html">uint32_t</a> _lastEdge;</div>
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>  <span class="keyword">volatile</span> <span class="keywordtype">bool</span> _lastLevel;</div>
-<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>  <a class="code hl_class" href="classpulsewire_1_1Vector.html">uint8_t</a> _pin;</div>
-<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>  <a class="code hl_class" href="classpulsewire_1_1Vector.html">uint32_t</a> _freqHz;</div>
-<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>  <a class="code hl_class" href="classpulsewire_1_1Vector.html">uint16_t</a> _frameSize = DEFAULT_FRAME_SIZE;</div>
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>  <a class="code hl_class" href="classpulsewire_1_1Codec.html">Codec</a>&amp; _codec;</div>
-<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>  <a class="code hl_class" href="classpulsewire_1_1Vector.html">RingBuffer&lt;uint8_t&gt;</a> _rxBuffer;</div>
-<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>  <a class="code hl_class" href="classpulsewire_1_1Vector.html">RingBuffer&lt;OutputEdge&gt;</a> _edgeBuffer;</div>
-<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span> </div>
-<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>  <a class="code hl_class" href="classpulsewire_1_1Vector.html">uint32_t</a> _bitPeriodUs = 0;</div>
-<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>  <a class="code hl_class" href="classpulsewire_1_1Vector.html">uint32_t</a> _minUs = 0;</div>
-<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>  <a class="code hl_class" href="classpulsewire_1_1Vector.html">uint32_t</a> _maxUs = 0;</div>
-<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>  <span class="keywordtype">bool</span> _useChecksum = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>  <a class="code hl_class" href="classpulsewire_1_1Vector.html">uint32_t</a> _timeoutUs = 0;</div>
-<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>  <span class="keyword">volatile</span> <span class="keywordtype">bool</span> _is_active = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>  <span class="keyword">volatile</span> <span class="keywordtype">bool</span> _is_open = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span> </div>
+<div class="foldopen" id="foldopen00258" data-start="{" data-end="}">
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno"><a class="line" href="classpulsewire_1_1RxDriverArduino.html#a22a343aa3d6f39c500376bfd4974cfef">  258</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classpulsewire_1_1RxDriverArduino.html#a22a343aa3d6f39c500376bfd4974cfef">end</a>() {</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    TRACE();</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    <span class="keywordflow">if</span> (_is_active) {</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span><span class="preprocessor">#ifdef HAS_INTERRUPT_ARG</span></div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>      <a class="code hl_class" href="classpulsewire_1_1Vector.html">detachInterrupt</a>(_pin);</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>      ISRManager::detach(_pin);</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>      _is_active = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    }</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>  }</div>
+</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span> </div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span> <span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>  <span class="keyword">volatile</span> <a class="code hl_class" href="classpulsewire_1_1Vector.html">uint32_t</a> _lastEdge;</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>  <span class="keyword">volatile</span> <span class="keywordtype">bool</span> _lastLevel;</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>  <a class="code hl_class" href="classpulsewire_1_1Vector.html">uint8_t</a> _pin;</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>  <a class="code hl_class" href="classpulsewire_1_1Vector.html">uint32_t</a> _freqHz;</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>  <a class="code hl_class" href="classpulsewire_1_1Vector.html">uint16_t</a> _frameSize = DEFAULT_FRAME_SIZE;</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>  <a class="code hl_class" href="classpulsewire_1_1Codec.html">Codec</a>&amp; _codec;</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>  <a class="code hl_class" href="classpulsewire_1_1Vector.html">RingBuffer&lt;uint8_t&gt;</a> _rxBuffer;</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>  <a class="code hl_class" href="classpulsewire_1_1Vector.html">RingBuffer&lt;OutputEdge&gt;</a> _edgeBuffer;</div>
 <div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span> </div>
-<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span><span class="preprocessor">#ifdef HAS_INTERRUPT_ARG</span></div>
-<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>  <span class="keyword">static</span> <a class="code hl_class" href="classpulsewire_1_1Vector.html">IRAM_ATTR</a> <span class="keywordtype">void</span> interruptHandler(<span class="keywordtype">void</span>* <a class="code hl_class" href="classpulsewire_1_1Vector.html">arg</a>) {</div>
-<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>    <span class="keyword">static_cast&lt;</span><a class="code hl_class" href="classpulsewire_1_1RxDriverArduino.html">RxDriverArduino</a>*<span class="keyword">&gt;</span>(<a class="code hl_class" href="classpulsewire_1_1Vector.html">arg</a>)-&gt;handleInterrupt();</div>
-<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>  }</div>
-<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span> </div>
-<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>  <span class="keywordtype">void</span> IRAM_ATTR handleInterrupt()<span class="keyword"> override </span>{</div>
-<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>    <span class="keywordtype">bool</span> newLevel = digitalRead(_pin);</div>
-<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>    uint32_t now = micros();</div>
-<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>    uint32_t duration = now - _lastEdge;</div>
-<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>    _lastEdge = now;</div>
-<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span> </div>
-<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>    <span class="comment">// Pass the duration and the previous level (_lastLevel)</span></div>
-<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>    OutputEdge edge{_lastLevel, duration};</div>
-<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>    _edgeBuffer.write(edge);</div>
-<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>    _lastLevel = newLevel;</div>
-<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>  }</div>
-<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span> </div>
-<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>  <span class="comment">// Called from loop() context — safe for heap, virtual calls, etc.</span></div>
-<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>  <span class="keywordtype">void</span> processEdges() {</div>
-<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>    <a class="code hl_function" href="classpulsewire_1_1Logger.html#a1a770797b7c1df75cbfa45e4eca267f3">Logger::debug</a>(<span class="stringliteral">&quot;processEdges&quot;</span>);</div>
-<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>    <span class="keywordtype">bool</span> ok = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>    OutputEdge edge;</div>
-<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>    <span class="keywordflow">while</span> (!_rxBuffer.isFull() &amp;&amp; ok) {</div>
-<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>      noInterrupts();</div>
-<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>      ok = _edgeBuffer.read(edge);</div>
-<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>      interrupts();</div>
-<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>      uint8_t byte_data = 0;</div>
-<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>      <span class="keywordflow">if</span> (ok &amp;&amp; _codec.<a class="code hl_function" href="classpulsewire_1_1Codec.html#a21ad641a92ef12f27332103b8dcb0d2e">decodeEdge</a>(edge.pulseUs, edge.level, byte_data)) {</div>
-<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>        _rxBuffer.write(byte_data);</div>
-<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>        _is_open = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>      }</div>
-<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>    }</div>
-<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>  }</div>
-<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span> </div>
-<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>  <span class="keywordtype">void</span> checkTimeout() {</div>
-<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>    <a class="code hl_function" href="classpulsewire_1_1Logger.html#a1a770797b7c1df75cbfa45e4eca267f3">Logger::debug</a>(<span class="stringliteral">&quot;checkTimeout&quot;</span>);</div>
-<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>    uint32_t now = micros();</div>
-<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>    uint32_t duration = now - _lastEdge;</div>
-<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>    uint8_t byte_data = 0;</div>
-<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span> </div>
-<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>    <span class="comment">// Process pending final edge (e.g., last stop bit)</span></div>
-<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>    <span class="keywordflow">if</span> (_is_open) {</div>
-<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>      <span class="comment">// Protect codec state from ISR preemption</span></div>
-<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>      <span class="keywordtype">bool</span> has_data = _codec.<a class="code hl_function" href="classpulsewire_1_1Codec.html#a21ad641a92ef12f27332103b8dcb0d2e">decodeEdge</a>(_bitPeriodUs, _lastLevel, byte_data);</div>
-<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>      <span class="keywordflow">if</span> (has_data) {</div>
-<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>        _rxBuffer.write(byte_data);</div>
-<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>      }</div>
-<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>      _is_open = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>    }</div>
-<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span> </div>
-<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>    <span class="comment">// Process timeout — reset state atomically</span></div>
-<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>    <span class="keywordflow">if</span> (duration &gt; _timeoutUs) {</div>
-<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>      <span class="comment">// noInterrupts();</span></div>
-<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>      _codec.reset();</div>
-<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>      <span class="comment">// interrupts();</span></div>
-<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>      <span class="comment">//  Don&#39;t touch _lastEdge/_lastLevel here — ISR owns them</span></div>
-<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>    }</div>
-<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>  }</div>
-<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span> </div>
-<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span>  <span class="keywordtype">void</span> reset() {</div>
-<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>    _lastEdge = micros();</div>
-<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>    _lastLevel = 0;</div>
-<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>    _is_open = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>  }</div>
-<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>};</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>  <a class="code hl_class" href="classpulsewire_1_1Vector.html">uint32_t</a> _bitPeriodUs = 0;</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>  <a class="code hl_class" href="classpulsewire_1_1Vector.html">uint32_t</a> _minUs = 0;</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>  <a class="code hl_class" href="classpulsewire_1_1Vector.html">uint32_t</a> _maxUs = 0;</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>  <span class="keywordtype">bool</span> _useChecksum = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>  <a class="code hl_class" href="classpulsewire_1_1Vector.html">uint32_t</a> _timeoutUs = 0;</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>  <span class="keyword">volatile</span> <span class="keywordtype">bool</span> _is_active = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>  <span class="keyword">volatile</span> <span class="keywordtype">bool</span> _is_open = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span> </div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span><span class="preprocessor">#ifdef HAS_INTERRUPT_ARG</span></div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>  <span class="keyword">static</span> <a class="code hl_class" href="classpulsewire_1_1Vector.html">IRAM_ATTR</a> <span class="keywordtype">void</span> interruptHandler(<span class="keywordtype">void</span>* <a class="code hl_class" href="classpulsewire_1_1Vector.html">arg</a>) {</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>    <span class="keyword">static_cast&lt;</span><a class="code hl_class" href="classpulsewire_1_1RxDriverArduino.html">RxDriverArduino</a>*<span class="keyword">&gt;</span>(<a class="code hl_class" href="classpulsewire_1_1Vector.html">arg</a>)-&gt;handleInterrupt();</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>  }</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span> </div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>  <span class="keywordtype">void</span> IRAM_ATTR handleInterrupt()<span class="keyword"> override </span>{</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>    <span class="keywordtype">bool</span> newLevel = digitalRead(_pin);</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>    uint32_t now = micros();</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>    uint32_t duration = now - _lastEdge;</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>    _lastEdge = now;</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span> </div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>    <span class="comment">// Pass the duration and the previous level (_lastLevel)</span></div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>    OutputEdge edge{_lastLevel, duration};</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>    _edgeBuffer.write(edge);</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>    _lastLevel = newLevel;</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>  }</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span> </div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>  <span class="comment">// Called from loop() context — safe for heap, virtual calls, etc.</span></div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>  <span class="keywordtype">void</span> processEdges() {</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>    <a class="code hl_function" href="classpulsewire_1_1Logger.html#a1a770797b7c1df75cbfa45e4eca267f3">Logger::debug</a>(<span class="stringliteral">&quot;processEdges&quot;</span>);</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>    <span class="keywordtype">bool</span> ok = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>    OutputEdge edge;</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>    <span class="keywordflow">while</span> (!_rxBuffer.isFull() &amp;&amp; ok) {</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>      noInterrupts();</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>      ok = _edgeBuffer.read(edge);</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>      interrupts();</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span> </div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>      <span class="keywordflow">if</span> (ok) {</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>        uint8_t byte_data = 0;</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>        <a class="code hl_function" href="classpulsewire_1_1Logger.html#a1a770797b7c1df75cbfa45e4eca267f3">Logger::debug</a>(<span class="stringliteral">&quot;RX Processing edge: level=%d, duration=%d us&quot;</span>,</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>                      edge.level, edge.pulseUs);</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>        <span class="keywordflow">if</span> (_codec.<a class="code hl_function" href="classpulsewire_1_1Codec.html#a38c5d015e654a1bb15d51a3f1fe7994f">decodeEdge</a>(edge.pulseUs, edge.level, byte_data)) {</div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>          _rxBuffer.write(byte_data);</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>          _is_open = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>        }</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>        <span class="keywordflow">if</span> (edge.pulseUs &gt; _codec.<a class="code hl_function" href="classpulsewire_1_1Codec.html#a340d36ba559663aa8fd601a6602cb2dc">getEndOfFrameDelayUs</a>()) {</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>          <a class="code hl_function" href="classpulsewire_1_1Logger.html#a1a770797b7c1df75cbfa45e4eca267f3">Logger::debug</a>(<span class="stringliteral">&quot;End of frame detected: pulse duration %d us&quot;</span>,</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>                        edge.pulseUs);</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>          reset();</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>        }</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>      }</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>    }</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>  }</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span> </div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>  <span class="keywordtype">void</span> checkTimeout() {</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>    <a class="code hl_function" href="classpulsewire_1_1Logger.html#a1a770797b7c1df75cbfa45e4eca267f3">Logger::debug</a>(<span class="stringliteral">&quot;checkTimeout&quot;</span>);</div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>    uint32_t now = micros();</div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>    uint32_t duration = now - _lastEdge;</div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>    uint8_t byte_data = 0;</div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span> </div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>    <span class="comment">// Process pending final edge (e.g., last stop bit)</span></div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span>    <span class="keywordflow">if</span> (_is_open &amp;&amp; duration &gt; _timeoutUs) {</div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>      <a class="code hl_function" href="classpulsewire_1_1Logger.html#a1a770797b7c1df75cbfa45e4eca267f3">Logger::debug</a>(<span class="stringliteral">&quot;Processing final edge after timeout: duration %d us&quot;</span>,</div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>                    duration);</div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>      <span class="keywordtype">bool</span> has_data = _codec.<a class="code hl_function" href="classpulsewire_1_1Codec.html#a38c5d015e654a1bb15d51a3f1fe7994f">decodeEdge</a>(_bitPeriodUs, _lastLevel, byte_data);</div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>      <span class="keywordflow">if</span> (has_data) {</div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>        _rxBuffer.write(byte_data);</div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>      }</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>      reset();</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>    }</div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>  }</div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span> </div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>  <span class="keywordtype">void</span> reset() {</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>    _lastEdge = micros();</div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>    _lastLevel = _codec.<a class="code hl_function" href="classpulsewire_1_1Codec.html#a40689adab15f5fa5d7db930b9b8d8ad1">getIdleLevel</a>();</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>    _is_open = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>    _codec.<a class="code hl_function" href="classpulsewire_1_1Codec.html#af5c27adab6f5dc6224946847b704e172">reset</a>();</div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>  }</div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>};</div>
 </div>
-<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span> </div>
-<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>}  <span class="comment">// namespace pulsewire</span></div>
-<div class="ttc" id="aclasspulsewire_1_1Codec_html"><div class="ttname"><a href="classpulsewire_1_1Codec.html">pulsewire::Codec</a></div><div class="ttdoc">Abstract base class for IR protocol encoding and decoding.</div><div class="ttdef"><b>Definition</b> <a href="Codec_8h_source.html#l00041">Codec.h:41</a></div></div>
-<div class="ttc" id="aclasspulsewire_1_1Codec_html_a21ad641a92ef12f27332103b8dcb0d2e"><div class="ttname"><a href="classpulsewire_1_1Codec.html#a21ad641a92ef12f27332103b8dcb0d2e">pulsewire::Codec::decodeEdge</a></div><div class="ttdeci">virtual bool decodeEdge(uint32_t durationUs, bool level, uint8_t &amp;result)</div><div class="ttdoc">Edge-based decoding for protocol-agnostic RX drivers.</div><div class="ttdef"><b>Definition</b> <a href="Codec_8h_source.html#l00106">Codec.h:106</a></div></div>
-<div class="ttc" id="aclasspulsewire_1_1Codec_html_a241439a5049b2ca98b069c2cce836fe1"><div class="ttname"><a href="classpulsewire_1_1Codec.html#a241439a5049b2ca98b069c2cce836fe1">pulsewire::Codec::begin</a></div><div class="ttdeci">virtual bool begin(uint32_t bitFrequencyHz)</div><div class="ttdoc">initialization method for codecs that require setup before use (e.g., loading PIO programs,...</div><div class="ttdef"><b>Definition</b> <a href="Codec_8h_source.html#l00056">Codec.h:56</a></div></div>
-<div class="ttc" id="aclasspulsewire_1_1Codec_html_a340d36ba559663aa8fd601a6602cb2dc"><div class="ttname"><a href="classpulsewire_1_1Codec.html#a340d36ba559663aa8fd601a6602cb2dc">pulsewire::Codec::getEndOfFrameDelayUs</a></div><div class="ttdeci">virtual int getEndOfFrameDelayUs()=0</div><div class="ttdoc">Provide the end of frame delay in microseconds for this protocol, used by RX driver to.</div></div>
-<div class="ttc" id="aclasspulsewire_1_1Codec_html_a3f31eab98232b75c6eef3acae04bc1a1"><div class="ttname"><a href="classpulsewire_1_1Codec.html#a3f31eab98232b75c6eef3acae04bc1a1">pulsewire::Codec::name</a></div><div class="ttdeci">const char * name() const</div><div class="ttdoc">Get the name of the codec type as a string (e.g., &quot;PulseDistance&quot;, &quot;Manchester&quot;).</div><div class="ttdef"><b>Definition</b> <a href="Codec_8h_source.html#l00218">Codec.h:218</a></div></div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span> </div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span>}  <span class="comment">// namespace pulsewire</span></div>
+<div class="ttc" id="aclasspulsewire_1_1Codec_html"><div class="ttname"><a href="classpulsewire_1_1Codec.html">pulsewire::Codec</a></div><div class="ttdoc">Abstract base class for IR protocol encoding and decoding.</div><div class="ttdef"><b>Definition</b> <a href="Codec_8h_source.html#l00053">Codec.h:53</a></div></div>
+<div class="ttc" id="aclasspulsewire_1_1Codec_html_a340d36ba559663aa8fd601a6602cb2dc"><div class="ttname"><a href="classpulsewire_1_1Codec.html#a340d36ba559663aa8fd601a6602cb2dc">pulsewire::Codec::getEndOfFrameDelayUs</a></div><div class="ttdeci">virtual int getEndOfFrameDelayUs()=0</div></div>
+<div class="ttc" id="aclasspulsewire_1_1Codec_html_a38c5d015e654a1bb15d51a3f1fe7994f"><div class="ttname"><a href="classpulsewire_1_1Codec.html#a38c5d015e654a1bb15d51a3f1fe7994f">pulsewire::Codec::decodeEdge</a></div><div class="ttdeci">virtual bool decodeEdge(uint32_t durationUs, bool level, uint8_t &amp;result)=0</div><div class="ttdoc">Edge-based decoding for protocol-agnostic RX drivers.</div></div>
+<div class="ttc" id="aclasspulsewire_1_1Codec_html_a3f31eab98232b75c6eef3acae04bc1a1"><div class="ttname"><a href="classpulsewire_1_1Codec.html#a3f31eab98232b75c6eef3acae04bc1a1">pulsewire::Codec::name</a></div><div class="ttdeci">const char * name() const</div><div class="ttdoc">Get the name of the codec type as a string (e.g., &quot;PulseDistance&quot;, &quot;Manchester&quot;).</div><div class="ttdef"><b>Definition</b> <a href="Codec_8h_source.html#l00135">Codec.h:135</a></div></div>
+<div class="ttc" id="aclasspulsewire_1_1Codec_html_a40689adab15f5fa5d7db930b9b8d8ad1"><div class="ttname"><a href="classpulsewire_1_1Codec.html#a40689adab15f5fa5d7db930b9b8d8ad1">pulsewire::Codec::getIdleLevel</a></div><div class="ttdeci">virtual bool getIdleLevel() const</div><div class="ttdoc">Provides the initial ldle state (low or hith)</div><div class="ttdef"><b>Definition</b> <a href="Codec_8h_source.html#l00127">Codec.h:127</a></div></div>
 <div class="ttc" id="aclasspulsewire_1_1Codec_html_a9f93fc579818bb7267752079739b4946"><div class="ttname"><a href="classpulsewire_1_1Codec.html#a9f93fc579818bb7267752079739b4946">pulsewire::Codec::getEdgeCount</a></div><div class="ttdeci">virtual size_t getEdgeCount() const =0</div><div class="ttdoc">Get the number of protocol symbols (bits, pulses, etc.) per encoded byte.</div></div>
+<div class="ttc" id="aclasspulsewire_1_1Codec_html_ad0c20ae83e9220c0082a0b66d14b1d8d"><div class="ttname"><a href="classpulsewire_1_1Codec.html#ad0c20ae83e9220c0082a0b66d14b1d8d">pulsewire::Codec::begin</a></div><div class="ttdeci">virtual bool begin(uint32_t bitFrequencyHz)</div><div class="ttdoc">initialization method for codecs that require setup before use (e.g., loading PIO programs,...</div><div class="ttdef"><b>Definition</b> <a href="Codec_8h_source.html#l00070">Codec.h:70</a></div></div>
+<div class="ttc" id="aclasspulsewire_1_1Codec_html_af3b481e6321eb4bbb0e3054250d8d566"><div class="ttname"><a href="classpulsewire_1_1Codec.html#af3b481e6321eb4bbb0e3054250d8d566">pulsewire::Codec::setFrameSize</a></div><div class="ttdeci">void setFrameSize(uint16_t size)</div><div class="ttdoc">Set the Frame Size.</div><div class="ttdef"><b>Definition</b> <a href="Codec_8h_source.html#l00114">Codec.h:114</a></div></div>
+<div class="ttc" id="aclasspulsewire_1_1Codec_html_af5c27adab6f5dc6224946847b704e172"><div class="ttname"><a href="classpulsewire_1_1Codec.html#af5c27adab6f5dc6224946847b704e172">pulsewire::Codec::reset</a></div><div class="ttdeci">virtual void reset()</div><div class="ttdoc">Reset the internal state of the codec.</div><div class="ttdef"><b>Definition</b> <a href="Codec_8h_source.html#l00084">Codec.h:84</a></div></div>
 <div class="ttc" id="aclasspulsewire_1_1ISRManager_html"><div class="ttname"><a href="classpulsewire_1_1ISRManager.html">pulsewire::ISRManager</a></div><div class="ttdoc">Manager for handling multiple ISR instances on platforms without attachInterruptArg.</div><div class="ttdef"><b>Definition</b> <a href="RxDriverArduino_8h_source.html#l00034">RxDriverArduino.h:34</a></div></div>
 <div class="ttc" id="aclasspulsewire_1_1Logger_html_a1a770797b7c1df75cbfa45e4eca267f3"><div class="ttname"><a href="classpulsewire_1_1Logger.html#a1a770797b7c1df75cbfa45e4eca267f3">pulsewire::Logger::debug</a></div><div class="ttdeci">static void debug(const char *format,...)</div><div class="ttdoc">Log a debug message with formatting.</div><div class="ttdef"><b>Definition</b> <a href="Logger_8h_source.html#l00082">Logger.h:82</a></div></div>
 <div class="ttc" id="aclasspulsewire_1_1Logger_html_afd5b20fcc7486f15485f64aa969b7fa2"><div class="ttname"><a href="classpulsewire_1_1Logger.html#afd5b20fcc7486f15485f64aa969b7fa2">pulsewire::Logger::info</a></div><div class="ttdeci">static void info(const char *format,...)</div><div class="ttdoc">Log an informational message with formatting.</div><div class="ttdef"><b>Definition</b> <a href="Logger_8h_source.html#l00067">Logger.h:67</a></div></div>
 <div class="ttc" id="aclasspulsewire_1_1RingBuffer_html_aab5074c495ccc4c491132d6368bb233c"><div class="ttname"><a href="classpulsewire_1_1RingBuffer.html#aab5074c495ccc4c491132d6368bb233c">pulsewire::RingBuffer::readArray</a></div><div class="ttdeci">int readArray(T *dest, size_t len)</div><div class="ttdoc">Read up to len elements into dest, returns number of elements read.</div><div class="ttdef"><b>Definition</b> <a href="RingBuffer_8h_source.html#l00094">RingBuffer.h:94</a></div></div>
 <div class="ttc" id="aclasspulsewire_1_1RxDriverArduino_html"><div class="ttname"><a href="classpulsewire_1_1RxDriverArduino.html">pulsewire::RxDriverArduino</a></div><div class="ttdoc">Interrupt-driven Arduino RX driver for pulse-based protocols.</div><div class="ttdef"><b>Definition</b> <a href="RxDriverArduino_8h_source.html#l00141">RxDriverArduino.h:141</a></div></div>
-<div class="ttc" id="aclasspulsewire_1_1RxDriverArduino_html_a22a343aa3d6f39c500376bfd4974cfef"><div class="ttname"><a href="classpulsewire_1_1RxDriverArduino.html#a22a343aa3d6f39c500376bfd4974cfef">pulsewire::RxDriverArduino::end</a></div><div class="ttdeci">void end()</div><div class="ttdoc">Stop the receiver.</div><div class="ttdef"><b>Definition</b> <a href="RxDriverArduino_8h_source.html#l00250">RxDriverArduino.h:250</a></div></div>
+<div class="ttc" id="aclasspulsewire_1_1RxDriverArduino_html_a22a343aa3d6f39c500376bfd4974cfef"><div class="ttname"><a href="classpulsewire_1_1RxDriverArduino.html#a22a343aa3d6f39c500376bfd4974cfef">pulsewire::RxDriverArduino::end</a></div><div class="ttdeci">void end()</div><div class="ttdoc">Stop the receiver.</div><div class="ttdef"><b>Definition</b> <a href="RxDriverArduino_8h_source.html#l00258">RxDriverArduino.h:258</a></div></div>
 <div class="ttc" id="aclasspulsewire_1_1RxDriverArduino_html_a3634122ad6fa82a17919204be5b4a885"><div class="ttname"><a href="classpulsewire_1_1RxDriverArduino.html#a3634122ad6fa82a17919204be5b4a885">pulsewire::RxDriverArduino::setRxBufferSize</a></div><div class="ttdeci">void setRxBufferSize(size_t size)</div><div class="ttdoc">Set the size of the internal RX buffer.</div><div class="ttdef"><b>Definition</b> <a href="RxDriverArduino_8h_source.html#l00184">RxDriverArduino.h:184</a></div></div>
-<div class="ttc" id="aclasspulsewire_1_1RxDriverArduino_html_a69d779f64fd2773578f814f480a9dede"><div class="ttname"><a href="classpulsewire_1_1RxDriverArduino.html#a69d779f64fd2773578f814f480a9dede">pulsewire::RxDriverArduino::begin</a></div><div class="ttdeci">bool begin(uint32_t bitFrequencyHz=DEFAULT_BIT_FREQ_HZ) override</div><div class="ttdoc">Start the receiver.</div><div class="ttdef"><b>Definition</b> <a href="RxDriverArduino_8h_source.html#l00186">RxDriverArduino.h:186</a></div></div>
-<div class="ttc" id="aclasspulsewire_1_1RxDriverArduino_html_a7f4e334e4063ea06dc9236b5961669c2"><div class="ttname"><a href="classpulsewire_1_1RxDriverArduino.html#a7f4e334e4063ea06dc9236b5961669c2">pulsewire::RxDriverArduino::available</a></div><div class="ttdeci">int available() override</div><div class="ttdoc">Get the number of bytes available in the internal buffer.</div><div class="ttdef"><b>Definition</b> <a href="RxDriverArduino_8h_source.html#l00242">RxDriverArduino.h:242</a></div></div>
-<div class="ttc" id="aclasspulsewire_1_1RxDriverArduino_html_ac0206fc52005990704e08c67460a393b"><div class="ttname"><a href="classpulsewire_1_1RxDriverArduino.html#ac0206fc52005990704e08c67460a393b">pulsewire::RxDriverArduino::readBytes</a></div><div class="ttdeci">size_t readBytes(uint8_t *buffer, size_t length) override</div><div class="ttdef"><b>Definition</b> <a href="RxDriverArduino_8h_source.html#l00231">RxDriverArduino.h:231</a></div></div>
+<div class="ttc" id="aclasspulsewire_1_1RxDriverArduino_html_a6b8e3cfe2fe4010c0e99f5414d5eb22a"><div class="ttname"><a href="classpulsewire_1_1RxDriverArduino.html#a6b8e3cfe2fe4010c0e99f5414d5eb22a">pulsewire::RxDriverArduino::begin</a></div><div class="ttdeci">bool begin(uint32_t bitFrequencyHz=DEFAULT_BIT_FREQ_HZ) override</div><div class="ttdoc">Start the receiver.</div><div class="ttdef"><b>Definition</b> <a href="RxDriverArduino_8h_source.html#l00186">RxDriverArduino.h:186</a></div></div>
+<div class="ttc" id="aclasspulsewire_1_1RxDriverArduino_html_a7f4e334e4063ea06dc9236b5961669c2"><div class="ttname"><a href="classpulsewire_1_1RxDriverArduino.html#a7f4e334e4063ea06dc9236b5961669c2">pulsewire::RxDriverArduino::available</a></div><div class="ttdeci">int available() override</div><div class="ttdoc">Get the number of bytes available in the internal buffer.</div><div class="ttdef"><b>Definition</b> <a href="RxDriverArduino_8h_source.html#l00250">RxDriverArduino.h:250</a></div></div>
+<div class="ttc" id="aclasspulsewire_1_1RxDriverArduino_html_ac0206fc52005990704e08c67460a393b"><div class="ttname"><a href="classpulsewire_1_1RxDriverArduino.html#ac0206fc52005990704e08c67460a393b">pulsewire::RxDriverArduino::readBytes</a></div><div class="ttdeci">size_t readBytes(uint8_t *buffer, size_t length) override</div><div class="ttdef"><b>Definition</b> <a href="RxDriverArduino_8h_source.html#l00233">RxDriverArduino.h:233</a></div></div>
 <div class="ttc" id="aclasspulsewire_1_1RxDriverArduino_html_ac327f5bd2aaad1f88a1f31172a6248a3"><div class="ttname"><a href="classpulsewire_1_1RxDriverArduino.html#ac327f5bd2aaad1f88a1f31172a6248a3">pulsewire::RxDriverArduino::RxDriverArduino</a></div><div class="ttdeci">RxDriverArduino(Codec &amp;codec, uint8_t pin, uint32_t freqHz=DEFAULT_BIT_FREQ_HZ, bool useChecksum=false, uint32_t timeoutUs=0)</div><div class="ttdef"><b>Definition</b> <a href="RxDriverArduino_8h_source.html#l00150">RxDriverArduino.h:150</a></div></div>
 <div class="ttc" id="aclasspulsewire_1_1RxDriverArduino_html_ad343e98d97768a9792f697daac0ca792"><div class="ttname"><a href="classpulsewire_1_1RxDriverArduino.html#ad343e98d97768a9792f697daac0ca792">pulsewire::RxDriverArduino::setFrameSize</a></div><div class="ttdeci">void setFrameSize(uint16_t size) override</div><div class="ttdoc">Set the expected frame size for dynamic data reception.</div><div class="ttdef"><b>Definition</b> <a href="RxDriverArduino_8h_source.html#l00175">RxDriverArduino.h:175</a></div></div>
 <div class="ttc" id="aclasspulsewire_1_1RxDriverInt_html"><div class="ttname"><a href="classpulsewire_1_1RxDriverInt.html">pulsewire::RxDriverInt</a></div><div class="ttdoc">Interrupt-capable IR RX driver interface for platforms without attachInterruptArg.</div><div class="ttdef"><b>Definition</b> <a href="RxDriverArduino_8h_source.html#l00023">RxDriverArduino.h:23</a></div></div>

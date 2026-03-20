@@ -1,0 +1,17 @@
+<map id="pulsewire::RZCodec" name="pulsewire::RZCodec">
+<area shape="rect" id="Node000001" title=" " alt="" coords="1373,94,1524,119"/>
+<area shape="rect" id="Node000002" href="$classpulsewire_1_1Codec.html" title="Abstract base class for IR protocol encoding and decoding." alt="" coords="1077,51,1210,77"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1224,72,1374,94,1373,99,1223,78"/>
+<area shape="rect" id="Node000003" href="$classpulsewire_1_1CustomPreambleUs.html" title="CustomPreambleUs: Allows users to define their own preamble by setting expected edges...." alt="" coords="653,99,876,125"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="889,97,1020,81,1076,73,1077,78,1020,87,890,102"/>
+<area shape="rect" id="Node000004" href="$classpulsewire_1_1Preamble.html" title="Abstract base class for preamble detection and generation." alt="" coords="313,38,468,63"/>
+<area shape="poly" id="edge5_Node000002_Node000004" title=" " alt="" coords="481,50,1077,60,1077,66,481,55"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="472,63,492,67,679,97,678,102,492,72,471,68"/>
+<area shape="rect" id="Node000005" href="$classpulsewire_1_1Vector.html" title=" " alt="" coords="5,5,193,45"/>
+<area shape="poly" id="edge6_Node000002_Node000005" title=" " alt="" coords="207,15,217,15,289,15,583,22,876,33,948,35,1020,40,1079,49,1078,54,1020,45,948,40,876,39,583,27,289,20,217,20,207,20"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="207,43,218,44,313,49,313,54,217,49,207,48"/>
+<area shape="rect" id="Node000006" href="$classpulsewire_1_1RingBuffer.html" title=" " alt="" coords="1044,115,1243,155"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="1256,123,1349,115,1373,112,1373,118,1350,120,1257,128"/>
+<area shape="rect" id="Node000007" href="$structpulsewire_1_1OutputEdge.html" title="Specifies a single IR signal segment for protocol&#45;agnostic transmission." alt="" coords="680,149,849,174"/>
+<area shape="poly" id="edge8_Node000006_Node000007" title=" " alt="" coords="863,152,1044,139,1044,144,863,157"/>
+</map>

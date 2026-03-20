@@ -9,5 +9,6 @@ var searchData=
   ['rxdriverarduino_6',['RxDriverArduino',['../classpulsewire_1_1RxDriverArduino.html',1,'pulsewire']]],
   ['rxdriveresp32_7',['RxDriverESP32',['../classpulsewire_1_1RxDriverESP32.html',1,'pulsewire']]],
   ['rxdriverint_8',['RxDriverInt',['../classpulsewire_1_1RxDriverInt.html',1,'pulsewire']]],
-  ['rxdriverrp2040_9',['RxDriverRP2040',['../classpulsewire_1_1RxDriverRP2040.html',1,'pulsewire']]]
+  ['rxdriverrp2040_9',['RxDriverRP2040',['../classpulsewire_1_1RxDriverRP2040.html',1,'pulsewire']]],
+  ['rzcodec_10',['RZCodec',['../classpulsewire_1_1RZCodec.html',1,'pulsewire']]]
 ];

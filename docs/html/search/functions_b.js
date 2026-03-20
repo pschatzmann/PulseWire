@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['peek_0',['peek',['../classpulsewire_1_1RingBuffer.html#af82ee3935598c230dce3a2c2853ae635',1,'pulsewire::RingBuffer::peek(T &amp;out) const'],['../classpulsewire_1_1RingBuffer.html#a9546634efa4ee593ad959a5bcd8ce03f',1,'pulsewire::RingBuffer::peek() const'],['../classpulsewire_1_1Transceiver.html#a265e6a0fa902458505d002c82804591f',1,'pulsewire::Transceiver::peek()']]],
-  ['preamblelength_1',['preamblelength',['../classpulsewire_1_1IRProtocol.html#a327c9c84ff284492cc804004599d01c2',1,'pulsewire::IRProtocol::preambleLength()'],['../classpulsewire_1_1IRMultiProtocol.html#a30f4d18a957aa14e7c7f719e5c412126',1,'pulsewire::IRMultiProtocol::preambleLength()']]],
-  ['push_5fback_2',['push_back',['../classpulsewire_1_1Vector.html#a7b64fba6c78236f1373ebce7df490b64',1,'pulsewire::Vector']]]
+  ['operator_3d_0',['operator=',['../classpulsewire_1_1Vector.html#aeda2747382f31998d1cc5025da0d31a0',1,'pulsewire::Vector::operator=(const Vector &amp;other)'],['../classpulsewire_1_1Vector.html#a7381a2d8bbfb34b2957f85b2a0bb7cbd',1,'pulsewire::Vector::operator=(Vector &amp;&amp;other) noexcept']]],
+  ['operator_5b_5d_1',['operator[]',['../classpulsewire_1_1Vector.html#a53fc54056bb6eb6a2744c60b9b9e0b3c',1,'pulsewire::Vector::operator[](size_t idx)'],['../classpulsewire_1_1Vector.html#ae94123086fe32f5a5ede832b356a3d6a',1,'pulsewire::Vector::operator[](size_t idx) const']]]
 ];

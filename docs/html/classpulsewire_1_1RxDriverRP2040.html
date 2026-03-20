@@ -127,8 +127,9 @@ Collaboration diagram for pulsewire::RxDriverRP2040:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:af848ccde6e3397521f46540d17c1fc39" id="r_af848ccde6e3397521f46540d17c1fc39"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpulsewire_1_1RxDriverRP2040.html#af848ccde6e3397521f46540d17c1fc39">RxDriverRP2040</a> (<a class="el" href="classpulsewire_1_1Codec.html">Codec</a> &amp;codec, <a class="el" href="classpulsewire_1_1Vector.html">uint8_t</a> pin, <a class="el" href="classpulsewire_1_1Vector.html">uint32_t</a> <a class="el" href="classpulsewire_1_1Vector.html">freqHz</a>=1000, <a class="el" href="classpulsewire_1_1Vector.html">bool</a> <a class="el" href="classpulsewire_1_1Vector.html">useChecksum</a>=<a class="el" href="classpulsewire_1_1Vector.html">false</a>, <a class="el" href="classpulsewire_1_1Vector.html">uint32_t</a> <a class="el" href="classpulsewire_1_1Vector.html">timeoutUs</a>=1000000)</td></tr>
 <tr class="separator:af848ccde6e3397521f46540d17c1fc39"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4557bb83c2411c2baf01833511336bac" id="r_a4557bb83c2411c2baf01833511336bac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpulsewire_1_1Vector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpulsewire_1_1RxDriverRP2040.html#a4557bb83c2411c2baf01833511336bac">setFrameSize</a> (<a class="el" href="classpulsewire_1_1Vector.html">uint8_t</a> size) <a class="el" href="classpulsewire_1_1Vector.html">override</a></td></tr>
-<tr class="separator:a4557bb83c2411c2baf01833511336bac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e1a7273baf176a0d3322fc0c2dc3fff" id="r_a0e1a7273baf176a0d3322fc0c2dc3fff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpulsewire_1_1Vector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpulsewire_1_1RxDriverRP2040.html#a0e1a7273baf176a0d3322fc0c2dc3fff">setFrameSize</a> (<a class="el" href="classpulsewire_1_1Vector.html">uint16_t</a> size) <a class="el" href="classpulsewire_1_1Vector.html">override</a></td></tr>
+<tr class="memdesc:a0e1a7273baf176a0d3322fc0c2dc3fff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the expected frame size for dynamic data reception.  <br /></td></tr>
+<tr class="separator:a0e1a7273baf176a0d3322fc0c2dc3fff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac3e23fe89161f419810bfe6e40da4350" id="r_ac3e23fe89161f419810bfe6e40da4350"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpulsewire_1_1Vector.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpulsewire_1_1RxDriverRP2040.html#ac3e23fe89161f419810bfe6e40da4350">begin</a> (<a class="el" href="classpulsewire_1_1Vector.html">uint8_t</a> <a class="el" href="classpulsewire_1_1Vector.html">frameSize</a>) <a class="el" href="classpulsewire_1_1Vector.html">override</a></td></tr>
 <tr class="separator:ac3e23fe89161f419810bfe6e40da4350"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5e17d3ca334d53e8190bfd5a723bf397" id="r_a5e17d3ca334d53e8190bfd5a723bf397"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpulsewire_1_1Vector.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpulsewire_1_1RxDriverRP2040.html#a5e17d3ca334d53e8190bfd5a723bf397">begin</a> () <a class="el" href="classpulsewire_1_1Vector.html">override</a></td></tr>
@@ -142,18 +143,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0f32e2c4417821e437e61e2c59c70c20" id="r_a0f32e2c4417821e437e61e2c59c70c20"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpulsewire_1_1Vector.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpulsewire_1_1RxDriverRP2040.html#a0f32e2c4417821e437e61e2c59c70c20">available</a> () <a class="el" href="classpulsewire_1_1Vector.html">override</a></td></tr>
 <tr class="memdesc:a0f32e2c4417821e437e61e2c59c70c20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of bytes available in the internal buffer.  <br /></td></tr>
 <tr class="separator:a0f32e2c4417821e437e61e2c59c70c20"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40f4b01d78a38236bbff303085ddf465" id="r_a40f4b01d78a38236bbff303085ddf465"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpulsewire_1_1Vector.html">virtual</a> <a class="el" href="classpulsewire_1_1Vector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpulsewire_1_1RxDriver.html#a40f4b01d78a38236bbff303085ddf465">setFrameSize</a> (<a class="el" href="classpulsewire_1_1Vector.html">uint16_t</a> size)=0</td></tr>
-<tr class="memdesc:a40f4b01d78a38236bbff303085ddf465"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the expected frame size for dynamic data reception.  <br /></td></tr>
-<tr class="separator:a40f4b01d78a38236bbff303085ddf465"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d9d1071a87db2ddac2ce59311480aaf" id="r_a8d9d1071a87db2ddac2ce59311480aaf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpulsewire_1_1Vector.html">virtual</a> <a class="el" href="classpulsewire_1_1Vector.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpulsewire_1_1RxDriver.html#a8d9d1071a87db2ddac2ce59311480aaf">begin</a> (<a class="el" href="classpulsewire_1_1Vector.html">uint16_t</a> <a class="el" href="classpulsewire_1_1Vector.html">bitFrequencyHz</a>)=0</td></tr>
-<tr class="memdesc:a8d9d1071a87db2ddac2ce59311480aaf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start the receiver.  <br /></td></tr>
-<tr class="separator:a8d9d1071a87db2ddac2ce59311480aaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2074a0118c5ed7a2ee253ddb63a019ba" id="r_a2074a0118c5ed7a2ee253ddb63a019ba"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpulsewire_1_1Vector.html">virtual</a> <a class="el" href="classpulsewire_1_1Vector.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpulsewire_1_1RxDriver.html#a2074a0118c5ed7a2ee253ddb63a019ba">begin</a> (<a class="el" href="classpulsewire_1_1Vector.html">uint32_t</a> <a class="el" href="classpulsewire_1_1Vector.html">bitFrequencyHz</a>)=0</td></tr>
+<tr class="memdesc:a2074a0118c5ed7a2ee253ddb63a019ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start the receiver.  <br /></td></tr>
+<tr class="separator:a2074a0118c5ed7a2ee253ddb63a019ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ee83660f843269bc9a936dace9151e3" id="r_a0ee83660f843269bc9a936dace9151e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpulsewire_1_1Vector.html">virtual</a> <a class="el" href="classpulsewire_1_1Vector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpulsewire_1_1RxDriver.html#a0ee83660f843269bc9a936dace9151e3">end</a> ()=0</td></tr>
 <tr class="memdesc:a0ee83660f843269bc9a936dace9151e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop the receiver.  <br /></td></tr>
 <tr class="separator:a0ee83660f843269bc9a936dace9151e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af8667b9667ea4becccae1d5d2802ff91" id="r_af8667b9667ea4becccae1d5d2802ff91"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpulsewire_1_1Vector.html">virtual</a> <a class="el" href="classpulsewire_1_1Vector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpulsewire_1_1RxDriver.html#af8667b9667ea4becccae1d5d2802ff91">setRxBufferSize</a> (<a class="el" href="classpulsewire_1_1Vector.html">size_t</a> size)=0</td></tr>
 <tr class="memdesc:af8667b9667ea4becccae1d5d2802ff91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the size of the internal RX buffer.  <br /></td></tr>
 <tr class="separator:af8667b9667ea4becccae1d5d2802ff91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24153284316479bacc361b840f87241c" id="r_a24153284316479bacc361b840f87241c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpulsewire_1_1Vector.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpulsewire_1_1RxDriver.html#a24153284316479bacc361b840f87241c">setTimeout</a> (<a class="el" href="classpulsewire_1_1Vector.html">uint32_t</a> <a class="el" href="classpulsewire_1_1Vector.html">timeoutMs</a>)</td></tr>
+<tr class="memdesc:a24153284316479bacc361b840f87241c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines the read timeout for <a class="el" href="classpulsewire_1_1RxDriver.html#a413e2a837babd112db3b31383ca47ba8">readBytes()</a> in milliseconds.  <br /></td></tr>
+<tr class="separator:a24153284316479bacc361b840f87241c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -188,6 +189,8 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:a9966da7af3c03621dcefa1be7d246f40"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5bcb281a589964c385a0f526a5fb83e" id="r_ad5bcb281a589964c385a0f526a5fb83e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpulsewire_1_1Vector.html">uint32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpulsewire_1_1RxDriverRP2040.html#ad5bcb281a589964c385a0f526a5fb83e">_lastEdgeTime</a> = 0</td></tr>
 <tr class="separator:ad5bcb281a589964c385a0f526a5fb83e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9e4ab85a2fba9ac5133adeed0fa7732" id="r_ab9e4ab85a2fba9ac5133adeed0fa7732"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpulsewire_1_1Vector.html">uint32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpulsewire_1_1RxDriver.html#ab9e4ab85a2fba9ac5133adeed0fa7732">_readTimeoutMs</a> = 50</td></tr>
+<tr class="separator:ab9e4ab85a2fba9ac5133adeed0fa7732"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-static-attribs" name="pro-static-attribs"></a>
 Static Protected Attributes</h2></td></tr>
@@ -327,8 +330,8 @@ Static Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a8d9d1071a87db2ddac2ce59311480aaf" name="a8d9d1071a87db2ddac2ce59311480aaf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8d9d1071a87db2ddac2ce59311480aaf">&#9670;&#160;</a></span>begin() <span class="overload">[2/3]</span></h2>
+<a id="a2074a0118c5ed7a2ee253ddb63a019ba" name="a2074a0118c5ed7a2ee253ddb63a019ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2074a0118c5ed7a2ee253ddb63a019ba">&#9670;&#160;</a></span>begin() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -339,7 +342,7 @@ Static Protected Attributes</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="classpulsewire_1_1Vector.html">virtual</a> <a class="el" href="classpulsewire_1_1Vector.html">bool</a> pulsewire::RxDriver::begin </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classpulsewire_1_1Vector.html">uint16_t</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="classpulsewire_1_1Vector.html">uint32_t</a>&#160;</td>
           <td class="paramname"><em>bitFrequencyHz</em></td><td>)</td>
           <td></td>
         </tr>
@@ -353,7 +356,7 @@ Static Protected Attributes</h2></td></tr>
 
 <p>Start the receiver. </p>
 
-<p>Implemented in <a class="el" href="classpulsewire_1_1RxDriverArduino.html#a69d779f64fd2773578f814f480a9dede">pulsewire::RxDriverArduino</a>.</p>
+<p>Implemented in <a class="el" href="classpulsewire_1_1RxDriverESP32.html#ac5f1ecbfa81f4a964de3f044d79d86b5">pulsewire::RxDriverESP32</a>, and <a class="el" href="classpulsewire_1_1RxDriverArduino.html#a6b8e3cfe2fe4010c0e99f5414d5eb22a">pulsewire::RxDriverArduino</a>.</p>
 
 </div>
 </div>
@@ -547,38 +550,8 @@ Static Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a40f4b01d78a38236bbff303085ddf465" name="a40f4b01d78a38236bbff303085ddf465"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a40f4b01d78a38236bbff303085ddf465">&#9670;&#160;</a></span>setFrameSize() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classpulsewire_1_1Vector.html">virtual</a> <a class="el" href="classpulsewire_1_1Vector.html">void</a> pulsewire::RxDriver::setFrameSize </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classpulsewire_1_1Vector.html">uint16_t</a>&#160;</td>
-          <td class="paramname"><em>size</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Set the expected frame size for dynamic data reception. </p>
-
-<p>Implemented in <a class="el" href="classpulsewire_1_1RxDriverArduino.html#ad343e98d97768a9792f697daac0ca792">pulsewire::RxDriverArduino</a>.</p>
-
-</div>
-</div>
-<a id="a4557bb83c2411c2baf01833511336bac" name="a4557bb83c2411c2baf01833511336bac"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4557bb83c2411c2baf01833511336bac">&#9670;&#160;</a></span>setFrameSize() <span class="overload">[2/2]</span></h2>
+<a id="a0e1a7273baf176a0d3322fc0c2dc3fff" name="a0e1a7273baf176a0d3322fc0c2dc3fff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e1a7273baf176a0d3322fc0c2dc3fff">&#9670;&#160;</a></span>setFrameSize()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -589,17 +562,21 @@ Static Protected Attributes</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="classpulsewire_1_1Vector.html">void</a> pulsewire::RxDriverRP2040::setFrameSize </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classpulsewire_1_1Vector.html">uint8_t</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="classpulsewire_1_1Vector.html">uint16_t</a>&#160;</td>
           <td class="paramname"><em>size</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Set the expected frame size for dynamic data reception. </p>
+
+<p>Implements <a class="el" href="classpulsewire_1_1RxDriver.html#a40f4b01d78a38236bbff303085ddf465">pulsewire::RxDriver</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="RxDriverRP2040_8h_source.html#l00039">39</a> of file <a class="el" href="RxDriverRP2040_8h_source.html">RxDriverRP2040.h</a>.</p>
 
@@ -632,6 +609,36 @@ Static Protected Attributes</h2></td></tr>
 <p>Set the size of the internal RX buffer. </p>
 
 <p>Implemented in <a class="el" href="classpulsewire_1_1RxDriverArduino.html#a3634122ad6fa82a17919204be5b4a885">pulsewire::RxDriverArduino</a>, and <a class="el" href="classpulsewire_1_1RxDriverESP32.html#afeba73a1bf53b636240aa28f44584f96">pulsewire::RxDriverESP32</a>.</p>
+
+</div>
+</div>
+<a id="a24153284316479bacc361b840f87241c" name="a24153284316479bacc361b840f87241c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24153284316479bacc361b840f87241c">&#9670;&#160;</a></span>setTimeout()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classpulsewire_1_1Vector.html">void</a> pulsewire::RxDriver::setTimeout </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classpulsewire_1_1Vector.html">uint32_t</a>&#160;</td>
+          <td class="paramname"><em>timeoutMs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Defines the read timeout for <a class="el" href="classpulsewire_1_1RxDriverRP2040.html#a8e115d555603f86f627c4391b683805f">readBytes()</a> in milliseconds. </p>
+
+<p class="definition">Definition at line <a class="el" href="RxDriver_8h_source.html#l00026">26</a> of file <a class="el" href="RxDriver_8h_source.html">RxDriver.h</a>.</p>
 
 </div>
 </div>
@@ -801,6 +808,30 @@ Static Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="RxDriverRP2040_8h_source.html#l00155">155</a> of file <a class="el" href="RxDriverRP2040_8h_source.html">RxDriverRP2040.h</a>.</p>
+
+</div>
+</div>
+<a id="ab9e4ab85a2fba9ac5133adeed0fa7732" name="ab9e4ab85a2fba9ac5133adeed0fa7732"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9e4ab85a2fba9ac5133adeed0fa7732">&#9670;&#160;</a></span>_readTimeoutMs</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classpulsewire_1_1Vector.html">uint32_t</a> pulsewire::RxDriver::_readTimeoutMs = 50</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="RxDriver_8h_source.html#l00029">29</a> of file <a class="el" href="RxDriver_8h_source.html">RxDriver.h</a>.</p>
 
 </div>
 </div>

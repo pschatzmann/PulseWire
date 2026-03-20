@@ -1,15 +1,15 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
 <area shape="rect" id="Node000000" title=" " alt="" coords="5,80,75,105"/>
 <area shape="rect" id="Node000001" href="$classpulsewire_1_1IRTransceiver.html" title="IRTransceiver: High&#45;level interface for sending and receiving IR signals." alt="" coords="123,55,301,80"/>
-<area shape="poly" id="edge28_Node000000_Node000001" title=" " alt="" coords="88,83,125,77,126,83,89,88"/>
+<area shape="poly" id="edge30_Node000000_Node000001" title=" " alt="" coords="88,83,125,77,126,83,89,88"/>
 <area shape="rect" id="Node000004" href="$classpulsewire_1_1Transceiver.html" title="Bi&#45;directional IR transceiver class with Stream interface and driver abstraction." alt="" coords="129,104,295,129"/>
-<area shape="poly" id="edge31_Node000000_Node000004" title=" " alt="" coords="89,97,129,102,128,108,88,102"/>
+<area shape="poly" id="edge33_Node000000_Node000004" title=" " alt="" coords="89,97,129,102,128,108,88,102"/>
 <area shape="rect" id="Node000002" href="$classpulsewire_1_1IRReceiver.html" title="Receiver class for IR communication." alt="" coords="353,5,516,31"/>
-<area shape="poly" id="edge29_Node000001_Node000002" title=" " alt="" coords="282,49,376,28,377,33,284,54"/>
+<area shape="poly" id="edge31_Node000001_Node000002" title=" " alt="" coords="282,49,376,28,377,33,284,54"/>
 <area shape="rect" id="Node000003" href="$classpulsewire_1_1IRTrasmitter.html" title="Transmitter class for IR communication." alt="" coords="349,55,520,80"/>
-<area shape="poly" id="edge30_Node000001_Node000003" title=" " alt="" coords="315,65,349,65,349,70,315,70"/>
+<area shape="poly" id="edge32_Node000001_Node000003" title=" " alt="" coords="315,65,349,65,349,70,315,70"/>
 <area shape="rect" id="Node000005" href="$classpulsewire_1_1Receiver.html" title="Receiver class for communication." alt="" coords="359,104,510,129"/>
-<area shape="poly" id="edge32_Node000004_Node000005" title=" " alt="" coords="310,114,359,114,359,119,310,119"/>
+<area shape="poly" id="edge34_Node000004_Node000005" title=" " alt="" coords="310,114,359,114,359,119,310,119"/>
 <area shape="rect" id="Node000006" href="$classpulsewire_1_1Trasmitter.html" title="Transmitter class for communication." alt="" coords="355,153,514,179"/>
-<area shape="poly" id="edge33_Node000004_Node000006" title=" " alt="" coords="284,130,377,151,376,156,282,135"/>
+<area shape="poly" id="edge35_Node000004_Node000006" title=" " alt="" coords="284,130,377,151,376,156,282,135"/>
 </map>
