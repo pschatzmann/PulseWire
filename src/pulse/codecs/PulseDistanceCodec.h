@@ -43,13 +43,77 @@ class PulseDistanceCodec : public Codec {
     Codec::begin(bitFrequencyHz);
     if (_shortPulseUs == 0) _shortPulseUs = 1000000UL / (bitFrequencyHz * 2);
     if (_longPulseUs == 0) _longPulseUs = 1000000UL / (bitFrequencyHz / 2);
-    if (_toleranceUs == 0) _toleranceUs =  0.5 *_bitPeriodUs ;
+    if (_toleranceUs == 0) _toleranceUs = 0.5 * _bitPeriodUs;
 
-    _inFrame = _preamble->preambleLength() == 0;  // If preamble is defined, start in "not in frame" state
+    _inFrame = _preamble->preambleLength() ==
+               0;  // If preamble is defined, start in "not in frame" state
 
     return true;
   }
 
+  size_t getEdgeCount() const override { return 16; }
+
+  int getEndOfFrameDelayUs() override { return 2 * _longPulseUs; }
+
+  CodecEnum getCodecType() const override { return CodecEnum::PulseDistance; }
+
+  bool getIdleLevel() { return true; }
+
+  size_t encode(uint8_t byte, Vector<OutputEdge>& output) override {
+    Vector<bool> bits;
+    bits.reserve(8);
+    encodeByte(byte, bits);
+    size_t total = 0;
+    for (int i = 0; i < 8; ++i) {
+      total += encodeBit(bits[i], output);
+    }
+    return total;
+  }
+
+  bool decodeEdge(uint32_t durationUs, bool level, uint8_t& result) override {
+    // ensure that edges are allocated
+    assert(_decodeEdgeStream.capacity() > 0);
+
+    // Filter idle gaps
+    if (level == getIdleLevel() && durationUs > getEndOfFrameDelayUs()) {
+      Logger::debug("Idle gap detected: %d us, resetting decoder", durationUs);
+      reset();
+      return false;
+    }
+
+    OutputEdge newEdge{level, durationUs};
+    assert(_preamble != nullptr);
+    if (!_inFrame) {
+      if (_preamble->preambleLength() == 0) {
+        // no preamble, the edge is valid playload
+        _decodeEdgeStream.clear();
+        _decodeEdgeStream.push_back(newEdge);
+        _inFrame = true;
+        Logger::debug("No preamble, starting new frame");
+      } else if (_preamble->detect(newEdge)) {
+        // Detected preamble, start new frame
+        _inFrame = true;
+        _decodeEdgeStream.clear();
+        Logger::debug("Preamble detected, starting new frame");
+      }
+    } else {
+      _decodeEdgeStream.push_back(newEdge);
+    }
+
+    // Try to decode bytes if enough edges collected
+    if (_decodeEdgeStream.size() == getEdgeCount()) {
+      bool rc = decodeByte(_decodeEdgeStream, result);
+      Logger::debug("Decoded byte: 0x%x", result);
+      _decodeEdgeStream.clear();
+      return rc;
+    }
+    return false;
+  }
+
+ protected:
+  uint32_t _shortPulseUs = 0;
+  uint32_t _longPulseUs = 0;
+  uint32_t _toleranceUs = 0;
   /**
    * @brief Fill output vector with PulseDistance OutputSpec(s) for a bit.
    *
@@ -57,7 +121,7 @@ class PulseDistanceCodec : public Codec {
    * @param output Vector to append OutputSpec(s).
    * @return Number of OutputSpec entries added.
    */
-  size_t encodeBit(bool bit, Vector<OutputEdge>& output) override {
+  size_t encodeBit(bool bit, Vector<OutputEdge>& output) {
     OutputEdge pulse, space;
     pulse.level = false;
     pulse.pulseUs = bit ? _longPulseUs : _shortPulseUs;
@@ -69,20 +133,7 @@ class PulseDistanceCodec : public Codec {
     return 2;
   }
 
-  size_t getEdgeCount() const override { return 16; }
-
-  int getEndOfFrameDelayUs() override { return 2 * _longPulseUs; }
-
-  CodecEnum getCodecType() const override { return CodecEnum::PulseDistance; }
-
-  bool getIdleLevel() { return true; }
-
- protected:
-  uint32_t _shortPulseUs = 0;
-  uint32_t _longPulseUs = 0;
-  uint32_t _toleranceUs = 0;
-
-  bool decodeByte(Vector<OutputEdge>& edges, uint8_t& result) override {
+  bool decodeByte(Vector<OutputEdge>& edges, uint8_t& result) {
     if (edges.size() < 16) {
       Logger::error("Not enough edges to decode byte: %d", edges.size());
       return false;

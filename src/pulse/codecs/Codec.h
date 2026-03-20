@@ -51,6 +51,8 @@ const char* toStr(CodecEnum codec) {
  * Manchester, pulse-distance).
  */
 class Codec {
+  friend class RecorderCodec;
+
  public:
   Codec() = default;
 
@@ -84,6 +86,12 @@ class Codec {
     _inFrame = false;
     _preamble->reset();
   }
+  /**
+   * @brief Set the Preamble Detector object
+   *
+   * @param preamble
+   */
+  void setPreamble(Preamble& preamble) { _preamble = &preamble; }
 
   /**
    * @brief Get the preamble detector associated with this codec.
@@ -92,17 +100,39 @@ class Codec {
   Preamble& getPreamble() { return *_preamble; }
 
   /**
-   * @brief Set the Preamble Detector object
-   *
-   * @param preamble
-   */
-  void setPreamble(Preamble& preamble) { _preamble = &preamble; }
-  /**
    * @brief Get the number of protocol symbols (bits, pulses, etc.) per encoded
    * byte.
    * @return Number of protocol symbols per byte.
    */
   virtual size_t getEdgeCount() const = 0;
+
+  /**
+   * @brief Set the Frame Size
+   *
+   * @param size
+   */
+  void setFrameSize(uint16_t size) {
+    _frameSize = size;
+    _decodeEdgeStream.reserve(size * getEdgeCount());
+  }
+
+  /// Get the configured frame size 
+  uint16_t getFrameSize() const { return _frameSize; }
+
+  /// Provide the end of frame delay in microseconds for this protocol, used by
+  /// RX driver to
+  virtual int getEndOfFrameDelayUs() = 0;
+
+  /// Provides the initial ldle state (low or hith)
+  virtual bool getIdleLevel() const { return false; }
+
+  /// Get the codec type (e.g., PulseDistance, Manchester) for this Codec
+  /// instance.
+  virtual CodecEnum getCodecType() const = 0;
+
+  /// @brief  Get the name of the codec type as a string (e.g., "PulseDistance",
+  /// "Manchester").
+  const char* name() const { return toStr(getCodecType()); }
 
   /**
    * @brief Edge-based decoding for protocol-agnostic RX drivers.
@@ -118,49 +148,11 @@ class Codec {
    * @return True if a complete frame is decoded and available in frameBuffer.
    */
 
-  virtual bool decodeEdge(uint32_t durationUs, bool level, uint8_t& result) {
-    // ensure that edges are allocated
-    assert(_decodeEdgeStream.capacity() > 0);
-
-    // Filter idle gaps
-    if (level == getIdleLevel() && durationUs > getEndOfFrameDelayUs()) {
-      Logger::debug("Idle gap detected: %d us, resetting decoder", durationUs);
-      reset();
-      return false;
-    }
-
-    OutputEdge newEdge{level, durationUs};
-    assert(_preamble != nullptr);
-    if (!_inFrame) {
-      if (_preamble->preambleLength() == 0) {
-        // no preamble, the edge is valid playload
-        _decodeEdgeStream.clear();
-        _decodeEdgeStream.push_back(newEdge);
-        _inFrame = true;
-        Logger::debug("No preamble, starting new frame");
-      } else if (_preamble->detect(newEdge)) {
-        // Detected preamble, start new frame
-        _inFrame = true;
-        _decodeEdgeStream.clear();
-        Logger::debug("Preamble detected, starting new frame");
-      }
-    } else {
-      _decodeEdgeStream.push_back(newEdge);
-    }
-
-    // Try to decode bytes if enough edges collected
-    if (_decodeEdgeStream.size() == getEdgeCount()) {
-      bool rc = decodeByte(_decodeEdgeStream, result);
-      Logger::debug("Decoded byte: 0x%x", result);
-      _decodeEdgeStream.clear();
-      return rc;
-    }
-    return false;
-  }
+  virtual bool decodeEdge(uint32_t durationUs, bool level, uint8_t& result) = 0;
 
   /***
    * @brief Fill output vector with protocol-specific preamble for the
-   * preamble. 
+   * preamble.
    */
   size_t encodePreamble(Vector<OutputEdge>& output) {
     if (_preamble == nullptr) return 0;
@@ -178,46 +170,28 @@ class Codec {
    * @param output Vector to append OutputSpec(s).
    * @return Number of OutputSpec entries added.
    */
-  virtual size_t encode(uint8_t byte, Vector<OutputEdge>& output) {
-    Vector<bool> bits;
-    bits.reserve(8);
-    encodeByte(byte, bits);
-    size_t total = 0;
-    for (int i = 0; i < 8; ++i) {
-      total += encodeBit(bits[i], output);
-    }
-    return total;
-  }
-
-  /**
-   * @brief Set the Frame Size 
-   * 
-   * @param size 
-   */
-  void setFrameSize(uint16_t size) {
-    _decodeEdgeStream.reserve(size * getEdgeCount());
-  }
-
-  /**
-   * @brief Fill output vector with protocol-specific OutputSpec(s) for a bit.
-   *
-   * @param bit The bit to encode (true/false).
-   * @param output Vector to append OutputSpec(s).
-   * @return Number of OutputSpec entries added.
-   */
-  virtual size_t encodeBit(bool bit, Vector<OutputEdge>& output) { return 0; };
+  virtual size_t encode(uint8_t byte, Vector<OutputEdge>& output)  = 0;
 
   /**
    * @brief Flush any pending encoder state at end of frame.
-   * 
+   *
    * Some codecs (e.g., Miller) accumulate pending duration that must be
    * output at the end of the frame. This method outputs any remaining
    * pending state. Default implementation does nothing.
-   * 
+   *
    * @param output Vector to append OutputSpec(s).
    * @return Number of OutputSpec entries added.
    */
   virtual size_t flushEncoder(Vector<OutputEdge>& output) { return 0; }
+
+ protected:
+  CustomPreambleUs _defaultPreamble;
+  Preamble* _preamble = &_defaultPreamble;
+  uint16_t _bitFrequencyHz = 0;
+  uint32_t _bitPeriodUs = 0;
+  Vector<OutputEdge> _decodeEdgeStream;
+  volatile bool _inFrame = false;
+  uint16_t _frameSize = 0;
 
   /**
    * @brief Encode a byte to protocol bitstream. Default implementation encodes
@@ -233,34 +207,6 @@ class Codec {
       bits[7 - i] = bit ? 1 : 0;
     }
   }
-
-  /// Decode edges into a byte
-  virtual bool decodeByte(Vector<OutputEdge>& edges, uint8_t& result) {
-    return false;
-  }
-
-  /// Provide the end of frame delay in microseconds for this protocol, used by
-  /// RX driver to
-  virtual int getEndOfFrameDelayUs() = 0;
-
-  /// Provides the initial ldle state (low or hith)
-  virtual bool getIdleLevel() const { return false; }
-
-  /// Get the codec type (e.g., PulseDistance, Manchester) for this Codec
-  /// instance.
-  virtual CodecEnum getCodecType() const = 0;
-
-  /// @brief  Get the name of the codec type as a string (e.g., "PulseDistance",
-  /// "Manchester").
-  const char* name() const { return toStr(getCodecType()); }
-
- protected:
-  CustomPreambleUs _defaultPreamble;
-  Preamble* _preamble = &_defaultPreamble;
-  uint16_t _bitFrequencyHz = 0;
-  uint32_t _bitPeriodUs = 0;
-  Vector<OutputEdge> _decodeEdgeStream;
-  volatile bool _inFrame = false;
 };
 
 }  // namespace pulsewire

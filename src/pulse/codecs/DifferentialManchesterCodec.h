@@ -26,9 +26,12 @@ class DifferentialManchesterCodec : public ManchesterCodec {
   }
 
  protected:
+  bool _lastLevelEncode = false;
+  bool _lastLevelDecode = false;
+
   // Differential Manchester: each bit is two pulses, but encoding depends on
   // previous level
-  size_t encodeBit(bool bit, Vector<OutputEdge>& output) override {
+  size_t encodeBit(bool bit, Vector<OutputEdge>& output)  {
     OutputEdge first, second;
 
     if (bit) {
@@ -52,7 +55,7 @@ class DifferentialManchesterCodec : public ManchesterCodec {
     return 2;
   }
 
-  bool decodeByte(Vector<OutputEdge>& edges, uint8_t& result) override {
+  bool decodeByte(Vector<OutputEdge>& edges, uint8_t& result)  {
     // Defensive: check edge count
     if (edges.size() != getEdgeCount()) return false;
     uint8_t& byte = result;
@@ -85,9 +88,6 @@ class DifferentialManchesterCodec : public ManchesterCodec {
     return false;  // Idle state is LOW
   }
 
- protected:
-  bool _lastLevelEncode = false;
-  bool _lastLevelDecode = false;
 };
 
 }  // namespace pulsewire

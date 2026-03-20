@@ -21,10 +21,6 @@ class RecorderCodec : public Codec {
     _recordedEdges.reserve(size * getEdgeCount());
   }
 
-  bool decodeEdge(uint32_t durationUs, bool level, uint8_t& result) override {
-    _recordedEdges.push_back({level, durationUs});
-    return _ref.decodeEdge(durationUs, level, result);
-  }
   bool begin(uint32_t bitFrequencyHz) {
     //_recordedEdges.clear();
     return _ref.begin(bitFrequencyHz);
@@ -32,30 +28,26 @@ class RecorderCodec : public Codec {
 
   CodecEnum getCodecType() const override { return _ref.getCodecType(); }
 
-  virtual size_t getEdgeCount() const { return _ref.getEdgeCount(); }
+  size_t getEdgeCount() const { return _ref.getEdgeCount(); }
+
+  int getEndOfFrameDelayUs() override { return _ref.getEndOfFrameDelayUs(); }
 
   Vector<OutputEdge>& getRecordedEdges() { return _recordedEdges; }
 
   void clear() { _recordedEdges.clear(); }
 
-  size_t encodeBit(bool bit, Vector<OutputEdge>& output) {
-    return _ref.encodeBit(bit, output);
-  };
-
-  bool decodeByte(Vector<OutputEdge>& edges, uint8_t& result) override {
-    return _ref.decodeByte(edges, result);
-  };
-
-  void encodeByte(uint8_t byte, std::vector<bool>& bits) const override {
-    _ref.encodeByte(byte, bits);
+  size_t encode(uint8_t byte, Vector<OutputEdge>& output) override {
+    return _ref.encode(byte, output);
   }
 
-  int getEndOfFrameDelayUs() override { return _ref.getEndOfFrameDelayUs();  }
+  bool decodeEdge(uint32_t durationUs, bool level, uint8_t& result) override {
+    _recordedEdges.push_back({level, durationUs});
+    return _ref.decodeEdge(durationUs, level, result);
+  }
 
  protected:
   Codec& _ref;
   Vector<OutputEdge> _recordedEdges;
-
 };
 
 }  // namespace pulsewire

@@ -65,7 +65,7 @@ class NRZCodec : public Codec {
     if (_inFrame) {
       if (durationUs < _bitPeriodUs * 1.5) {
         // Short pulse, likely a single bit
-        return Codec::decodeEdge(durationUs, level, result);
+        return decodeEdgeInternal(durationUs, level, result);
       }
       // Split long pulses into individual bit-period edges
       int count = (durationUs + _bitPeriodUs / 2) / _bitPeriodUs;
@@ -75,17 +75,17 @@ class NRZCodec : public Codec {
 
       bool valid = false;
       for (int i = 0; i < count; ++i) {
-        if (Codec::decodeEdge(_bitPeriodUs, level, result)) {
+        if (decodeEdgeInternal(_bitPeriodUs, level, result)) {
           valid = true;
         }
       }
       return valid;
     } else {
-      return Codec::decodeEdge(durationUs, level, result);
+      return decodeEdgeInternal(durationUs, level, result);
     }
   }
 
-  bool decodeByte(Vector<OutputEdge>& edges, uint8_t& result) override {
+  bool decodeByte(Vector<OutputEdge>& edges, uint8_t& result)  {
     bool valid = true;
     if (edges[0].level != false) {
       Logger::error("Invalid start bit: expected LOW, got HIGH: duration=%d us",
@@ -143,6 +143,47 @@ class NRZCodec : public Codec {
     return (duration >= expectedDuration - (_bitPeriodUs / 2)) &&
            (duration <= expectedDuration + (_bitPeriodUs / 2));
   }
+
+  virtual bool decodeEdgeInternal(uint32_t durationUs, bool level, uint8_t& result) {
+    // ensure that edges are allocated
+    assert(_decodeEdgeStream.capacity() > 0);
+
+    // Filter idle gaps
+    if (level == getIdleLevel() && durationUs > getEndOfFrameDelayUs()) {
+      Logger::debug("Idle gap detected: %d us, resetting decoder", durationUs);
+      reset();
+      return false;
+    }
+
+    OutputEdge newEdge{level, durationUs};
+    assert(_preamble != nullptr);
+    if (!_inFrame) {
+      if (_preamble->preambleLength() == 0) {
+        // no preamble, the edge is valid playload
+        _decodeEdgeStream.clear();
+        _decodeEdgeStream.push_back(newEdge);
+        _inFrame = true;
+        Logger::debug("No preamble, starting new frame");
+      } else if (_preamble->detect(newEdge)) {
+        // Detected preamble, start new frame
+        _inFrame = true;
+        _decodeEdgeStream.clear();
+        Logger::debug("Preamble detected, starting new frame");
+      }
+    } else {
+      _decodeEdgeStream.push_back(newEdge);
+    }
+
+    // Try to decode bytes if enough edges collected
+    if (_decodeEdgeStream.size() == getEdgeCount()) {
+      bool rc = decodeByte(_decodeEdgeStream, result);
+      Logger::debug("Decoded byte: 0x%x", result);
+      _decodeEdgeStream.clear();
+      return rc;
+    }
+    return false;
+  }
+
 };
 
 }  // namespace pulsewire

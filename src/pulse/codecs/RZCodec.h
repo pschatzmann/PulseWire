@@ -13,11 +13,29 @@ class RZCodec : public Codec {
  public:
   RZCodec(int stopBits = 1) : _stopBits(stopBits) {}
 
-  RZCodec(Preamble& preambleDetector, int stopBits = 1) : Codec(preambleDetector), _stopBits(stopBits) {}
+  RZCodec(Preamble& preambleDetector, int stopBits = 1)
+      : Codec(preambleDetector), _stopBits(stopBits) {}
 
   virtual ~RZCodec() = default;
 
- 
+  CodecEnum getCodecType() const override { return CodecEnum::RZ; }
+
+  bool getIdleLevel() const override { return true; }
+
+  size_t getEdgeCount() const override { return 16; }
+
+  int getEndOfFrameDelayUs() override { return 8 * _bitPeriodUs; }
+
+  void reset() override {
+    Codec::reset();
+    _bitCount = 0;
+    _byte = 0;
+    _rxState = WAIT_START;
+    _rxDataBitCount = 0;
+    _rxStopBitCount = 0;
+    _edgeBuffer.clear();
+  }
+
   size_t encode(uint8_t byte, Vector<OutputEdge>& output) override {
     size_t edgeCount = 0;
 
@@ -60,8 +78,7 @@ class RZCodec : public Codec {
   }
 
   // Decode a single edge (durationUs, level) and accumulate bits, implementing
-  virtual bool decodeEdge(uint32_t durationUs, bool level,
-                          uint8_t& result) override {
+  bool decodeEdge(uint32_t durationUs, bool level, uint8_t& result) override {
     _edgeBuffer.clear();
     Logger::debug("[RZCodec] decodeEdge: level=%s, duration=%d us",
                   level ? "HIGH" : "LOW ", durationUs);
@@ -86,25 +103,7 @@ class RZCodec : public Codec {
     return false;
   }
 
-  CodecEnum getCodecType() const override { return CodecEnum::RZ; }
-
-  bool getIdleLevel() const override { return true; }
-
-  size_t getEdgeCount() const override { return 16; }
-
-  int getEndOfFrameDelayUs() override { return 8 * _bitPeriodUs; }
-
-  void reset() override {
-    Codec::reset();
-    _bitCount = 0;
-    _byte = 0;
-    _rxState = WAIT_START;
-    _rxDataBitCount = 0;
-    _rxStopBitCount = 0;
-    _edgeBuffer.clear();
-  }
-
- private:
+ protected:
   uint8_t _stopBits = 1;
   uint8_t _bitCount = 0;
   uint8_t _byte = 0;
