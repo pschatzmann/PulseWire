@@ -36,15 +36,18 @@ This library uses the Arduino Stream API, so that we can easily integrate with o
     - Signal 
 
 - [Signal](https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1SignalBase.html) 
-    - [Tone](https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1ToneSignal.html)
     - [Digital](https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1DigitalSignal.html)
-    - [PWM](https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1PWMSignal.html)
+    - [Tone](https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1ToneSignal.html) (modulated)
+    - [PWM](https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1PWMSignal.html) (modulated)
 
 - [Codec](https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1Codec.html)
     - [PulseDistance](https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1PulseDistanceCodec.html)
     - [PulseWidth](https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1PulseWidthCodec.html)
     - [Manchaster](https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1ManchesterCodec.html)
+    - [Differential Manchester](https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1DifferentialManchesterCodec.html)
     - [NRZ](https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1NRZCodec.html)
+    - [RZ](https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1RZCodec.html)
+    - [Miller](https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1MillerCodec.html)
 
 - [Preamble](https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1Preamble.html)
    - [NoPreamble](https://pschatzmann.github.io/PulseWire/html/classpulsewire_1_1NoPreamble.html)
