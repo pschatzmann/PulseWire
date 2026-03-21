@@ -5,15 +5,15 @@
 
 I did not find a library that could be used to transmit any arbitrary data with the help of an __Infrared Transmitter and Receiver__ module. Later I realized that this could be useful with any sceanrio where we want to transmit binary data __wirelessly or over a wire__ (e.g with  “433 MHz RF modules" or via ultrasound).
 
-Data needs to be encoded into pulses to be transmitted and these pulses then need to be decoded on the receiver side: The most popular methods are __Manchaster Encoding__, __Pulse Distance__, __Pulse Width__ and __NRZ Encoding__. [Codecs](docs/Codecs.md) are providing this functionality.
+In order to transmit data, it needs to be encoded into pulses and these pulses then need to be decoded on the receiver side: The most popular methods are __Manchaster Encoding__, __Pulse Distance__, __Pulse Width__ and __NRZ Encoding__. [Codecs](docs/Codecs.md) are providing this functionality.
 
 On the receiver side, we need to be able to __recognise when a signal starts__. This can be done with a [Preamble](docs/Preambles) that descibes the starting pulses with their timings.
 
 In addition, specific to transmitting IR data, we need to modulate the __signal__ with a carrier frequency (typically 38000 Hz). This can be done in different ways, so different alternaive implementations for this are provided.
 
 ## Key Features
-- Modular Codec architecture: [Manchester, PulseDistance, PulseWidth or NRZ encoding](docs/Codecs.md).
-- Flexible [transmittsion frequencies](docs/BitFrequency.md) when calling begin()
+- [Modular Codec architecture](docs/Codecs.md).
+- Flexible [transmission frequencies](docs/BitFrequency.md) 
 - Injectable, protocol-specific [preamble detection](docs/Preambles) and generation
 - Arduino Stream API for easy integration with configurable [framing modes](docs/FramingModes.md) and frame size
 - Protocol-agnostic drivers for generic Arduino 
