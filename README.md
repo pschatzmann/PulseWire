@@ -119,3 +119,18 @@ void loop() {
   // delay(1000);
 }
 ```
+
+## Installation in Arduino
+
+You can download the library as zip and call include Library -> zip library. Or you can git clone this project into the Arduino libraries folder e.g. with
+
+```
+cd  ~/Documents/Arduino/libraries
+git clone https://github.com/pschatzmann/PulseWire
+```
+
+I recommend to use git because you can easily update to the latest version just by executing the ```git pull``` command in the project folder.
+
+## Contributing
+
+Contributions are welcome! Submit issues or pull requests to the repository.
